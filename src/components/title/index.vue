@@ -3,34 +3,36 @@
     <div class="left">
       <ul class="left-ul">
         <li>
-          <mars-icon width="35" icon="home-two"></mars-icon>
+          <div class="icons">
+            <mars-icon class="icon" width="50" icon="home-two"></mars-icon>
+          </div>
           <div class="icon-bottom"></div>
         </li>
         <li @click="showif()">
-          <mars-icon width="35" icon="search"></mars-icon>
+          <div class="icons"><mars-icon class="icon" width="50" top="5" icon="search"></mars-icon></div>
           <div class="icon-bottom"></div>
         </li>
         <li @click="showpoint()">
-          <mars-icon width="35" icon="radar"></mars-icon>
+          <div class="icons"><mars-icon width="50" icon="radar" class="icon"></mars-icon></div>
           <div class="icon-bottom"></div>
         </li>
       </ul>
     </div>
     <div class="middle">
-      <div class="middle-inner">白 鹤 滩 库 滑 坡 预 警 监 测 平 台</div>
+      <div class="logo">INSAR-地表传感器结合的监测平台</div>
       <div class="middle-line"></div>
     </div>
     <div class="right">
       <div class="time">时间：{{ map.dataTime }}</div>
       <div v-bind="map.dataTime"></div>
       <div class="right-icon">
-        <mars-icon width="35" icon="sun-one"></mars-icon>
+        <mars-icon width="50" class="icon" icon="sun-one"></mars-icon>
       </div>
     </div>
   </div>
 </template>
 <script setup lang="ts">
-//  import marsIcon from "@/components/mars-icon/index.vue"
+import marsIcon from "@mars/components/mars-ui/mars-icon/index.vue"
 import { useWidgetStore, useWidget } from "@mars/common/store/widget"
 import { ref, onMounted, onUnmounted, Ref } from "vue"
 import * as map from "./map"
@@ -40,8 +42,7 @@ onUnmounted(() => {
   disableAll(true)
 })
 
-let trueif
-trueif = true
+let trueif = true
 const showif = () => {
   trueif = !trueif
   console.log("trueif")
@@ -54,7 +55,7 @@ const showif = () => {
 }
 
 let showpoints
-showpoints = true
+showpoints = false
 const showpoint = () => {
   showpoints = !showpoints
   console.log("trueif")
@@ -87,139 +88,127 @@ onUnmounted(() => {
 </script>
 <style scoped lang="less">
 .container {
-  position: absolute;
   width: 100%;
-  height: 80px;
-  // background-color:rgb(173, 209, 198);
+  height: 6vh;
   z-index: 100;
-
+  display: flex;
   border-left: 1px solid #008aff70;
   border-right: 1px solid #008aff70;
   background: linear-gradient(to top, @mars-content-color, @mars-content-color) left bottom no-repeat,
     linear-gradient(to bottom, @mars-content-color, @mars-content-color) left bottom no-repeat,
     linear-gradient(to left, @mars-content-color, @mars-content-color) right bottom no-repeat,
     linear-gradient(to left, @mars-content-color, @mars-content-color) right bottom no-repeat;
+  // background-color: @mars-primary-color-self;
   background-size: 1px 10px, 10px 1px, 1px 10px, 10px 1px;
-  background-color: @mars-primary-color-self;
+  // background-color: @mars-primary-color-self;
+  .left {
+    height: 8vh;
+    width: 35%;
+    color: @mars-primary-color;
+    // display: flex;
+    border-right: 4px solid skyblue;
+    background-color: @mars-primary-color-self;
+    box-shadow: 0px 4px 7px 5px skyblue;
+    .left-ul {
+      display: flex;
+      justify-content: space-around;
+      // background-color: red;
+      height: 8vh;
+      li {
+        display: flex;
+        flex-direction: column;
+        .icons {
+          height: 80px;
+          // background-color: rgba(135, 206, 235, 1);
+          width: 80px;
+          margin-top: 10px;
+          .icon {
+            margin-left: 15px;
+          }
+        }
+        .icon-bottom {
+          height: 2px;
+          // background-color: red;
+          // background-color: rgba(135, 206, 235, 1);
+          // box-shadow: 0px 0px 7px 3px skyblue, 0px 0px 7px 3px rgb(0 251 255);
+          border-radius: 40px / 70px;
+          border-top: none;
+        }
+        &:hover {
+          // background-color: rgb(141, 241, 241);
+          // border-bottom: 10px;
+          // border-bottom:rgb(108, 178, 199) 5px solid;
+          box-shadow: 500px rgba(69, 128, 184, 0.3);
+          background-image: repeating-linear-gradient(to top, rgba(55, 170, 190, 0.1), rgba(65, 76, 221, 0.8));
+          .icon-bottom {
+            width: 85px;
+            //  border: solid 3px rgb(10, 202, 236);
+            height: 2px;
+            background-color: rgba(135, 206, 235, 1);
 
-  div {
-    float: left;
-  }
-}
-.left {
-  width: 35%;
-
-  height: 80px;
-  color: @mars-primary-color;
-  opacity: 1;
-  z-index: 1000;
-  border-right: none;
-  border-bottom: 4px solid #57bec270;
-  box-shadow: 0px 0px 7px 5px skyblue;
-  background-color: @mars-primary-color-self;
-  //   background-color: @mars-primary-color;
-  .left-ul {
-    margin-left: 70px;
-  }
-  .left-ul > li {
-    position: relative;
-    float: left;
-    height: 60px;
-    width: 75px;
-    // color: @mars-base-color;
-    padding-top: 10px;
-
-    // background-color: green;
-    margin-left: 50px;
-    margin-right: 50px;
-    margin-top: 5px;
-    text-align: center;
-    vertical-align: middle;
-    // line-height: 60px;
-    border: 10px;
-    // border-bottom-color: green;
-    &:hover {
-      // background-color: rgb(141, 241, 241);
-      // border-bottom: 10px;
-      // border-bottom:rgb(108, 178, 199) 5px solid;
-      box-shadow: 500px rgba(69, 128, 184, 0.3);
-      background-image: repeating-linear-gradient(rgba(55, 170, 190, 0.1), rgba(55, 170, 190, 0.8));
-      .icon-bottom {
-        width: 85px;
-        //  border: solid 3px rgb(10, 202, 236);
-        height: 2px;
-        background-color: rgba(135, 206, 235, 1);
-        position: absolute;
-        top: 60px;
-        left: -5px;
-        box-shadow: 0px 0px 7px 3px skyblue, 0px 0px 7px 3px rgb(0 251 255);
-        border-radius: 40px / 70px;
-        border-top: none;
+            box-shadow: 0px 0px 7px 3px skyblue, 0px 0px 7px 4px rgb(11, 65, 66);
+            border-radius: 40px / 70px;
+            border-top: none;
+          }
+        }
       }
     }
   }
-}
-
-.middle {
-  margin-left: 0px;
-  border-left: none;
-  width: 30%;
-  height: 95px;
-  border-bottom: 4px solid #3e999c70;
-
-  z-index: 10;
-  //   -webkit-clip-path: polygon(0 0.5%, 99.5% 0, 99.5% 85%, 90% 99.5%, 10% 100%, 0.5% 85%);
-  //   clip-path: polygon(0 0, 100% 0, 100% 85%, 90% 100%, 10% 100%, 0 85%);
-
-  background-color: @mars-primary-color-self;
-  //   background-color: @mars-primary-color;
-  box-shadow: 0px 4px 7px 2px skyblue;
-  //   background-color: green;
-
-  .middle-inner {
-    width: 600px;
-    margin-top: 15px;
-    height: 70px;
-    font-size: 25px;
-    line-height: 75px;
-    text-align: center;
-    font-family: "Courier New", Courier, monospace;
-    //   background-color: green;}
-  }
-  .middle-line {
-    width: 450px;
-    height: 3px;
-    // background-color: red;
-    margin-left: 75px;
-    margin-top: -10px;
-
-    background-image: linear-gradient(to right, rgba(55, 170, 190, 0.1), rgba(116, 177, 187, 0.8), rgba(55, 170, 190, 0.1));
-    box-shadow: 0px 0px 7px 1px skyblue;
-  }
-}
-.right {
-  div {
-    float: left;
-  }
-  height: 80px;
-  width: 35%;
-
-  background-color: @mars-primary-color-self;
-  //   background-color: @mars-primary-color;
-  box-shadow: 0px 4px 7px 2px skyblue;
-  //   background-color: green;
-  .time {
-    font-size: 20px;
-    line-height: 80px;
-    height: 80px;
+  .middle {
+    width: 30%;
     // background-color: green;
-    margin-left: 100px;
+    height: 10vh;
+    line-height: 8vh;
+    background-color: @mars-primary-color-self;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    .logo {
+      height: 70px;
+      // background-color: red;
+      font-size: 24px;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      text-align: center;
+      margin-top: -15px;
+      font-family: "system-ui", -apple-system, "Helvetica", Arial, sans-serif;
+    }
+    .middle-line {
+      // background-color: green;
+      width: 450px;
+      height: 5px;
+      background-image: linear-gradient(to right, rgba(55, 170, 190, 0.1), rgba(116, 177, 187, 0.8), rgba(55, 170, 190, 0.1));
+      box-shadow: 0px 0px 7px 1px skyblue;
+      margin-top: -15px;
+    }
   }
-  .right-icon {
-    // background-color: green;
-    width: 100px;
-    margin-top: 18px;
-    margin-left: 100px;
+  .right {
+    background-color: @mars-primary-color-self;
+    height: 8vh;
+    width: 35%;
+    border-left: 4px solid skyblue;
+    box-shadow: 0px 4px 15px 10px skyblue;
+    display: flex;
+    justify-content: space-around;
+    // background-color: red;s
+    .time {
+      font-size: 20px;
+      line-height: 80px;
+      height: 80px;
+      // background-color: green;
+      margin-left: 100px;
+    }
+    .right-icon {
+      // background-color: green;
+      text-align: center;
+      line-height: 80px;
+      height: 80px;
+      // background-color: rgba(135, 206, 235, 1);
+      width: 60px;
+      margin-top: 10px;
+    }
   }
 }
 </style>

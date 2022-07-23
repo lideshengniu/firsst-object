@@ -44,6 +44,7 @@
     "@typescript-eslint/eslint-plugin": "^5.26.0",
     "@vitejs/plugin-vue": "^2.1.0",
     "@vue/eslint-config-typescript": "^10.0.0",
+    "autoprefixer": "^10.4.7",
     "consola": "^2.15.3",
     "eslint": "^7.32.0",
     "eslint-config-standard": "^16.0.3",
@@ -56,10 +57,12 @@
     "husky": "^7.0.4",
     "less": "^4.1.2",
     "lint-staged": "^12.4.1",
+    "postcss": "^8.4.14",
     "prettier": "^2.6.2",
     "rollup-plugin-visualizer": "^5.6.0",
     "serve-static": "^1.14.2",
     "standard": "^16.0.4",
+    "tailwindcss": "^2.2.19",
     "typescript": "^4.5.5",
     "unplugin-vue-components": "^0.17.13",
     "vite": "^2.8.6",
@@ -92,10 +95,10 @@
   "author": "火星科技",
   "license": "Apache-2.0",
   "homepage": "http://mars3d.cn",
-  "lint-staged":{
-    "*.{js,jsx,vue,ts,tsx}":[
-        "npm run lint",
-        "git add"
+  "lint-staged": {
+    "*.{js,jsx,vue,ts,tsx}": [
+      "npm run lint",
+      "git add"
     ]
-}
+  }
 }

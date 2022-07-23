@@ -47,9 +47,40 @@ const store: StoreOptions<WidgetState> = {
         component: markRaw(defineAsyncComponent(() => import("@mars/widgets/basic/location-point/index.vue"))),
         name: "location-point",
         group: "tools"
+      },
+      {
+        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/geojson/index.vue"))),
+        name: "geojson",
+        group: "tools"
+      },
+      {
+        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/file/index.vue"))),
+        name: "file",
+        group: "tools2"
+      },
+      {
+        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/points line/point2/index.vue"))),
+        name: "point2",
+        group: "tools2"
+        // autoDisable: true
+      },
+      {
+        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/point/index.vue"))),
+        name: "point",
+        group: "tools3"
+      },
+      {
+        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/manage-layers/index.vue"))),
+        name: "demo-manage-layers",
+        group: "tools3"
+      },
+      {
+        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/road/index.vue"))),
+        name: "road",
+        group: "tools3"
       }
     ],
-    openAtStart: ["query-poi", "toolbar"]
+    openAtStart: ["road", "line"]
   }
 }
 

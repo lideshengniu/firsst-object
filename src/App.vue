@@ -4,11 +4,13 @@
 // import HelloWorld from './components/HelloWorld.vue'
 import Marsgis from "./marsgis/views/index.vue"
 import Title from "./components/title/index.vue"
+import View from "./layouts/index.vue"
 </script>
 
 <template>
-  <Title></Title>
-  <marsgis></marsgis>
+  <!-- <Title></Title> -->
+  <!-- <marsgis></marsgis> -->
+  <View></View>
 </template>
 
 <style scoped>

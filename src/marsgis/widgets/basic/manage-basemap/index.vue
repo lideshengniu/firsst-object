@@ -2,12 +2,12 @@
   <mars-dialog title="底图" :width="380" :position="{ top: 60, right: 10 }">
     <ul class="basemap">
       <li v-for="(item, i) in baseMaps" :key="i" class="basemap-card" :class="{ 'active-card': active === item.uuid }" @click="changeBaseMaps(item)">
-        <div><img class="icon" :src="`${item.options.icon || 'public/img/basemaps/bingAerial.png'}`" /></div>
+        <div><img class="icon" :src="`${item.options.icon || 'img/basemaps/bingAerial.png'}`" /></div>
         <div>{{ item.name }}</div>
       </li>
     </ul>
     <template #footer>
-      <mars-switch v-model:checked="chkHasTerrain" @change="changeTerrain" />
+      <a-switch v-model:checked="chkHasTerrain" @change="changeTerrain" />
       <span class="f-ml">显示地形</span>
     </template>
   </mars-dialog>
@@ -28,13 +28,9 @@ const chkHasTerrain = ref(false)
 onMounted(() => {
   const layers = mapWork.getLayers()
   initData(layers)
-  console.log("----")
-  console.log(layers)
 })
 
 function initData(e: any) {
-  console.log("xx")
-  console.log(baseMaps.value.map)
   baseMaps.value = e.baseMaps.map((m: any) => {
     if (m.isAdded && m.show) {
       active.value = m.uuid
@@ -50,7 +46,7 @@ function initData(e: any) {
 }
 
 function changeBaseMaps(item: any) {
-  mapWork.changeBaseMaps((active.value = item.id))
+  mapWork.changeBaseMaps((active.value = item.uuid))
 }
 
 function changeTerrain() {

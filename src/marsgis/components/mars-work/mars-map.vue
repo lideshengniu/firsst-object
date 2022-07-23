@@ -10,7 +10,7 @@
 import { computed, onUnmounted, onMounted, h, ref } from "vue"
 import * as mars3d from "mars3d"
 import { getQueryString } from "@mars/utils/mars-util"
-import { getDefaultContextMenu } from "@mars/utils/getDefaultContextMenu "
+import { getDefaultContextMenu } from "@mars/utils/getDefaultContextMenu"
 import { $alert, $message } from "@mars/components/mars-ui/index"
 
 const props = withDefaults(

@@ -9,7 +9,7 @@
 import { ref, onMounted } from "vue"
 import MainView from "@mars/components/mars-work/main-view.vue"
 
-const height = ref(800)
+const height = ref(600)
 
 onMounted(() => {
   height.value = document.body.clientHeight - 80

@@ -60,7 +60,7 @@ export function addDemoGraphic2(graphicLayer) {
 }
 export function addDemoGraphic3(graphicLayer) {
   const graphic = new mars3d.graphic.CircleEntity({
-    widget: "line",
+    widget: "point2",
     name: "隐患点2",
     icon: "./imgs/1.png",
     position: [103.034716, 26.498833],

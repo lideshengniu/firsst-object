@@ -277,7 +277,7 @@
 
       { "id": 40, "name": "栅格数据", "type": "group" },
       { "id": 4020, "pid": 40, "name": "OGC WMS服务", "type": "group" },
- 
+
       {
         "pid": 4020,
         "name": "道路线",
@@ -514,7 +514,7 @@
         "popup": "名称：{NAME}",
         "center": { "lat": 31.814176, "lng": 117.225362, "alt": 5105.3, "heading": 359.2, "pitch": -83.1 }
       },
- 
+
       { "id": 3060, "pid": 30, "name": "CZML数据", "type": "group" },
       {
         "id": 306010,
@@ -575,11 +575,22 @@
         "center": { "lat": 31.815363, "lng": 117.215958, "alt": 107.35, "heading": 90.7, "pitch": -26.1 }
       },
       { "id": 2040, "pid": 20, "name": "城市白模", "type": "group" },
-       { "id": 99, "name": "数据图层", "type": "group" }
- 
+       { "id": 99, "name": "数据图层", "type": "group" },
+       { "id": 100, "name": "图层", "type": "group" },
+       {"pid":100,"type":"graphic","name":"白鹤滩","show":false,"data":[{
+      "positions": [
+        [103.1828528375, 26.7822882483],
+        [102.8464162955, 26.3648549463]
+      ],
+      "style": {
+        "image": "baihetan.png",
+        "clampToGround": true
+      },
+      "type":"rectangle"
+
+       }]}
+
     ]
-  },
-  "heishui": {
-    "url": "../baihetan.png"
   }
+
 }

@@ -178,71 +178,6 @@ function initEcharts() {
         z: -8,
         data: [0, -2.2522, -6.79868, -8.317, -10.805371]
       },
-      //   {
-      //     name: "综合建筑",
-      //     type: "line",
-      //     symbol: "circle",
-      //     symbolSize: 5,
-      //     itemStyle: {
-      //       color: "rgba(255,113,94, 1)"
-      //     },
-      //     barGap: "-100%",
-      //     barWidth: 12,
-      //     z: -8,
-      //     data: [0.8, 0.6, 1, 0.6, 0]
-      //   },
-      //   {
-      //     name: "商场建筑",
-      //     type: "line",
-      //     symbol: "circle",
-      //     symbolSize: 5,
-      //     itemStyle: {
-      //       color: "rgba(254,  217,  118, 1)"
-      //     },
-      //     barGap: "-100%",
-      //     barWidth: 12,
-      //     z: -8,
-      //     data: [0.6, 0.5, 0.8, 0.4, 0]
-      //   },
-      //   {
-      //     name: "宾馆饭店",
-      //     type: "line",
-      //     symbol: "circle",
-      //     symbolSize: 5,
-      //     itemStyle: {
-      //       color: "rgba(234,94,230, 1)"
-      //     },
-      //     barGap: "-100%",
-      //     barWidth: 12,
-      //     z: -8,
-      //     data: []
-      //   },
-      //   {
-      //     name: "医疗卫生",
-      //     type: "line",
-      //     symbol: "circle",
-      //     symbolSize: 5,
-      //     itemStyle: {
-      //       color: "rgba(94, 225, 186, 1)"
-      //     },
-      //     barGap: "-100%",
-      //     barWidth: 12,
-      //     z: -8,
-      //     data: [1, 1, 1]
-      //   },
-      //   {
-      //     name: "文化教育",
-      //     type: "line",
-      //     symbol: "circle",
-      //     symbolSize: 5,
-      //     itemStyle: {
-      //       color: "rgba(113, 204, 78, 1)"
-      //     },
-      //     barGap: "-100%",
-      //     barWidth: 12,
-      //     z: -8,
-      //     data: [1, 2, 1, 1, 2]
-      //   },
       {
         type: "bar",
         itemStyle: {
@@ -563,6 +498,7 @@ function initEcharts() {
         type: "line",
         symbol: "circle",
         symbolSize: 8,
+
         itemStyle: {
           color: "rgba(14,227,247,1)"
         },
