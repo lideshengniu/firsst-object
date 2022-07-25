@@ -42,6 +42,10 @@ export default ({ mode }: ConfigEnv) => {
         {
           find: /@photo\//,
           replacement: pathResolve("public") + "/"
+        },
+        {
+          find: /@\//,
+          replacement: pathResolve("src") + "/"
         }
       ],
       extensions: [".js", ".ts", ".jsx", ".tsx", ".json"]

@@ -12,7 +12,7 @@
 <script setup lang="ts">
 import { Color } from "mars3d-cesium"
 
-import { dataTime } from "src/components/title/map"
+// import { dataTime } from "src/components/title/map"
 
 import { nextTick, onMounted, ref } from "vue"
 import * as echart from "echarts"

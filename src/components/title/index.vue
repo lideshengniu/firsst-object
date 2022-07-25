@@ -89,7 +89,7 @@ onUnmounted(() => {
 <style scoped lang="less">
 .container {
   width: 100%;
-  height: 6vh;
+  height: 100vh;
   z-index: 100;
   display: flex;
   border-left: 1px solid #008aff70;
@@ -102,7 +102,7 @@ onUnmounted(() => {
   background-size: 1px 10px, 10px 1px, 1px 10px, 10px 1px;
   // background-color: @mars-primary-color-self;
   .left {
-    height: 8vh;
+    height: 100vh;
     width: 35%;
     color: @mars-primary-color;
     // display: flex;
@@ -157,36 +157,37 @@ onUnmounted(() => {
   .middle {
     width: 30%;
     // background-color: green;
-    height: 10vh;
-    line-height: 8vh;
+    height: 7rem;
+    line-height: 10vh;
     background-color: @mars-primary-color-self;
     z-index: 100;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    // justify-content: space-between;
     align-items: center;
     .logo {
       height: 70px;
+      line-height: 70px;
       // background-color: red;
       font-size: 24px;
       text-transform: uppercase;
       letter-spacing: 3px;
       text-align: center;
-      margin-top: -15px;
+      // margin-top: -15px;
       font-family: "system-ui", -apple-system, "Helvetica", Arial, sans-serif;
     }
     .middle-line {
       // background-color: green;
       width: 450px;
-      height: 5px;
+      height: 8px;
       background-image: linear-gradient(to right, rgba(55, 170, 190, 0.1), rgba(116, 177, 187, 0.8), rgba(55, 170, 190, 0.1));
       box-shadow: 0px 0px 7px 1px skyblue;
-      margin-top: -15px;
+      // margin-top: -15px;
     }
   }
   .right {
     background-color: @mars-primary-color-self;
-    height: 8vh;
+    height: 100vh;
     width: 35%;
     border-left: 4px solid skyblue;
     box-shadow: 0px 4px 15px 10px skyblue;

@@ -1,12 +1,11 @@
-import { createRouter, createWebHistory, createMemoryHistory, RouteRecordRaw } from "vue-router"
-
+import { createRouter, createWebHistory, createMemoryHistory, RouteRecordRaw, createWebHashHistory } from "vue-router"
+import ChartRoute from "./module/index"
 const routes: Array<RouteRecordRaw> = [
   // { path: "/" },
   {
-    name: "marsgiss",
+    // name: "marsgiss",
     path: "/",
     redirect: "/marsgis",
-
     meta: { headname: "insar" }
   },
   {
@@ -15,15 +14,11 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import("@mars/views/index.vue"),
     meta: { headname: "insar" }
   },
-  {
-    name: "chart",
-    path: "/chart",
-    component: () => import("../views/chart/index.vue")
-  }
+  ChartRoute
 ]
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHashHistory(),
   routes
 })
 
