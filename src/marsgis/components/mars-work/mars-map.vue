@@ -12,7 +12,8 @@ import * as mars3d from "mars3d"
 import { getQueryString } from "@mars/utils/mars-util"
 import { getDefaultContextMenu } from "@mars/utils/getDefaultContextMenu"
 import { $alert, $message } from "@mars/components/mars-ui/index"
-
+import { useWidget } from "@mars/common/store/widget"
+const { activate, disable, isActivate, updateWidget } = useWidget()
 const props = withDefaults(
   defineProps<{
     url: string
@@ -47,10 +48,50 @@ onMounted(() => {
 const emit = defineEmits(["onload"])
 const initMars3d = (option: any) => {
   map = new mars3d.Map(withKeyId.value, option)
-
   // 绑定当前项目的默认右键菜单
   map.bindContextMenu(getDefaultContextMenu(map))
+  let terrainClip
+  addTerrainClip()
+  function addTerrainClip() {
+    terrainClip = new mars3d.thing.TerrainClip({
+      // diffHeight: 20, // 井的深度
+      image: "/img/textures/excavate_side_min.jpg",
+      imageBottom: "/img/textures/excavate_bottom_min.jpg",
+      splitNum: 80, // 井边界插值数,
+      enabled: true
+    })
+    map.addThing(terrainClip)
 
+    const areaItem = terrainClip.addArea(
+      [
+        [103.19, 26.899171, 645.46],
+        [103.22, 26.899171, 645.46],
+        [103.22, 26.944509, 645.46],
+        [103.19, 26.944509, 645.46]
+      ],
+      { diffHeight: 900 }
+    )
+    // addTableItem(areaItem)
+
+    const areaItem2 = terrainClip.addArea(
+      [
+        [116.416497, 30.934256, 775.89],
+        [116.427392, 30.962941, 1084.88],
+        [116.434838, 30.932608, 900.43],
+        [116.462994, 30.923081, 771.42],
+        [116.437571, 30.916044, 906.39],
+        [116.44977, 30.894487, 776.06],
+        [116.424183, 30.908752, 727.02],
+        [116.402218, 30.898406, 593.08],
+        [116.414309, 30.918806, 588.78],
+        [116.387022, 30.933539, 700.65]
+      ],
+      { diffHeight: 200 }
+    )
+    // addTableItem(areaItem2)
+
+    // eventTabel.fire("loadTerrainClip", { terrainClip })
+  }
   // 如果有xyz传参，进行定位
   const lat = getQueryString("lat")
   const lng = getQueryString("lng")
@@ -90,7 +131,56 @@ const initMars3d = (option: any) => {
     await $alert("程序内存消耗过大，请重启浏览器")
     window.location.reload()
   })
+  const bhtroad = map.getLayer(1001, "id")
+  const eventTarget = new mars3d.BaseClass()
+  const showEditor = (e: any) => {
+    const graphic = e.graphic
+    if (!graphic._conventStyleJson) {
+      graphic.options.style = graphic.toJSON().style // 因为示例中的样式可能有复杂对象，需要转为单个json简单对象
+      graphic._conventStyleJson = true // 只处理一次
+    }
 
+    if (!isActivate("graphic-editor")) {
+      activate({
+        name: "graphic-editor",
+        data: { graphic: graphic }
+      })
+    } else {
+      updateWidget("graphic-editor", {
+        data: { graphic: graphic }
+      })
+    }
+  }
+  eventTarget.on("graphicEditor-start", async (e: any) => {
+    showEditor(e)
+  })
+  eventTarget.on("graphicEditor-update", async (e: any) => {
+    showEditor(e)
+  })
+  eventTarget.on("graphicEditor-stop", async (e: any) => {
+    setTimeout(() => {
+      if (!bhtroad.isEditing) {
+        disable("graphic-editor")
+      }
+    }, 100)
+  })
+  function bindLayerEvent() {
+    bhtroad.on(mars3d.EventType.drawCreated, function (e) {
+      eventTarget.fire("graphicEditor-start", e)
+    })
+
+    bhtroad.on(
+      [mars3d.EventType.editStart, mars3d.EventType.editMovePoint, mars3d.EventType.editStyle, mars3d.EventType.editRemovePoint],
+      function (e) {
+        eventTarget.fire("graphicEditor-update", e)
+      }
+    )
+
+    bhtroad.on([mars3d.EventType.editStop, mars3d.EventType.removeGraphic], function (e) {
+      eventTarget.fire("graphicEditor-stop", e)
+    })
+  }
+  bindLayerEvent()
   // map构造完成后的一些处理
   onMapLoad()
 
@@ -101,10 +191,65 @@ const initMars3d = (option: any) => {
 function onMapLoad() {
   // Mars3D地图内部使用，如右键菜单弹窗
   // @ts-ignore
-  window.globalAlert = $alert
+  const bhtroad = map.getLayer(1001, "id")
+
+  bhtroad.bindContextMenu([
+    {
+      text: "开始编辑对象",
+      show: function (e) {
+        const graphic = e.graphic
+        if (!bhtroad || !graphic.startEditing) {
+          return false
+        }
+        return !graphic.isEditing
+      },
+      callback: (e) => {
+        const graphic = e.graphic
+        if (!graphic) {
+          return false
+        }
+        if (graphic) {
+          bhtroad.startEditing(graphic)
+        }
+      }
+    },
+    {
+      text: "停止编辑对象",
+      icon: "fa fa-edit",
+      show: function (e) {
+        const graphic = e.graphic
+        if (!graphic) {
+          return false
+        }
+        return graphic.isEditing
+      },
+      callback: (e) => {
+        const graphic = e.graphic
+        if (!graphic) {
+          return false
+        }
+        if (graphic) {
+          bhtroad.stopEditing(graphic)
+        }
+      }
+    }
+  ])
+  const bhtpoints = map.getLayer(1000, "id")
+  bhtpoints.bindContextMenu([
+    {
+      text: "沉降量",
+      show: true,
+      callback: (e) => {
+        const graphic = e.graphic
+        console.log(graphic.attr)
+        const html = `${graphic.attr.D_20220217}`
+        alert(html)
+      }
+    }
+  ])
   // @ts-ignore
   window.globalMsg = $message
-
+  // window.globalAlert = $alert
   // 用于 config.json 中 西藏垭口 图层的详情按钮 演示
   // @ts-ignore
   window.showPopupDetails = (item: any) => {

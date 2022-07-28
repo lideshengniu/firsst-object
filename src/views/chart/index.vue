@@ -65,7 +65,7 @@
   </div>
 </template>
 <script setup>
-import sc from "./sichuan.json"
+import sc from "./json/sichuan.json"
 import { ref, nextTick, onMounted } from "vue"
 import * as echarts from "echarts"
 const bar1 = ref()
@@ -191,8 +191,8 @@ function initEcharts() {
       }
     },
     series: [
-      { name: "半年", type: "line", smooth: true, data: data.num[0] },
-      { name: "平均", type: "line", smooth: true, data: data.num[1] }
+      { name: "半年", type: "line", smooth: true, symbol: "circle", data: data.num[0] },
+      { name: "平均", type: "line", smooth: true, data: data.num[1], symbol: "circle" }
     ]
   }
   mychart2.setOption(option2)

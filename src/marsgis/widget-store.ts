@@ -59,13 +59,13 @@ const store: StoreOptions<WidgetState> = {
         group: "tools2"
       },
       {
-        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/points line/point2/index.vue"))),
+        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/Point-echarts/dangerpoints/points-echarts/index.vue"))),
         name: "point2",
         group: "tools2"
         // autoDisable: true
       },
       {
-        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/point/index.vue"))),
+        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/Point-echarts/dangerpoints/index.vue"))),
         name: "point",
         group: "tools3"
       },
@@ -75,12 +75,35 @@ const store: StoreOptions<WidgetState> = {
         group: "tools3"
       },
       {
-        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/road/index.vue"))),
+        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/Point-echarts/subgrade/index.vue"))),
         name: "road",
         group: "tools3"
+      },
+      {
+        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/basic/graphic-editor/index.vue"))),
+        name: "graphic-editor",
+        meta: {
+          props: {
+            position: {
+              left: 50,
+              top: 10,
+              bottom: 50
+            }
+          }
+        }
+      },
+      {
+        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/jiance/index.vue"))),
+        name: "jiance",
+        group: "tools4"
+      },
+      {
+        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/Mine/index.vue"))),
+        name: "Mine",
+        group: "tools4"
       }
     ],
-    openAtStart: ["road", "line"]
+    openAtStart: []
   }
 }
 

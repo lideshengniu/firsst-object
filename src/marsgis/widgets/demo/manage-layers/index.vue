@@ -194,7 +194,7 @@ function initTree() {
   console.log("layers", layers)
 
   for (let i = layers.length - 1; i >= 0; i--) {
-    if (layers[i].options.id === 100) {
+    if (layers[i].options.id === 100 || layers[i].options.id === 102) {
       const layer = layers[i] // 创建图层
 
       if (!layer._hasMapInit && layer.pid === -1 && layer.id !== 99 && layer.id === 100) {

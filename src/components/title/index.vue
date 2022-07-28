@@ -2,7 +2,7 @@
   <div class="container">
     <div class="left">
       <ul class="left-ul">
-        <li>
+        <li @click="gohome()">
           <div class="icons">
             <mars-icon class="icon" width="50" icon="home-two"></mars-icon>
           </div>
@@ -32,16 +32,23 @@
   </div>
 </template>
 <script setup lang="ts">
+import mars3d from "mars3d"
 import marsIcon from "@mars/components/mars-ui/mars-icon/index.vue"
 import { useWidgetStore, useWidget } from "@mars/common/store/widget"
+import useLifecycle from "@mars/common/uses/use-lifecycle"
 import { ref, onMounted, onUnmounted, Ref } from "vue"
 import * as map from "./map"
 import { useStore } from "vuex"
 import { key } from "@mars/common/store/test"
+import * as mapWork from "./index"
 onUnmounted(() => {
   disableAll(true)
 })
-
+// useLifecycle(mapWork)
+function gohome() {
+  mapWork.flyhome()
+  // map.map.flyToPoint([103.022327, 26.592335])
+}
 let trueif = true
 const showif = () => {
   trueif = !trueif
@@ -66,7 +73,8 @@ const showpoint = () => {
     disable("toolbar")
   }
 }
-
+// const layers = mapWork.getLayers()
+// console.log(layers, "layers")
 const store = useStore(key)
 const { activate, disableAll, disable } = useWidget()
 // activate("line")

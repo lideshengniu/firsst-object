@@ -26,6 +26,6 @@
       "@mars/*": ["src/marsgis/*"]
     }
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue"],
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue", "src/marsgis/widgets/demo/Mine/map.ts"],
   "exclude": ["node_modules", "src/**/*.js", "dist"]
 }

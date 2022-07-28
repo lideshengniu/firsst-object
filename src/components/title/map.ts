@@ -1,10 +1,11 @@
-import { ref, onMounted, onUnmounted } from "vue"
+import { ref } from "vue"
 // import emitter from "@mars/utils/mitt"
 import { useWidgetStore, useWidget } from "@mars/common/store/widget"
+
 const { activate, isActivate, disable } = useWidget()
+
 export const dataTime = ref("")
 export const day = ref("")
-
 let shows
 export function getNowTime() {
   // 时间戳

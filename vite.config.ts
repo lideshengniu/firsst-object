@@ -4,6 +4,7 @@ import { defineConfig, loadEnv } from "vite"
 import vue from "@vitejs/plugin-vue"
 import eslintPlugin from "vite-plugin-eslint"
 import mars3dCesium from "vite-plugin-mars3d"
+import postCssPxToRem from "postcss-pxtorem"
 import { createStyleImportPlugin, AndDesignVueResolve } from "vite-plugin-style-import"
 function pathResolve(dir: string) {
   return resolve(process.cwd(), ".", dir)
@@ -21,7 +22,14 @@ export default ({ mode }: ConfigEnv) => {
     server: {
       host: "localhost",
       https: false,
-      port: 3002
+      port: 3002,
+      proxy: {
+        "/test": {
+          target: "http://124.221.236.190:9001/geoserver/wfs",
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/api/, "")
+        }
+      }
     },
     define: {
       "process.env": {
@@ -100,6 +108,10 @@ export default ({ mode }: ConfigEnv) => {
     plugins: [
       vue(),
       eslintPlugin({ cache: false }),
+      // postCssPxToRem({
+      //   rootValue: 16,
+      //   propList: ["*"]
+      // }),
       mars3dCesium(),
       createStyleImportPlugin({
         resolves: [AndDesignVueResolve()],

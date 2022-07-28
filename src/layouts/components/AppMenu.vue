@@ -12,22 +12,22 @@
       <template #title>
         <span>
           <user-outlined />
-          <span>图组</span>
+          <span>图层相关</span>
         </span>
       </template>
-      <a-menu-item key="6" @click="showinsar">insar</a-menu-item>
-      <a-menu-item key="4">Bill</a-menu-item>
-      <a-menu-item key="5">Alex</a-menu-item>
+      <a-menu-item key="6" @click="showinsar">Insar</a-menu-item>
+      <a-menu-item key="4" @click="Building()">Building</a-menu-item>
+      <a-menu-item key="5" @click="Sensors()">Sensors</a-menu-item>
     </a-sub-menu>
     <a-sub-menu key="sub2" class="menu-item">
       <template #title>
         <span>
           <team-outlined />
-          <span>Team</span>
+          <span>尾矿</span>
         </span>
       </template>
-      <a-menu-item key="6">Team 1</a-menu-item>
-      <a-menu-item key="8">Team 2</a-menu-item>
+      <a-menu-item key="6" @click="Mine()">尾矿查看</a-menu-item>
+      <a-menu-item key="8" @click="MineSee()">分析</a-menu-item>
     </a-sub-menu>
     <a-menu-item key="9" class="menu-item">
       <file-outlined />
@@ -57,7 +57,42 @@ console.log("yes")
 function showinsar() {
   activate("demo-manage-layers")
 }
-const showinsars = false
+const buildshow = ref(false)
+function Building() {
+  buildshow.value = !buildshow.value
+  if (buildshow.value) {
+    activate("file")
+  } else {
+    disable("file")
+  }
+}
+const sensorsshow = ref(false)
+function Sensors() {
+  sensorsshow.value = !sensorsshow.value
+  if (sensorsshow.value) {
+    activate("jiance")
+  } else {
+    disable("jiance")
+  }
+}
+const mineshow = ref(false)
+function Mine() {
+  mineshow.value = !mineshow.value
+  if (mineshow.value) {
+    activate("Mine")
+  } else {
+    disable("Mine")
+  }
+}
+const mineshows = ref(false)
+function MineSee() {
+  mineshows.value = !mineshows.value
+  if (mineshows.value) {
+    activate("road")
+  } else {
+    disable("road")
+  }
+}
 // function showinsar(show: boolean): void {}
 </script>
 <style scoped lang="less">

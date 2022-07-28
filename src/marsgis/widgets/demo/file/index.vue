@@ -602,6 +602,6 @@ function fontSize(res: number) {
   margin-top: 8px;
 }
 .down {
-  margin-top: -100px;
+  margin-top: -18rem;
 }
 </style>
