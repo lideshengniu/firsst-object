@@ -1,8 +1,7 @@
 <template>
   <div class="bg">
     <section class="mainbox">
-      <div class="column">
-        1
+      <div v-show="Test.show" class="column">
         <div class="panel bar">
           <h2>
             沉降量超越阈值个数 <a href="javascript:;">2019</a>
@@ -23,41 +22,69 @@
         </div>
       </div>
       <div class="column">
-        <div class="no">
+        <!-- <div class="no">
           <div class="no-hd">
             <ul>
-              <li>125811</li>
-              <li>104563</li>
+              <li>xx</li>
+              <li>xx</li>
             </ul>
           </div>
           <div class="no-bd">
             <ul>
-              <li>前端需求人数</li>
-              <li>市场供应人数</li>
+              <li>标题1</li>
+              <li>标题2</li>
             </ul>
           </div>
-        </div>
-        <div class="map">
-          <div class="chart" ref="map1"></div>
-          <div class="map1"></div>
-          <div class="map2"></div>
-          <div class="map3"></div>
+        </div> -->
+        <div class="no">
+          <div class="no-bd">
+            <mars class="mars"></mars>
+          </div>
         </div>
       </div>
-      <div class="column">
+
+      <div v-show="Test.show" class="column">
         <div class="panel bar1">
           <h2>地表传感器</h2>
-          <div class="chart" ref="sensor"></div>
+          <div class="chart sensor" ref="sensor"></div>
           <div class="panel-footer"></div>
         </div>
         <div class="panel line1">
-          <h2>折线图-播放量</h2>
-          <div class="chart"></div>
-          <div class="panel-footer"></div>
+          <ul class="yujin">
+            <li class="a title">
+              <div>当前报警</div>
+            </li>
+            <li class="a smchart">
+              <div class="b green">
+                <div class="e f">10</div>
+                <div class="e">正常</div>
+              </div>
+              <div class="b blue">
+                <div class="e f">0</div>
+                <div class="e">一级</div>
+              </div>
+              <div class="b yellow">
+                <div class="e f">0</div>
+                <div class="e">二级</div>
+              </div>
+              <div class="b red">
+                <div class="e f">0</div>
+                <div class="e">三级</div>
+              </div>
+            </li>
+            <li class="a title">
+              <div>历史报警</div>
+            </li>
+            <li class="a down" ref="yujin"></li>
+
+            <div class="panel-footer"></div>
+          </ul>
         </div>
         <div class="panel pie1">
-          <h2>饼形图-地区分布</h2>
-          <div class="chart"></div>
+          <h2>xx</h2>
+          <div pie1>
+            <gd />
+          </div>
           <div class="panel-footer"></div>
         </div>
       </div>
@@ -68,17 +95,60 @@
 import sc from "./json/sichuan.json"
 import { ref, nextTick, onMounted } from "vue"
 import * as echarts from "echarts"
+import mars from "@mars/views/index.vue"
+import gd from "./gongdian/index.vue"
+import { useTestStore } from "@/store/xx"
+const columns = ref([
+  {
+    title: "工点信息",
+    dataIndex: "name",
+    key: "name"
+  },
+  {
+    title: "位置",
+    dataIndex: "weizhi",
+    key: "weizhi",
+    width: 150
+    // ellipsis: true
+  },
+  {
+    title: "状态",
+    key: "tags",
+    dataIndex: "tags"
+  }
+])
+const data = ref([
+  {
+    key: "1",
+    name: "戚山铁矿采场",
+    weizhi: "32",
+    tag: "正常"
+  },
+  {
+    key: "2",
+    name: "戚山铁矿采场",
+    weizhi: "K43+200~k44+500",
+    tag: "正常"
+  },
+  {
+    key: "3",
+    name: "戚山铁矿采场",
+    weizhi: "K43+200~k44+500",
+    tag: "正常"
+  }
+])
 const bar1 = ref()
 const chart1 = ref()
 const circle1 = ref()
 const map1 = ref()
 const sensor = ref()
-const scs = sc
+const yujin = ref()
 onMounted(() => {
   nextTick(() => {
     initEcharts()
   })
 })
+const Test = useTestStore()
 
 function initEcharts() {
   const mychart1 = echarts.init(bar1.value, "dark")
@@ -237,91 +307,92 @@ function initEcharts() {
     ]
   }
   mychart3.setOption(option3)
-  const mymap1 = echarts.init(map1.value, "dark")
+  // const mymap1 = echarts.init(map1.value, "dark")
 
-  const option4 = {
-    backgroundColor: "rgba(255,255,255,.01)",
-    tooltip: {
-      show: true,
-      trigger: "item",
-      alwaysShowContent: false,
-      backgroundColor: "#0C121C",
-      borderColor: "rgba(0, 0, 0, 0.16);",
-      hideDelay: 100,
-      triggerOn: "mousemove",
-      enterable: true,
-      textStyle: {
-        color: "#DADADA",
-        fontSize: "12",
-        width: 20,
-        height: 30,
-        overflow: "break"
-      },
-      showDelay: 100
-    },
-    geo: {
-      map: "sichuan",
-      label: {
-        // 通常状态下的样式
-        normal: {
-          show: true,
-          textStyle: {
-            color: "#fff"
-          }
-        },
-        // 鼠标放上去的样式
-        emphasis: {
-          textStyle: {
-            color: "#fff"
-          }
-        }
-      },
-      // 地图区域的样式设置
-      itemStyle: {
-        normal: {
-          borderColor: "rgba(147, 235, 248, 1)",
-          borderWidth: 1,
-          areaColor: {
-            type: "radial",
-            x: 0.5,
-            y: 0.5,
-            r: 0.8,
-            colorStops: [
-              {
-                offset: 0,
-                color: "rgba(147, 235, 248, 0)" // 0% 处的颜色
-              },
-              {
-                offset: 1,
-                color: "rgba(147, 235, 248, .2)" // 100% 处的颜色
-              }
-            ],
-            globalCoord: false // 缺省为 false
-          },
-          shadowColor: "rgba(128, 217, 248, 1)",
-          shadowOffsetX: -2,
-          shadowOffsetY: 2,
-          shadowBlur: 10
-        },
-        // 鼠标放上去高亮的样式
-        emphasis: {
-          areaColor: "#389BB7",
-          borderWidth: 0
-        }
-      }
-    }
-  }
-  echarts.registerMap("sichuan", scs)
-  mymap1.setOption(option4)
+  // const option4 = {
+  //   backgroundColor: "rgba(255,255,255,.01)",
+  //   tooltip: {
+  //     show: true,
+  //     trigger: "item",
+  //     alwaysShowContent: false,
+  //     backgroundColor: "#0C121C",
+  //     borderColor: "rgba(0, 0, 0, 0.16);",
+  //     hideDelay: 100,
+  //     triggerOn: "mousemove",
+  //     enterable: true,
+  //     textStyle: {
+  //       color: "#DADADA",
+  //       fontSize: "12",
+  //       width: 20,
+  //       height: 30,
+  //       overflow: "break"
+  //     },
+  //     showDelay: 100
+  //   },
+  //   geo: {
+  //     map: "sichuan",
+  //     label: {
+  //       // 通常状态下的样式
+  //       normal: {
+  //         show: true,
+  //         textStyle: {
+  //           color: "#fff"
+  //         }
+  //       },
+  //       // 鼠标放上去的样式
+  //       emphasis: {
+  //         textStyle: {
+  //           color: "#fff"
+  //         }
+  //       }
+  //     },
+  //     // 地图区域的样式设置
+  //     itemStyle: {
+  //       normal: {
+  //         borderColor: "rgba(147, 235, 248, 1)",
+  //         borderWidth: 1,
+  //         areaColor: {
+  //           type: "radial",
+  //           x: 0.5,
+  //           y: 0.5,
+  //           r: 0.8,
+  //           colorStops: [
+  //             {
+  //               offset: 0,
+  //               color: "rgba(147, 235, 248, 0)" // 0% 处的颜色
+  //             },
+  //             {
+  //               offset: 1,
+  //               color: "rgba(147, 235, 248, .2)" // 100% 处的颜色
+  //             }
+  //           ],
+  //           globalCoord: false // 缺省为 false
+  //         },
+  //         shadowColor: "rgba(128, 217, 248, 1)",
+  //         shadowOffsetX: -2,
+  //         shadowOffsetY: 2,
+  //         shadowBlur: 10
+  //       },
+  //       // 鼠标放上去高亮的样式
+  //       emphasis: {
+  //         areaColor: "#389BB7",
+  //         borderWidth: 0
+  //       }
+  //     }
+  //   }
+  // }
+  // echarts.registerMap("sichuan", scs)
+  // mymap1.setOption(option4)
   const mychart4 = echarts.init(sensor.value, "dark")
   const data4 = [10, 8, 2]
   const valdata = [10, 8, 2]
   const titlename = ["总数", "正常", "损坏"]
   const color4 = ["#1089E7", "#F57474", "#56D0E3"]
+
   const option5 = {
     grid: {
-      top: "10%",
-      left: "22%",
+      top: "2%",
+      left: "15%",
       bottom: "10%"
     },
     xAxis: {
@@ -352,8 +423,8 @@ function initEcharts() {
           borderRadius: 15,
           // padding: 5,
           align: "center",
-          width: 15,
-          height: 15
+          width: 10,
+          height: 10
           //   }
           // }
         }
@@ -407,7 +478,108 @@ function initEcharts() {
       }
     ]
   }
+  // const option5 = {
+  //   color: ["#2f89cf"],
+  //   tooltip: {
+  //     trigger: "axis",
+  //     axisPointer: {
+  //       type: "shadow"
+  //     }
+  //   },
+  //   grid: {
+  //     show: true,
+  //     left: "0%",
+  //     top: "10px",
+  //     right: "0%",
+  //     bottom: "4%",
+  //     containLabel: true,
+  //     backgroundColor: "transparent",
+  //     ShadowColol: "yellow",
+  //     shadowOffsetX: 3
+  //   },
+  //   xAxis: [
+  //     {
+  //       type: "category",
+  //       data: ["一月", " 二月", "三月", "四月", "五月", "六月"],
+  //       axisTick: {
+  //         alignWithLabel: true
+  //       },
+  //       axisLabel: {
+  //         color: "rgba(255,255,255,.6)",
+  //         fontSize: "12"
+  //       },
+  //       axisLine: {
+  //         show: false
+  //       }
+  //     }
+  //   ],
+  //   yAxis: [
+  //     {
+  //       type: "value",
+  //       axisLabel: {
+  //         color: "rgba(255,255,255,.6)",
+  //         fontSize: 12,
+  //         axisLine: {
+  //           lineStyle: {
+  //             color: "rgba(255,255,255,.1)"
+  //           }
+  //         }
+  //       }
+  //     }
+  //   ],
+  //   series: [
+  //     {
+  //       name: "点数",
+  //       type: "bar",
+  //       barWidth: "35%",
+  //       data: [2, 3, 4, 1, 6, 2],
+  //       itemStyle: {
+  //         barBorderRadius: 6
+  //       }
+  //     }
+  //   ]
+  // }
   mychart4.setOption(option5)
+  const mychart5 = echarts.init(yujin.value, "dark")
+  const option8 = {
+    tooltip: {
+      trigger: "item",
+      formatter: "{a}<br/>{b}:{c} ({d}%)",
+      position: function (p) {
+        return [p[0] + 10, p[1] - 10]
+      }
+    },
+    legend: {
+      top: "5%",
+      left: "1%",
+      itemWidth: 10,
+      itemHeigth: 10,
+      // data: ["0-5 mm/ly", "0-10 mm/ly", "0 - -5 mm/ly", "10-15 mm/ly", "-5- -10 mm/ly"],
+      textStyle: {
+        color: "ragba(255,255,255,.5)",
+        fontSize: "10"
+      }
+    },
+    series: [
+      {
+        name: "沉降区域分布",
+        type: "pie",
+        center: ["50%", "70%"],
+        radius: ["40%", "60%"],
+        color: ["#065aab", "#066eab", "#0682ab", "#0696ab", "#06a0ab"],
+        label: { show: false },
+        labelLine: { show: false },
+        data: [
+          { value: 10, name: "正常" },
+          { value: 0, name: "一级" },
+          { value: 0, name: "二级" },
+          { value: 0, name: "三级" },
+          { value: 0, name: "4级" }
+        ]
+      }
+    ]
+  }
+  mychart5.setOption(option8)
 }
 </script>
 
@@ -426,7 +598,7 @@ function initEcharts() {
 }
 .mainbox {
   // background-color: red;
-  height: 500px;
+  height: 100%;
   min-width: 1024px;
   max-width: 1800px;
   margin: 0 auto;
@@ -441,8 +613,8 @@ function initEcharts() {
   }
   .panel {
     position: relative;
-    height: 19.375rem;
-    background-color: red;
+    height: 19.3753rem;
+    // background-color: red;
     border: 1px solid rgba(25, 186, 139, 0.17);
     background: rgba(255, 255, 255, 0.04) url(./images/line1.png);
     padding: 0 0.1875rem 0.5rem;
@@ -472,7 +644,7 @@ function initEcharts() {
     position: absolute;
     left: 0;
     bottom: 0;
-    width: 100%;
+    width: 440px;
   }
   .panel .panel-footer::before {
     position: absolute;
@@ -514,10 +686,10 @@ function initEcharts() {
   }
   .no {
     background: rgba(101, 132, 226, 0.1);
-    padding: 0.5rem;
+    padding: 0.8rem;
     .no-hd {
       position: relative;
-      border: 1px solid rgba(25, 186, 139, 0.17);
+      border: 5px solid rgba(25, 186, 139, 0.17);
       &::before {
         content: "";
         position: absolute;
@@ -575,6 +747,30 @@ function initEcharts() {
         padding-top: 0.125rem;
       }
     }
+  }
+  .marsbd::after {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    content: "";
+    width: 10px;
+    height: 10px;
+    border-bottom: 2px solid #02a6b5;
+    border-right: 2px solid #02a6b5;
+  }
+  .marsbd::before {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    content: "";
+    width: 10px;
+    height: 10px;
+    border-bottom: 2px solid #02a6b5;
+    border-left: 2px solid #02a6b5;
+  }
+  .mars {
+    //   margin-top: -20px;
+    height: 45rem;
   }
   .map {
     // background-color: red;
@@ -646,5 +842,98 @@ function initEcharts() {
       font-size: 80px !important;
     }
   }
+  .yujin {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    .a {
+      flex: 3;
+    }
+    .a:nth-child(1) {
+      flex: 0.5;
+    }
+    .a:nth-child(2) {
+      flex: 4;
+    }
+    .a:nth-child(3) {
+      flex: 0.5;
+    }
+    .a:nth-child(4) {
+      flex: 5;
+    }
+    .title {
+      div {
+        font-size: 20px;
+        height: 100%;
+        line-height: 30px;
+        text-align: center;
+        // background-color: red;
+      }
+    }
+    // .down {
+    //   // background-color: blue;
+    // }
+    .smchart {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      // background-color: rgb(9, 0, 128);
+      .b {
+        flex: 2.5;
+        // background-color:;
+        margin: 5px;
+        font-size: 25px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        line-height: 25px;
+        height: 25px;
+        text-align: center;
+        // background-color: red;
+        .f {
+          margin-top: 25px;
+          margin-bottom: 25px;
+        }
+        .e {
+          font-size: 25px;
+        }
+      }
+
+      .green {
+        color: green;
+      }
+      .blue {
+        color: skyblue;
+      }
+      .yellow {
+        color: yellow;
+      }
+      .red {
+        color: red;
+      }
+      .e {
+        flex: 5;
+        // width: 50%;
+        // width: 50px;
+        height: 50%;
+        font-size: 30px;
+        // background-color: red;
+      }
+    }
+
+    // .smchart {
+    //   // background-color: green;
+    // }
+  }
+  .gd {
+    background-color: green;
+  }
+}
+.pie1 {
+  background-color: #7fb502;
+  width: 100%;
+  height: 100%;
+  font-size: 20px;
 }
 </style>

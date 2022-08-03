@@ -35,6 +35,7 @@ export function onMounted(mapInstance) {
  */
 export function onUnmounted() {
   map = null
+  table = []
 }
 
 function addTerrainClip() {
@@ -43,37 +44,63 @@ function addTerrainClip() {
     image: "img/textures/excavate_side_min.jpg",
     imageBottom: "img/textures/excavate_bottom_min.jpg",
     splitNum: 80, // 井边界插值数,
-    enabled: true
+    enabled: true,
+    id: 1
   })
   map.addThing(terrainClip)
 
   const areaItem = terrainClip.addArea(
     [
-      [116.334222, 30.899171, 645.46],
-      [116.370874, 30.899171, 645.46],
-      [116.370874, 30.944509, 645.46],
-      [116.334222, 30.944509, 645.46]
+      [118.545453967, 31.5817166337, 0],
+      [118.5432987357, 31.5819098817, 0],
+      [118.5414224024, 31.5817157412, 0],
+      [118.5394428976, 31.5804817792, 0],
+      [118.5382041813, 31.5783815934, 0],
+      [118.5381213707, 31.577304501, 0],
+      [118.5380035893, 31.5765784419, 0],
+      [118.5383620805, 31.5751324127, 0],
+      [118.5385355608, 31.5739629765, 0],
+      [118.5397032791, 31.5727468865, 0],
+      [118.5427933093, 31.57133808, 0],
+      [118.545105328488, 31.5709750985246, 0],
+      [118.5478243315, 31.5715134556, 0],
+      [118.5495606822, 31.5736828296, 0],
+      [118.5508155091, 31.5756151042, 0],
+      [118.5513649865, 31.5772833195, 0],
+      [118.548196632, 31.580821228, 0],
+      [118.5456501485, 31.5813061227, 0]
     ],
     { diffHeight: 900 }
   )
-  addTableItem(areaItem)
+  const areaItems = { areaItem: areaItem, name: "甄山凹尾矿坝" }
+  addTableItem(areaItems)
 
   const areaItem2 = terrainClip.addArea(
     [
-      [116.416497, 30.934256, 775.89],
-      [116.427392, 30.962941, 1084.88],
-      [116.434838, 30.932608, 900.43],
-      [116.462994, 30.923081, 771.42],
-      [116.437571, 30.916044, 906.39],
-      [116.44977, 30.894487, 776.06],
-      [116.424183, 30.908752, 727.02],
-      [116.402218, 30.898406, 593.08],
-      [116.414309, 30.918806, 588.78],
-      [116.387022, 30.933539, 700.65]
+      [118.5289942309, 31.5133501779],
+      [118.5260845433, 31.5138099936],
+      [118.5245630798, 31.5132644289],
+      [118.5236780019, 31.512211131],
+      [118.5230926524, 31.510375403],
+      [118.5225507783, 31.5084473598],
+      [118.5227335769, 31.5068844699],
+      [118.5227992587, 31.5051797],
+      [118.5233780747, 31.5031638375],
+      [118.5243704855, 31.5008874723],
+      [118.5270187997, 31.4991887058],
+      [118.5310155009, 31.4979738117],
+      [118.5343117812, 31.498461808],
+      [118.5362968818, 31.5000486042],
+      [118.5370011578, 31.5035742084],
+      [118.5371251792, 31.5074364826],
+      [118.5364142896, 31.5105114805],
+      [118.5342764164, 31.5124751793],
+      [118.5297613472, 31.513200416]
     ],
     { diffHeight: 200 }
   )
-  addTableItem(areaItem2)
+  const areaItemss = { areaItem: areaItem2, name: "大青山尾矿坝" }
+  addTableItem(areaItemss)
 
   eventTabel.fire("loadTerrainClip", { terrainClip })
 }
@@ -95,7 +122,8 @@ export function btnDrawExtent(isShow) {
 
       // 挖地区域
       const areaItem = terrainClip.addArea(positions)
-      addTableItem(areaItem)
+      const areaItems = { areaItem: areaItem, name: "test" }
+      addTableItem(areaItems)
     }
   })
 }
@@ -116,7 +144,8 @@ export function btnDraw(isShow) {
       console.log(JSON.stringify(mars3d.PointTrans.cartesians2lonlats(positions))) // 打印下边界
 
       const areaItem = terrainClip.addArea(positions)
-      addTableItem(areaItem)
+      const areaItems = { areaItem: areaItem, name: "test" }
+      addTableItem({ areaItems })
     }
   })
 }
@@ -149,8 +178,8 @@ export function chkTestTerrain(val) {
 
 let table = []
 // 区域表格添加一行记录
-function addTableItem(item) {
-  table.push({ key: item.id, name: "开挖区域" + item.id })
+function addTableItem(x) {
+  table.push({ key: x.areaItem.id, name: "矿区" + x.name })
 
   eventTabel.fire("tableObject", { table })
 }

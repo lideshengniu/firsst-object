@@ -7,12 +7,15 @@
  * @copyright 火星科技 mars3d.cn
  * @author 火星吴彦祖 2022-02-19
  */
+
 import { computed, onUnmounted, onMounted, h, ref } from "vue"
 import * as mars3d from "mars3d"
 import { getQueryString } from "@mars/utils/mars-util"
 import { getDefaultContextMenu } from "@mars/utils/getDefaultContextMenu"
-import { $alert, $message } from "@mars/components/mars-ui/index"
+import { $alert, $message, $alert as globalAlert } from "@mars/components/mars-ui/index"
 import { useWidget } from "@mars/common/store/widget"
+import { useTestStore } from "@/store/index"
+const Test = useTestStore()
 const { activate, disable, isActivate, updateWidget } = useWidget()
 const props = withDefaults(
   defineProps<{
@@ -131,7 +134,7 @@ const initMars3d = (option: any) => {
     await $alert("程序内存消耗过大，请重启浏览器")
     window.location.reload()
   })
-  const bhtroad = map.getLayer(1001, "id")
+  const bhtroad = map.getLayer(10001, "id")
   const eventTarget = new mars3d.BaseClass()
   const showEditor = (e: any) => {
     const graphic = e.graphic
@@ -191,7 +194,7 @@ const initMars3d = (option: any) => {
 function onMapLoad() {
   // Mars3D地图内部使用，如右键菜单弹窗
   // @ts-ignore
-  const bhtroad = map.getLayer(1001, "id")
+  const bhtroad = map.getLayer(10001, "id")
 
   bhtroad.bindContextMenu([
     {
@@ -242,11 +245,61 @@ function onMapLoad() {
       callback: (e) => {
         const graphic = e.graphic
         console.log(graphic.attr)
-        const html = `${graphic.attr.D_20220217}`
-        alert(html)
+        // const html = `${graphic.attr.D_20220217}`
+        // alert(html)
+        Test.showinsar2(graphic.attr)
+        setTimeout(() => {
+          activate("point3")
+        }, 2000)
       }
     }
   ])
+  const Cesium = mars3d.Cesium
+  // 显示沉降const Cesium = mars3d.Cesium
+  // const insar = map.getLayer(1000, "id")
+  // insar.bindContextMenu([
+  //   {
+  //     text: "查看沉降数据",
+  //     show: true,
+  //     callback: (e) => {
+  //       // const Cartesian3_to_WGS84 = function (point) {
+  //       //   const cartesian33 = new Cesium.Cartesian3(point.x, point.y, point.z)
+  //       //   const cartographic = Cesium.Cartographic.fromCartesian(cartesian33)
+  //       //   const lat = Cesium.Math.toDegrees(cartographic.latitude)
+  //       //   const lng = Cesium.Math.toDegrees(cartographic.longitude)
+  //       //   const alt = cartographic.height
+  //       //   return { lng: lng, lat: lat, alt: alt }
+  //       // }
+  //       // const a = Cartesian3_to_WGS84(e.cartesian)
+  //       // console.log(a, "lrrrp")
+  //       // const viewer = new Cesium.Viewer("mars3d-container")
+  //       // const ellipsoid = viewer.scene.globe.ellipsoid
+  //       // 世界坐标系
+  //       // const cartesianss = e.cartesian
+  //       // const cartesians = new Cesium.Cartesian3(cartesianss.x, cartesianss.y, cartesianss.z)
+  //       // const cartographic = Cesium.Cartographic.fromCartesian(cartesians)
+  //       // const lat = cartographic.latitude
+  //       // const lng = cartographic.longitude
+  //       //  const point = mars3d.LngLatPoint.fromCartesian(e.cartesian)
+  // const lat = Cesium.Math.toDegrees(cartographic.latitude)
+  // const lng = Cesium.Math.toDegrees(cartographic.longitude)
+  //       // const alt = cartographic.height
+  //       // console.log("therss", lat, lng, alt)
+  //       // const mpt = mars3d.LngLatPoint.fromCartesian(e.cartesian)
+  //       // const ptNew = mars3d.PointTrans.proj4Trans([mpt.lng, mpt.lat], "EPSG:4326", mars3d.CRS.CGCS2000_GK_Zone_3)
+  //       // let viewer = window.viewer
+  //       // const point = mars3d.LngLatPoint.fromCartesian(e.cartesian)
+  //       // Test.showinsar(a.lng)
+  //       // setTimeout(() => {
+  //       //   activate("point2")
+  //       // }, 7000)
+  //       // const inhtml = `
+  //       //  经度:${a.lng}, 纬度:${a.lat}, 海拔:${a.alt},
+  //       // `
+  //       // globalAlert(inhtml, "位置信息")
+  //     }
+  //   }
+  // ])
   // @ts-ignore
   window.globalMsg = $message
   // window.globalAlert = $alert

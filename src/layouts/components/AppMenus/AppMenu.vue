@@ -1,0 +1,235 @@
+<template>
+  <a-menu v-model:selectedKeys="selectedKeys" theme="dark" mode="inline">
+    <a-menu-item key="1" class="menu-item" @click="sy">
+      <pie-chart-outlined />
+      <span>首页</span>
+    </a-menu-item>
+    <!-- <a-menu-item key="2" class="menu-item" @click="tomap">
+      <environment-outlined />
+      <span>三维地球</span>
+    </a-menu-item> -->
+    <!-- <a-sub-menu key="sub1" class="menu-item">
+      <template #title>
+        <span>
+        <file-outlined /> -->
+    <!-- </span> -->
+    <!-- </template> -->
+    <!-- <a-menu-item key="16" @click="showinsar()">InSAR全局数据展示</a-menu-item>
+      <a-menu-item key="17" @click="gaobp(road)">沿线沉降数据分析</a-menu-item> -->
+    <!-- <a-menu-item key="4" @click="Building()">Building</a-menu-item>
+      <a-menu-item key="5" @click="Sensors()">传感器</a-menu-item> -->
+    <!-- </a-sub-menu> -->
+
+    <a-menu-item key="12" class="menu-item">
+      <WarningOutlined />
+      <!-- style="font-size: 25px !important" -->
+      <span @click="sjgz">InSAR数据感知</span>
+    </a-menu-item>
+    <!-- <a-sub-menu key="sub2" class="menu-item">
+      <template #title>
+        <span>
+          <team-outlined />
+          <span>尾矿分析</span>
+        </span>
+      </template>
+      <a-menu-item key="6" @click="gaobp(Mine)">尾矿查看</a-menu-item>
+      <a-menu-item key="8" @click="MineSee()">分析</a-menu-item>
+      <a-menu-item key="8" @click="MineSee()">分析</a-menu-item> -->
+    <!-- </a-sub-menu>  -->
+    <a-sub-menu key="sub3" class="menu-item">
+      <template #title>
+        <span>
+          <AreaChartOutlined />
+          <span>地表数据感知</span>
+        </span>
+      </template>
+      <a-menu-item key="6" @click="gaobp(gaopo)">高边坡</a-menu-item>
+      <a-menu-item key="7" @click="gaobp(bridge)">特大桥梁</a-menu-item>
+      <a-menu-item key="8" @click="ruanji()">深厚软基</a-menu-item>
+      <!-- <a-menu-item key="8" @click="MineSee()">分析</a-menu-item> -->
+    </a-sub-menu>
+    <a-sub-menu key="sub4" class="menu-item">
+      <template #title>
+        <span>
+          <team-outlined />
+          <span>数据应用</span>
+        </span>
+      </template>
+      <a-sub-menu key="sub5" class="menu-item">
+        <template #title>
+          <span>
+            <!-- <team-outlined /> -->
+            勘察设计阶段
+          </span>
+        </template>
+        <a-menu-item key="116" @click="showArea()">对症勘设</a-menu-item>
+        <!-- <a-menu-item key="8" @click="MineSee()">特大桥梁</a-menu-item>
+        <a-menu-item key="9" @click="MineSee()">深厚软基</a-menu-item> -->
+        <!-- <a-menu-item key="8" @click="MineSee()">分析</a-menu-item> -->
+      </a-sub-menu>
+      <a-sub-menu key="sub6" class="menu-item">
+        <template #title>
+          <span>
+            <!-- <team-outlined /> -->
+            施工阶段
+          </span>
+        </template>
+
+        <a-menu-item key="10" @click="gaobp(Mine)">边坡开挖监测</a-menu-item>
+        <a-menu-item key="101" @click="gaobp(Mine)">软基预压效果</a-menu-item>
+        <!-- <a-menu-item key="8" @click="MineSee()">特大桥梁</a-menu-item>
+        <a-menu-item key="9" @click="MineSee()">深厚软基</a-menu-item> -->
+        <!-- <a-menu-item key="8" @click="MineSee()">分析</a-menu-item> -->
+      </a-sub-menu>
+      <a-sub-menu key="sub7" class="menu-item">
+        <template #title>
+          <span>
+            <!-- <team-outlined /> -->
+            运营阶段
+          </span>
+        </template>
+
+        <a-menu-item key="11" @click="gaobp(Mine)">靶向管养</a-menu-item>
+        <a-sub-menu key="sub16" class="menu-item">
+          <template #title>
+            <span>
+              <team-outlined />
+              监测预警
+            </span>
+          </template>
+
+          <a-menu-item key="10" @click="gaobp(Mine)">桥梁</a-menu-item>
+          <a-menu-item key="101" @click="gaobp(Mine)">边坡</a-menu-item>
+          <a-menu-item key="101" @click="gaobp(Mine)">软基</a-menu-item>
+          <a-menu-item key="101" @click="gaobp(Mine)">尾矿坝</a-menu-item>
+          <!-- <a-menu-item key="8" @click="MineSee()">特大桥梁</a-menu-item>
+        <a-menu-item key="9" @click="MineSee()">深厚软基</a-menu-item> -->
+          <!-- <a-menu-item key="8" @click="MineSee()">分析</a-menu-item> -->
+        </a-sub-menu>
+        <!-- <a-menu-item key="8" @click="MineSee()">特大桥梁</a-menu-item>
+        <a-menu-item key="9" @click="MineSee()">深厚软基</a-menu-item> -->
+        <!-- <a-menu-item key="8" @click="MineSee()">分析</a-menu-item> -->
+      </a-sub-menu>
+      <!-- <a-menu-item key="6" @click="Mine()">高边坡</a-menu-item>
+      <a-menu-item key="8" @click="MineSee()">特大桥梁</a-menu-item>
+      <a-menu-item key="10" @click="MineSee()">深厚软基</a-menu-item> -->
+      <!-- <a-menu-item key="8" @click="MineSee()">分析</a-menu-item> -->
+    </a-sub-menu>
+    <a-menu-item key="12" class="menu-item">
+      <user-outlined />
+      <!-- style="font-size: 25px !important" -->
+      <span>用户管理</span>
+    </a-menu-item>
+  </a-menu>
+</template>
+<script setup lang="ts">
+import { Emitter } from "mitt"
+import { useRouter, useRoute, Router, RouteRecordName } from "vue-router"
+import { ref, reactive, Ref, computed, toRaw, markRaw, onUnmounted, onMounted, nextTick, watch, watchEffect } from "vue"
+import {
+  PieChartOutlined,
+  DesktopOutlined,
+  UserOutlined,
+  TeamOutlined,
+  FileOutlined,
+  EnvironmentOutlined,
+  WarningOutlined,
+  AreaChartOutlined
+} from "@ant-design/icons-vue"
+// import { showinsar } from "./insar/index"
+import { useWidgetStore, useWidget } from "@mars/common/store/widget"
+import { useTestStore } from "@/store/xx/index"
+const Test = useTestStore()
+const selectedKeys = ref<string[]>(["2"])
+const router = useRouter()
+const curRoute = useRoute()
+const { activate, isActivate, disable, disableAll } = useWidget()
+const gaopo = ref("gaopo")
+const file = ref("file")
+const Mine = ref("Mine")
+const road = ref("road")
+const bridge = ref("bridge")
+const sjgz = () => {
+  Test.showechart()
+  disableAll(true)
+  activate("demo-manage-layers")
+  activate("road")
+  activate("allroad")
+}
+const sy = () => {
+  Test.showinsar()
+  disableAll(true)
+}
+const ruanji = () => {
+  console.log(1)
+  Test.showechart()
+  disableAll(true)
+  activate("demo-manage-layers")
+  // activate("road")
+  activate("ruanji")
+}
+const tochart = function () {
+  router.push("./chart")
+}
+
+function tomap() {
+  router.push("./marsgis")
+}
+console.log("yes")
+// function showinsar() {}
+const buildshow = ref(false)
+function Building() {
+  buildshow.value = !buildshow.value
+  if (buildshow.value) {
+    activate("file")
+  } else {
+    disable("file")
+  }
+}
+const sensorsshow = ref(false)
+function Sensors() {
+  sensorsshow.value = !sensorsshow.value
+  if (sensorsshow.value) {
+    activate("jiance")
+  } else {
+    disable("jiance")
+  }
+}
+const mineshow = ref(false)
+
+const mineshows = ref(false)
+function MineSee() {
+  mineshows.value = !mineshows.value
+  if (mineshows.value) {
+    activate("road")
+  } else {
+    disable("road")
+  }
+}
+const showAreas = ref(false)
+function showArea() {
+  showAreas.value = !showAreas.value
+  if (showAreas.value) {
+    activate("threshold")
+  } else {
+    disable("threshold")
+  }
+}
+const showgbp = ref(false)
+function gaobp(xx) {
+  showgbp.value = !showgbp.value
+  if (showgbp.value) {
+    activate(xx)
+  } else {
+    disable(xx)
+  }
+}
+// function showinsar(show: boolean): void {}
+</script>
+<style scoped lang="less">
+.menu-item {
+  font-size: 15px !important;
+  margin-top: 40px !important;
+  /* color: rgb(35, 99, 219) !important; */
+}
+</style>

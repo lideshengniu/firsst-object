@@ -16,6 +16,15 @@ let map: mars3d.Map // 地图对象
  */
 export function onMounted(mapInstance: mars3d.Map) {
   map = mapInstance // 记录首次创建的map
+  const grapichlayer = map.getLayerById(1002)
+  const grapichlayerroad = map.getLayerById(10001)
+  const grapichlayerzhuanghao = map.getLayerById(10005)
+  grapichlayer.show = true
+  grapichlayerroad.show = false
+  grapichlayerzhuanghao.show = false
+  map.addLayer(grapichlayer)
+  map.addLayer(grapichlayerroad)
+  map.addLayer(grapichlayerzhuanghao)
 }
 
 /**
@@ -23,6 +32,7 @@ export function onMounted(mapInstance: mars3d.Map) {
  * @returns {void} 无
  */
 export function onUnmounted() {
+  // map.grapichlayer.show = false
   map = null
 }
 

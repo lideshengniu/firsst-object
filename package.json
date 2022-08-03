@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@icon-park/svg": "^1.4.0",
+    "ajax": "0.0.4",
     "ant-design-vue": "^3.2.5",
     "axios": "^0.25.0",
     "core-js": "^3.23.4",
@@ -31,6 +32,7 @@
     "mars3d-mapv": "^3.3.0",
     "mitt": "^3.0.0",
     "nprogress": "^0.2.0",
+    "pinia": "^2.0.17",
     "uuid": "^8.3.2",
     "vue": "^3.2.31",
     "vue-color-kit": "^1.0.5",
@@ -94,7 +96,7 @@
     "gis",
     "webgis"
   ],
-  "author": "火星科技",
+  "author": "xx",
   "license": "Apache-2.0",
   "homepage": "http://mars3d.cn",
   "lint-staged": {

@@ -2,7 +2,7 @@ import * as mars3d from "mars3d"
 export let map
 export let graphicLayer
 export const Cesium = mars3d.Cesium
-export const eventTarget = new mars3d.BaseClass()
+export const eventTabel = new mars3d.BaseClass()
 /**
  * 初始化地图业务，生命周期钩子函数（必须）
  * 框架在地图初始化完成后自动调用该函数
@@ -11,17 +11,20 @@ export const eventTarget = new mars3d.BaseClass()
  */
 export function onMounted(mapInstance) {
   map = mapInstance
-  graphicLayer = new mars3d.layer.GraphicLayer({ id: 104 })
+  graphicLayer = new mars3d.layer.GraphicLayer({ id: 104, show: true })
   map.addLayer(graphicLayer)
   demo1(graphicLayer)
   demo11(graphicLayer)
+  demo2(graphicLayer)
+  demo22(graphicLayer)
 }
 export function onUnmounted() {
+  table = []
   map = null
 }
 function demo1(graphicLayer) {
   const graphic = new mars3d.graphic.DivGraphic({
-    position: [103.022327, 26.592335, 70.4],
+    position: [118.529255, 31.552994, 70.4],
     style: {
       html: `<div class="marsTiltPanel marsTiltPanel-theme-blue">
           <div class="marsTiltPanel-wrap">
@@ -33,16 +36,16 @@ function demo1(graphicLayer) {
                   <div class="b-l"></div>
                   <div class="arrow-rb"></div>
                   <div class="label-wrap">
-                      <div class="title">1号传感器</div>
+                      <div class="title">2号传感器</div>
                       <div class="label-content">
                           <div class="data-li">
                               <div class="data-label">沉降量：</div>
-                              <div class="data-value"><span class="label-num">xx</span><span class="label-unit">mm</span>
+                              <div class="data-value"><span class="label-num">10</span><span class="label-unit">mm</span>
                               </div>
                           </div>
                           <div class="data-li">
                               <div class="data-label">监测数据：</div>
-                              <div class="data-value"><span class="label-num">13.14</span><span class="label-unit">m</span>
+                              <div class="data-value"><span class="label-num">20</span><span class="label-unit">km</span>
                               </div>
                           </div>
                           <div class="data-li">
@@ -63,13 +66,17 @@ function demo1(graphicLayer) {
       clampToGround: true,
       distanceDisplayCondition: new Cesium.DistanceDisplayCondition(0, 200000) // 按视距距离显示
     },
-    pointerEvents: true
+    id: 1,
+    name: "2号",
+    show: false
+    // pointerEvents: true
   })
   graphicLayer.addGraphic(graphic)
+  addTableItem(graphic)
 }
 function demo11(graphicLayer) {
   const graphic = new mars3d.graphic.DivLightPoint({
-    position: [103.022327, 26.592335],
+    position: [118.529255, 31.552994, 70.4],
     style: {
       color: "#f33349",
       distanceDisplayCondition: new Cesium.DistanceDisplayCondition(0, 200000), // 按视距距离显示
@@ -77,24 +84,83 @@ function demo11(graphicLayer) {
     },
     attr: { remark: "示例5" },
     popup: "测试popup",
-    hasEdit: true
+    hasEdit: true,
+    id: 11,
+    name: "2号",
+    show: false
   })
   graphicLayer.addGraphic(graphic)
+  addTableItem(graphic)
 }
-
-export function startDrawGraphic() {
-  // 开始绘制
-  graphicLayer.startDraw({
-    type: "div",
+function demo2(graphicLayer) {
+  const graphic = new mars3d.graphic.DivGraphic({
+    position: [118.525601, 31.515678, 70.4],
     style: {
-      html: `<div class="marsImgPanel2">
-                    <div class="title">测试DIV点</div>
-                    <div class="content">此处可以绑定任意Html代码和css效果</div>
-                </div >`,
+      html: `<div class="marsTiltPanel marsTiltPanel-theme-blue">
+          <div class="marsTiltPanel-wrap">
+              <div class="area">
+                  <div class="arrow-lt"></div>
+                  <div class="b-t"></div>
+                  <div class="b-r"></div>
+                  <div class="b-b"></div>
+                  <div class="b-l"></div>
+                  <div class="arrow-rb"></div>
+                  <div class="label-wrap">
+                      <div class="title">1号传感器</div>
+                      <div class="label-content">
+                          <div class="data-li">
+                              <div class="data-label">沉降量：</div>
+                              <div class="data-value"><span class="label-num">-6</span><span class="label-unit">mm</span>
+                              </div>
+                          </div>
+                          <div class="data-li">
+                              <div class="data-label">监测数据：</div>
+                              <div class="data-value"><span class="label-num">2</span><span class="label-unit">km</span>
+                              </div>
+                          </div>
+                          <div class="data-li">
+                              <div class="data-label">传感器状态：</div>
+                              <div class="data-value"><span class="label-tag data-value-status-1" alt="中间状态">开启状态</span><span
+                                      class="label-tag data-value-status-0" alt="关闭状态">关闭状态</span></div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="b-t-l"></div>
+              <div class="b-b-r"></div>
+          </div>
+          <div class="arrow" ></div>
+      </div>`,
       horizontalOrigin: Cesium.HorizontalOrigin.LEFT,
-      verticalOrigin: Cesium.VerticalOrigin.BOTTOM
-    }
+      verticalOrigin: Cesium.VerticalOrigin.BOTTOM,
+      clampToGround: true,
+      distanceDisplayCondition: new Cesium.DistanceDisplayCondition(0, 200000) // 按视距距离显示
+    },
+    id: 2,
+    name: "2号",
+    show: true
+    // pointerEvents: true
   })
+  graphicLayer.addGraphic(graphic)
+  addTableItem(graphic)
+}
+function demo22(graphicLayer) {
+  const graphic = new mars3d.graphic.DivLightPoint({
+    position: [118.525601, 31.515678, 70.4],
+    style: {
+      color: "#f33349",
+      distanceDisplayCondition: new Cesium.DistanceDisplayCondition(0, 200000), // 按视距距离显示
+      heightReference: Cesium.HeightReference.CLAMP_TO_GROUND
+    },
+    attr: { remark: "示例5" },
+    popup: "测试popup",
+    hasEdit: true,
+    id: 22,
+    name: "2号",
+    show: true
+  })
+  graphicLayer.addGraphic(graphic)
+  addTableItem(graphic)
 }
 
 // 在图层绑定Popup弹窗
@@ -185,4 +251,45 @@ export function getManagerLayer() {
     return map.getLayer(104, "id")
   }
   return map.getLayer
+}
+let table = []
+function addTableItem(item) {
+  table.push({ key: item.id, name: item.name })
+  eventTabel.fire("tableObject", { table })
+}
+export function changeTable(data) {
+  table = data
+}
+export function showHideArea(id, selected) {
+  const graphic = graphicLayer.getGraphicById(id)
+  if (selected) {
+    graphic.show = true
+  } else {
+    graphic.show = false
+  }
+}
+export function flyToGraphic(item) {
+  const graphic = graphicLayer.getGraphicById(item)
+  map.flyToGraphic(graphic)
+}
+export function deletedGraphic(item) {
+  const graphic = graphicLayer.getGraphicById(item)
+  graphicLayer.removeGraphic(graphic)
+}
+
+function bindLayerEvent() {
+  graphicLayer.on(mars3d.EventType.drawCreated, function (e) {
+    eventTabel.fire("graphicEditor-start", e)
+  })
+
+  graphicLayer.on(
+    [mars3d.EventType.editStart, mars3d.EventType.editMovePoint, mars3d.EventType.editStyle, mars3d.EventType.editRemovePoint],
+    function (e) {
+      eventTabel.fire("graphicEditor-update", e)
+    }
+  )
+
+  graphicLayer.on([mars3d.EventType.editStop, mars3d.EventType.removeGraphic], function (e) {
+    eventTabel.fire("graphicEditor-stop", e)
+  })
 }

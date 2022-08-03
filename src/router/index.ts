@@ -5,15 +5,15 @@ const routes: Array<RouteRecordRaw> = [
   {
     // name: "marsgiss",
     path: "/",
-    redirect: "/marsgis",
+    redirect: "/chart",
     meta: { headname: "insar" }
   },
-  {
-    name: "marsgis",
-    path: "/marsgis",
-    component: () => import("@mars/views/index.vue"),
-    meta: { headname: "insar" }
-  },
+  // {
+  //   name: "marsgis",
+  //   path: "/marsgis",
+  //   component: () => import("@mars/views/index.vue"),
+  //   meta: { headname: "insar" }
+  // },
   ChartRoute
 ]
 

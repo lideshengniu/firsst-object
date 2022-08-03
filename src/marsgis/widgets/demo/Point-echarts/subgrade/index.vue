@@ -1,5 +1,5 @@
 <template>
-  <mars-dialog title="沉降" top="20" left="500" bottom="20" width="1000">
+  <mars-dialog title="沉降" top="20" right="2" bottom="500" width="500">
     <ul class="chart">
       <li class="chart1">
         <div class="chart1-title">历史总沉降</div>
@@ -25,20 +25,26 @@ const chart1 = ref()
 function initEncharts() {
   const mychart1 = echart.init(chart1.value, "dark")
   const data = [
-    ["k27+000", 5],
-    ["k27+000", -5],
-    ["k27+000", 8],
-    ["k27+000", -6],
-    ["k27+000", 9],
-    ["k27+000", 4],
-    ["k27+000", 6],
-    ["k27+000", -10],
-    ["k27+000", -2],
-    ["k27+000", -6],
-    ["k27+000", 12],
-    ["k27+000", 8],
-    ["k27+000", 3],
-    ["k27+000", 5]
+    ["k28", 5],
+    ["k29", -5],
+    ["k30", 8],
+    ["k31", -6],
+    ["k32", 9],
+    ["k33", 4],
+    ["k34", 6],
+    ["k35", -10],
+    ["k36", -2],
+    ["k37", -6],
+    ["k38", 12],
+    ["k39", 8],
+    ["k40", 3],
+    ["k41", 5],
+    ["k43", 5],
+    ["k44", 5],
+    ["k45", 5],
+    ["k46", 5],
+    ["k47", 5],
+    ["k48", 5]
   ]
   const dateList = data.map(function (item) {
     return item[0]
@@ -52,6 +58,14 @@ function initEncharts() {
       // text: "anscombe",
       left: "center",
       top: 0
+    },
+    dataZoom: {
+      type: "slider",
+      id: "沉降",
+      show: true,
+      handleStyle: { color: "red" },
+      start: 1,
+      end: 35
     },
     grid: {
       left: "5%",
@@ -265,14 +279,14 @@ function fontSize(res: number) {
   width: 100%;
   .chart1 {
     width: 100%;
-    height: 50%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     .chart1-title {
       font-size: 1.56rem;
       text-align: center;
-      height: 2.5rem;
-      background-color: red;
+      height: 4rem;
+      // background-color: red;
     }
     .chart1-points {
       height: 500px;
@@ -281,7 +295,7 @@ function fontSize(res: number) {
     }
   }
   .chart2 {
-    background-color: green;
+    background-color: rgb(236, 247, 236);
     width: 100%;
     height: 50%;
   }

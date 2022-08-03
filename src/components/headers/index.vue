@@ -1,7 +1,7 @@
 <template>
   <div class="head">
-    <h1>数据可视化</h1>
-    <div class="showTime">{{ times }}</div>
+    <h1>宁芜智慧高速天地一体化感知平台</h1>
+    <!-- <div class="showTime">{{ times }}</div> -->
   </div>
 </template>
 <script lang="ts" setup>
@@ -33,12 +33,17 @@ console.log(times, "@#@#")
   height: 5rem;
   width: 100vw;
   // position: relative;
+  text-align: center;
   background-size: 100% 100%;
   h1 {
-    font-size: 3.2rem;
+    font-size: 3.5rem;
+    height: 3.5rem;
     color: #fff;
     text-align: center;
-    line-height: 4rem;
+    line-height: 3.5rem;
+    letter-spacing: 9px;
+    font-family: "system-ui", -apple-system, "Helvetica", Arial, sans-serif;
+    margin-left: -15vw;
   }
   .showTime {
     position: absolute;

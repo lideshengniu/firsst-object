@@ -28,6 +28,11 @@ export default ({ mode }: ConfigEnv) => {
           target: "http://124.221.236.190:9001/geoserver/wfs",
           changeOrigin: true,
           rewrite: (path) => path.replace(/^\/api/, "")
+        },
+        "/xy": {
+          target: "http://124.221.236.190:8642/",
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/xy/, "")
         }
       }
     },
@@ -42,7 +47,11 @@ export default ({ mode }: ConfigEnv) => {
     resolve: {
       alias: [
         // "@photo": path.join(__dirname, "public"),
-        // "@mars": path.join(__dirname, "src/marsgis")
+        // {"@mars": path.join(__dirname, "src/marsgis"},
+        {
+          find: /@\//,
+          replacement: pathResolve("src") + "/"
+        },
         {
           find: /@mars\//,
           replacement: pathResolve("src/marsgis") + "/"
@@ -50,10 +59,6 @@ export default ({ mode }: ConfigEnv) => {
         {
           find: /@photo\//,
           replacement: pathResolve("public") + "/"
-        },
-        {
-          find: /@\//,
-          replacement: pathResolve("src") + "/"
         }
       ],
       extensions: [".js", ".ts", ".jsx", ".tsx", ".json"]

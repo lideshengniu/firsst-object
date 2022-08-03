@@ -1,5 +1,5 @@
 <template>
-  <mars-dialog title="形变" top="80" left="60" bottom="50" width="400">
+  <mars-dialog title="形变" top="80" left="10" bottom="50" width="1600">
     <div class="bg container-last-chart">
       <div class="right_item">
         <div class="_item_top item_bottom">
@@ -39,10 +39,16 @@
   </mars-dialog>
 </template>
 <script lang="ts" setup>
-import { nextTick, onMounted, ref } from "vue"
+import { nextTick, onMounted, ref, onBeforeMount } from "vue"
 import * as echarts from "echarts"
+import { useTestStore } from "@/store"
 // 折线图
 
+onBeforeMount(() => {
+  const Test = useTestStore()
+  const points = Test.point
+  console.log("get points", points)
+})
 const line = ref()
 const line2 = ref()
 const line3 = ref()
@@ -52,12 +58,11 @@ onMounted(() => {
   })
 })
 function initEcharts() {
-  const myChart3 = echarts.init(line.value, "dark")
+  const myChart1 = echarts.init(line.value, "dark")
 
   //   const myChart5 = echarts.init(line3.value, "dark")
-  const option3 = {
+  const option1 = {
     backgroundColor: "transparent",
-
     tooltip: {
       trigger: "axis",
       show: true,
@@ -104,7 +109,42 @@ function initEcharts() {
     xAxis: {
       position: "bottom",
       type: "category",
-      data: ["20200111", "20200123", "20200204", "20200216", "20200228"],
+      /* "points.D_20200112","points.D_20200124","points.D_20200205","points.D_20200217","points.D_20200229","points.D_20200312","points.D_20200324","points.D_20200405","points.D_20200417","points.D_20200429",
+      "points.D_20200511","points.D_20200523",
+      "points.D_20200604","points.D_20200616",
+      "points.D_20200628","points.D_20200710",
+      "points.D_20200722","points.D_20200803",
+      "points.D_20200815","points.D_20200827",
+      "points.D_20200908","points.D_20200920",
+      "points.D_20201002","points.D_20201010",
+      "points.D_20201026","points.D_20201107",
+      "points.D_20201201","points.D_20201213",
+      "points.D_20201225","points.D_20210106",
+      "points.D_20210118","points.D_20210130",
+      "points.D_20210211","points.D_20210118",
+      "points.D_20210130","points.D_20210211",
+      "points.D_20210223","points.D_20210307",
+      "points.D_20210319","points.D_20210331",
+      "points.D_20210412","points.D_20210424",
+      "points.D_20210506","points.D_20210518",
+      "points.D_20210530","points.D_20210611",
+      "points.D_20210623","points.D_20210705",
+      "points.D_20210717","points.D_20210729",
+      "points.D_20210810","points.D_20210822",
+      "points.D_20210903","points.D_20210927",
+      "points.D_20211021","points.D_20211102",
+      "points.D_20211114","points.D_20211220",
+      "points.D_20220101","points.D_20220125",
+      "points.D_20220206","points.D_20220314",
+      "points.D_20220326","points.D_20220407",
+      "points.D_20220419","points.D_20220501",
+      "points.D_20220525","points.D_20220606",
+      "points.D_20220630","points.D_20220724"
+
+
+
+      */
+      data: ["200111", "200123", "200204", "200216", "200228"],
       axisTick: {
         // 坐标轴
         alignWithLabel: false,
@@ -191,9 +231,9 @@ function initEcharts() {
       }
     ]
   }
-  myChart3.setOption(option3)
-  const myChart4 = echarts.init(line2.value, "dark")
-  const option4 = {
+  myChart1.setOption(option1)
+  const myChart2 = echarts.init(line2.value, "dark")
+  const option2 = {
     backgroundColor: "transparent",
 
     tooltip: {
@@ -233,15 +273,91 @@ function initEcharts() {
       }
     },
     grid: {
-      left: "11%",
+      left: "2%",
       right: "0%",
-      top: "18%",
-      bottom: "5%",
+      top: "10%",
+      bottom: "15%",
       containLabel: true
+    },
+    dataZoom: {
+      type: "slider",
+      id: "沉降",
+      show: true,
+      handleStyle: { color: "red" },
+      start: 1,
+      end: 35
     },
     xAxis: {
       type: "category",
-      data: ["20200111", "20200123", "20200204", "20200216", "20200228"],
+      data: [
+        "200112",
+        "200124",
+        "200205",
+        "200217",
+        "200229",
+        "200312",
+        "200324",
+        "200405",
+        "200417",
+        "200429",
+        "200511",
+        "200523",
+        "200604",
+        "200616",
+        "200628",
+        "200710",
+        "200722",
+        "200803",
+        "200815",
+        "200827",
+        "200908",
+        "200920",
+        "201002",
+        "201026",
+        "201107",
+        "201201",
+        "201213",
+        "201225",
+        "210106",
+        "210118",
+        "210130",
+        "210211",
+        "210223",
+        "210307",
+        "210319",
+        "210331",
+        "210412",
+        "210424",
+        "210506",
+        "210518",
+        "210530",
+        "210611",
+        "210623",
+        "210705",
+        "210717",
+        "210729",
+        "210810",
+        "210822",
+        "210903",
+        "210927",
+        "211009",
+        "211021",
+        "211102",
+        "211114",
+        "211220",
+        "220101",
+        "220125",
+        "220206",
+        "220314",
+        "220326",
+        "220407",
+        "220419",
+        "220501",
+        "220525",
+        "220606",
+        "220630",
+        "220724"
+      ],
       axisTick: {
         alignWithLabel: false,
         show: true,
@@ -387,10 +503,10 @@ function initEcharts() {
       }
     ]
   }
-  myChart4.setOption(option4)
+  myChart2.setOption(option2)
   //   myChart5.setOption(option5)
-  const myChart5 = echarts.init(line3.value, "dark")
-  const option5 = {
+  const myChart3 = echarts.init(line3.value, "dark")
+  const option3 = {
     backgroundColor: "transparent",
 
     tooltip: {
@@ -438,7 +554,7 @@ function initEcharts() {
     },
     xAxis: {
       type: "category",
-      data: ["20200111", "20200123", "20200204", "20200216", "20200228"],
+      data: ["200111", "200123", "200204", "200216", "200228"],
       axisTick: {
         alignWithLabel: false,
         show: true,
@@ -585,7 +701,7 @@ function initEcharts() {
       }
     ]
   }
-  myChart5.setOption(option5)
+  myChart3.setOption(option3)
 }
 function fontSize(res: number) {
   return res * 16

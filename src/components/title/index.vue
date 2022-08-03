@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="left">
+    <!-- <div class="left">
       <ul class="left-ul">
         <li @click="gohome()">
           <div class="icons">
@@ -17,18 +17,18 @@
           <div class="icon-bottom"></div>
         </li>
       </ul>
-    </div>
+    </div> -->
     <div class="middle">
-      <div class="logo">INSAR-地表传感器结合的监测平台</div>
+      <div class="logo">宁芜智慧高速天地一体化感知平台</div>
       <div class="middle-line"></div>
     </div>
-    <div class="right">
+    <!-- <div class="right">
       <div class="time">时间：{{ map.dataTime }}</div>
       <div v-bind="map.dataTime"></div>
       <div class="right-icon">
         <mars-icon width="50" class="icon" icon="sun-one"></mars-icon>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 <script setup lang="ts">
@@ -102,20 +102,17 @@ onUnmounted(() => {
   display: flex;
   border-left: 1px solid #008aff70;
   border-right: 1px solid #008aff70;
-  background: linear-gradient(to top, @mars-content-color, @mars-content-color) left bottom no-repeat,
-    linear-gradient(to bottom, @mars-content-color, @mars-content-color) left bottom no-repeat,
-    linear-gradient(to left, @mars-content-color, @mars-content-color) right bottom no-repeat,
-    linear-gradient(to left, @mars-content-color, @mars-content-color) right bottom no-repeat;
+  background: url(./imgs/head_bg.png) no-repeat top center;
   // background-color: @mars-primary-color-self;
   background-size: 1px 10px, 10px 1px, 1px 10px, 10px 1px;
   // background-color: @mars-primary-color-self;
   .left {
     height: 100vh;
-    width: 35%;
-    color: @mars-primary-color;
+    width: 20%;
+    // color: @mars-primary-color;
     // display: flex;
     border-right: 4px solid skyblue;
-    background-color: @mars-primary-color-self;
+    // background-color: @mars-primary-color-self;
     box-shadow: 0px 4px 7px 5px skyblue;
     .left-ul {
       display: flex;
@@ -147,7 +144,7 @@ onUnmounted(() => {
           // border-bottom: 10px;
           // border-bottom:rgb(108, 178, 199) 5px solid;
           box-shadow: 500px rgba(69, 128, 184, 0.3);
-          background-image: repeating-linear-gradient(to top, rgba(55, 170, 190, 0.1), rgba(65, 76, 221, 0.8));
+          background-image: repeating-linear-gradient(to top, rgba(122, 148, 153, 0.1), rgba(79, 223, 233, 0.8));
           .icon-bottom {
             width: 85px;
             //  border: solid 3px rgb(10, 202, 236);
@@ -163,11 +160,12 @@ onUnmounted(() => {
     }
   }
   .middle {
-    width: 30%;
+    // font-size: 10rem;
+    width: 100%;
     // background-color: green;
     height: 7rem;
     line-height: 10vh;
-    background-color: @mars-primary-color-self;
+    // background-color: @mars-primary-color-self;
     z-index: 100;
     display: flex;
     flex-direction: column;
@@ -177,9 +175,10 @@ onUnmounted(() => {
       height: 70px;
       line-height: 70px;
       // background-color: red;
-      font-size: 24px;
-      text-transform: uppercase;
-      letter-spacing: 3px;
+      font-size: 3.5rem;
+      color: aliceblue;
+      // text-transform: uppercase;
+      letter-spacing: 9px;
       text-align: center;
       // margin-top: -15px;
       font-family: "system-ui", -apple-system, "Helvetica", Arial, sans-serif;
@@ -194,9 +193,9 @@ onUnmounted(() => {
     }
   }
   .right {
-    background-color: @mars-primary-color-self;
+    // background-color: @mars-primary-color-self;
     height: 100vh;
-    width: 35%;
+    width: 30%;
     border-left: 4px solid skyblue;
     box-shadow: 0px 4px 15px 10px skyblue;
     display: flex;
@@ -207,7 +206,7 @@ onUnmounted(() => {
       line-height: 80px;
       height: 80px;
       // background-color: green;
-      margin-left: 100px;
+      margin-left: 0px;
     }
     .right-icon {
       // background-color: green;

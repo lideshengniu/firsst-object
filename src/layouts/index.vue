@@ -1,6 +1,6 @@
 <template>
   <a-layout style="min-height: 100vh">
-    <a-layout-sider v-model:collapsed="collapsed" collapsible>
+    <a-layout-sider v-model:collapsed="collapsed" :collapsible="false" :style="{ overflow: 'auto' }">
       <Logo></Logo>
       <Menu></Menu>
     </a-layout-sider>
@@ -14,9 +14,9 @@
         </a-breadcrumb> -->
         <!-- <router-link to="/Marsgis">跳转a</router-link> -->
         <RouterView />
-        <div :style="{ padding: '24px', background: '#fff', minHeight: '360px' }">Bill is a cat.</div>
+        <!-- <div :style="{ padding: '24px', background: '#fff', minHeight: '360px' }">Bill is a cat.</div> -->
       </a-layout-content>
-      <a-layout-footer> nihao </a-layout-footer>
+      <!-- <a-layout-footer> nihao </a-layout-footer> -->
     </a-layout>
   </a-layout>
 </template>
@@ -27,14 +27,14 @@ import insar from "./insar/index.vue"
 import { ref, reactive, Ref, computed, toRaw, markRaw, onUnmounted, onMounted, nextTick, watch, watchEffect } from "vue"
 import MapTitles from "../components/title/index.vue"
 import { useRouter, useRoute, Router, RouteRecordName } from "vue-router"
-import Menu from "./components/AppMenu.vue"
+import Menu from "./components/AppMenus/AppMenu.vue"
 import Logo from "./components/Logo.vue"
 import Heads from "./components/Head.vue"
 // import { showinsar } from "./insar/index"
 import { useWidgetStore, useWidget } from "@mars/common/store/widget"
 // onMounted(() => {})
 
-const collapsed = ref<boolean>(true)
+const collapsed = ref<boolean>(false)
 
 const router = useRouter()
 const curRoute = useRoute()

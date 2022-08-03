@@ -1,6 +1,7 @@
 <template>
   <a-layout-header style="background: rgba(55, 170, 190, 0.8); padding: 0; margin-bottom: -25px">
-    <component :is="ismarsgis()"> </component>
+    <!-- <component :is="ismarsgis()"> </component> -->
+    <Headers></Headers>
     <!-- <MapTitles></MapTitles> -->
   </a-layout-header>
 </template>

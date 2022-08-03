@@ -1,4 +1,3 @@
-
 import * as mars3d from "mars3d"
 import { $alert as globalAlert } from "@mars/components/mars-ui/index"
 import { Home } from "@icon-park/svg"
@@ -18,15 +17,26 @@ export function getDefaultContextMenu(map) {
       },
       callback: function (e) {
         // 经纬度
-        const mpt = mars3d.LngLatPoint.fromCartesian(e.cartesian)
-        const ptNew = mars3d.PointTrans.proj4Trans([mpt.lng, mpt.lat], "EPSG:4326", mars3d.CRS.CGCS2000_GK_Zone_3)
+        console.log("xasdasdas", e.cartesian)
+        const cartographic2 = Cesium.Cartographic.fromCartesian(e.cartesian)
+        const cartesianss = e.cartesian
+        const cartesians = new Cesium.Cartesian3(cartesianss.x, cartesianss.y, cartesianss.z)
+        const cartographic3 = Cesium.Cartographic.fromCartesian(cartesians)
+        // const lat = cartographic3.latitude
+        // const lng = cartographic3.longitude
+        const point = mars3d.LngLatPoint.fromCartesian(e.cartesian)
+        const cartographic = Cesium.Cartographic.fromCartesian(e.cartesian)
+        const lat = Cesium.Math.toDegrees(cartographic3.latitude)
+        const lng = Cesium.Math.toDegrees(cartographic3.longitude)
+        console.log("lrp", lat, lng)
+        // const mpt = mars3d.LngLatPoint.fromCartesian(e.cartesian)
+        // const ptNew = mars3d.PointTrans.proj4Trans([mpt.lng, mpt.lat], "EPSG:4326", mars3d.CRS.CGCS2000_GK_Zone_3)
 
-        const inhtml = `
-         经度:${mpt.lng}, 纬度:${mpt.lat}, 海拔:${mpt.alt},
+        // const inhtml = `
+        //  经度:${point.lng}, 纬度:${point.lat}, 海拔:${point.alt},
 
-         横坐标:${ptNew[0].toFixed(1)}, 纵坐标:${ptNew[1].toFixed(1)} (CGCS2000)
-        `
-        globalAlert(inhtml, "位置信息")
+        // `
+        // globalAlert(inhtml, "位置信息")
       }
     },
 

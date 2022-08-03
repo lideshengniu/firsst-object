@@ -1,5 +1,5 @@
 <template>
-  <mars-pannel :visible="true" right="10" top="10" width="360">
+  <mars-dialog :visible="true" right="10" top="10" width="360">
     <div class="terrain-contain">
       <a-row :gutter="[5, 25]">
         <a-col :span="24">
@@ -49,16 +49,20 @@
         </a-col>
       </a-row>
     </div>
-  </mars-pannel>
+  </mars-dialog>
 </template>
 
 <script setup lang="ts">
-import { nextTick, reactive, ref } from "vue"
+import { nextTick, reactive, ref, onUnmounted } from "vue"
 
 import type { UnwrapRef } from "vue"
 import * as mapWork from "./map.js"
 import { $notify } from "@mars/components/mars-ui/index"
 import useLifecycle from "@mars/common/uses/use-lifecycle"
+
+onUnmounted(() => {
+  // rowKeys.value = []
+})
 useLifecycle(mapWork)
 interface FormState {
   enabledWadi: boolean

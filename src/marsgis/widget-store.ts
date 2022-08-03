@@ -4,7 +4,7 @@
  * @author 火星吴彦祖 2022-02-19
  */
 import { defineAsyncComponent, markRaw } from "vue"
-import { WidgetState } from "@mars/common/store/widget"
+import { WidgetState } from "@mars/common/store/widget.js"
 import { StoreOptions } from "vuex"
 
 const store: StoreOptions<WidgetState> = {
@@ -65,6 +65,12 @@ const store: StoreOptions<WidgetState> = {
         // autoDisable: true
       },
       {
+        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/Point-echarts/dangerpoints/points-echartss/index.vue"))),
+        name: "point3",
+        group: "tools2"
+        // autoDisable: true
+      },
+      {
         component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/Point-echarts/dangerpoints/index.vue"))),
         name: "point",
         group: "tools3"
@@ -100,6 +106,36 @@ const store: StoreOptions<WidgetState> = {
       {
         component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/Mine/index.vue"))),
         name: "Mine",
+        group: "tools4"
+      },
+      {
+        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/InSAR/Area/index.vue"))),
+        name: "threshold",
+        group: "tools4"
+      },
+      {
+        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/gaobp/index.vue"))),
+        name: "gaopo",
+        group: "tools4"
+      },
+      {
+        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/bridge/index.vue"))),
+        name: "bridge",
+        group: "tools4"
+      },
+      {
+        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/Road/index.vue"))),
+        name: "road",
+        group: "tools4"
+      },
+      {
+        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/allroad/index.vue"))),
+        name: "allroad",
+        group: "tools4"
+      },
+      {
+        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/ruanji/allroad/index.vue"))),
+        name: "ruanji",
         group: "tools4"
       }
     ],

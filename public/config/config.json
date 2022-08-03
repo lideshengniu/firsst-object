@@ -1,7 +1,7 @@
 {
   "map3d": {
     "scene": {
-      "center": { "lat": 26.285225, "lng": 111.037235, "alt": 30000.9, "heading": 360, "pitch": -42.5 },
+      "center": { "lat": 31.34, "lng": 118.496067, "alt": 80000.5, "heading": 32, "pitch": -87 },
       "scene3DOnly": false,
       "shadows": false,
       "removeDblClick": true,
@@ -293,44 +293,6 @@
         "flyTo": true
       },
       {
-        "pid": 4020,
-        "name": "建筑物面",
-        "type": "wms",
-        "url": "//server.mars3d.cn/geoserver/mars/wms",
-        "layers": "mars:hfjzw",
-        "crs": "EPSG:4326",
-        "parameters": { "transparent": "true", "format": "image/png" },
-        "highlight": {
-          "showTime": 5000,
-          "fill": true,
-          "color": "#2deaf7",
-          "opacity": 0.6,
-          "outline": true,
-          "outlineWidth": 3,
-          "outlineColor": "#e000d9",
-          "outlineOpacity": 1.0,
-          "clampToGround": true
-        },
-        "center": { "lat": 31.79513, "lng": 117.236172, "alt": 3784.6, "heading": 0.7, "pitch": -42.2 },
-        "popup": "all",
-        "show": false,
-        "flyTo": true
-      },
-      {
-        "pid": 4020,
-        "name": "规划面",
-        "type": "wms",
-        "url": "//server.mars3d.cn/geoserver/mars/wms",
-        "layers": "mars:hfgh",
-        "crs": "EPSG:4326",
-        "parameters": { "transparent": "true", "format": "image/png" },
-        "center": { "lat": 31.743214, "lng": 117.277097, "alt": 47197.7, "heading": 0.3, "pitch": -78.8 },
-        "popup": "all",
-        "show": false,
-        "flyTo": true
-      },
-      { "id": 4030, "pid": 40, "name": "ArcGIS 瓦片", "type": "group" },
-      {
         "pid": 4030,
         "name": "合肥规划图",
         "type": "arcgis_cache",
@@ -407,94 +369,6 @@
       { "id": 3040, "pid": 30, "name": "平台标绘JSON", "type": "group" },
       { "id": 3030, "pid": 30, "name": "GeoJSON数据", "type": "group" },
       {
-        "pid": 3030,
-        "type": "geojson",
-        "name": "建筑物面",
-        "url": "{dataServer}/file/geojson/buildings-demo.json",
-        "symbol": { "styleOptions": { "color": "#0d3685", "outlineColor": "#0d3685", "opacity": 0.8 } },
-        "buildings": { "cloumn": "floors", "height": "flo_height" },
-        "popup": "all",
-        "flyTo": true
-      },
-      { "id": 3070, "pid": 30, "name": "GeoServer WFS", "type": "group" },
-      {
-        "pid": 3070,
-        "name": "教育设施点",
-        "type": "wfs",
-        "url": "//server.mars3d.cn/geoserver/mars/ows",
-        "layer": "mars:hfjy",
-        "parameters": { "maxFeatures": 500 },
-        "minimumLevel": 13,
-        "symbol": {
-          "type": "billboardP",
-          "styleOptions": {
-            "image": "img/marker/mark1.png",
-            "scale": 0.7,
-            "scaleByDistance": true,
-            "scaleByDistance_far": 20000,
-            "scaleByDistance_farValue": 0.5,
-            "scaleByDistance_near": 1000,
-            "scaleByDistance_nearValue": 1,
-            "clampToGround": true,
-            "label": {
-              "text": "{项目名称}",
-              "font_size": 15,
-              "color": "#ffffff",
-              "outline": true,
-              "outlineColor": "#000000",
-              "pixelOffsetY": -30,
-              "distanceDisplayCondition": true,
-              "distanceDisplayCondition_far": 2000,
-              "distanceDisplayCondition_near": 0
-            }
-          }
-        },
-        "center": { "lat": 31.812256, "lng": 117.229873, "alt": 4683.91, "heading": 357.4, "pitch": -65.4 },
-        "popup": "all"
-      },
-      { "id": 3010, "pid": 30, "name": "ArcGIS WFS", "type": "group" },
-      {
-        "pid": 3010,
-        "type": "arcgis_wfs",
-        "name": "兴趣点",
-        "url": "//server.mars3d.cn/arcgis/rest/services/mars/hefei/MapServer/1",
-        "where": " 1=1 ",
-        "minimumLevel": 15,
-        "center": { "lat": 31.818396, "lng": 117.229083, "alt": 2554.4, "heading": 359.2, "pitch": -83.1 },
-        "symbol": {
-          "type": "billboardP",
-          "styleOptions": {
-            "image": "img/marker/mark3.png",
-            "scale": 0.7,
-            "scaleByDistance": true,
-            "scaleByDistance_far": 20000,
-            "scaleByDistance_farValue": 0.5,
-            "scaleByDistance_near": 1000,
-            "scaleByDistance_nearValue": 1,
-            "clampToGround": true,
-            "label": {
-              "text": "{NAME}",
-              "font_size": 15,
-              "color": "#ffffff",
-              "outline": true,
-              "outlineColor": "#000000",
-              "pixelOffsetY": -30,
-              "distanceDisplayCondition": true,
-              "distanceDisplayCondition_far": 3000,
-              "distanceDisplayCondition_near": 0
-            }
-          },
-          "styleField": "address",
-          "styleFieldOptions": {
-            "AB03": { "image": "img/marker/mark1.png" },
-            "A980": { "image": "img/marker/mark2.png" },
-            "A900": { "image": "img/marker/mark4.png" }
-          }
-        },
-        "popup": "名称：{NAME}<br />地址：{address}",
-        "show": false
-      },
-      {
         "pid": 3010,
         "type": "arcgis_wfs",
         "name": "道路",
@@ -556,55 +430,85 @@
       },
       { "id": 20, "name": "三维模型", "type": "group" },
       { "id": 2010, "pid": 20, "name": "gltf模型", "type": "group" },
-      {
-        "pid": 2010,
-        "type": "gltf",
-        "name": "风力发电机",
-        "url": "{dataServer}/gltf/mars/fengche.gltf",
-        "position": { "lng": 117.219071, "lat": 31.828783, "alt": 39.87 },
-        "style": { "scale": 50, "heading": -93 },
-        "popup": "示例信息，这是一个风力发电机",
-        "center": { "lat": 31.821083, "lng": 117.21832, "alt": 832.64, "heading": 2.3, "pitch": -39.2 }
-      },
-      {
-        "pid": 2010,
-        "type": "gltf",
-        "name": "起重车",
-        "url": "{dataServer}/gltf/mars/qzcar/GKZY_anim.gltf",
-        "position": { "lng": 117.217458, "lat": 31.815349, "alt": 35.03 },
-        "style": { "scale": 2, "heading": -95, "clampToGround": true },
-        "center": { "lat": 31.815363, "lng": 117.215958, "alt": 107.35, "heading": 90.7, "pitch": -26.1 }
-      },
       { "id": 2040, "pid": 20, "name": "城市白模", "type": "group" },
       { "id": 99, "name": "数据图层", "type": "group" },
-      { "id": 100, "name": "图层", "type": "group" },
+      { "id": 100, "name": "Insar", "type": "group" },
       {
         "pid": 100,
         "type": "graphic",
-        "name": "白鹤滩",
+        "id": 1002,
+        "name": "总InSAR",
         "show": false,
         "data": [
           {
             "positions": [
-              [103.1828528375, 26.7822882483],
-              [102.8464162955, 26.3648549463]
+              [118.7180688845, 31.8370379613],
+              [118.2553373945, 31.2126129393]
             ],
             "style": {
-              "image": "baihetan.png",
-              "clampToGround": true
+              "clampToGround": true,
+              "image": "img/Layer0.png"
             },
-            "type": "rectangle"
+            "type": "rectangle",
+            "hasEdit": false,
+            "allowDrillPick": true
           }
         ]
       },
+      { "id": 101, "name": "路线", "type": "group" },
       {
-        "pid": 100,
-        "id": 1001,
-        "name": "白鹤滩路线",
-        "url": "../json/road.json",
+        "pid": 101,
+        "id": 10001,
+        "name": "宁芜高速",
+        "url": "../json/road2.json",
+        "type": "geojson",
+        "flyTo": true,
+        "popup": "{name}",
+        "symbol": {
+          "name": "保通线",
+          "type": "curve",
+          "styleOptions": { "width": 4, "clampToGround": true, "color": "rgb(0,191,255)" }
+        },
+        "show": true
+      },
+      {
+        "pid": 101,
+        "id": 10005,
+        "name": "桩号",
+        "url": "../json/zhuanghao.json",
+        "type": "geojson",
+        "show": true,
+        "symbol": {
+          "type": "Point",
+          "styleOptions": {
+            "color": "#ff0000",
+            "pixelSize": 5,
+            "outlineColor": "#ffffff",
+            "outlineWidth": 2,
+            "label": {
+              "text": "{TextObject}",
+              "font_size": 5,
+              "color": "#ffffff",
+              "pixelOffsetY": -10,
+              "distanceDisplayCondition": false
+            }
+          }
+        },
+        "popup": "{TextObject}"
+      },
+      {
+        "pid": 101,
+        "id": 10002,
+        "name": "宝通路线",
+        "url": "../json/baotong.json",
         "type": "geojson",
         "zIndex": 1000,
-        "symbol": { "type": "polyline", "styleOptions": { "width": 10, "clampToGround": true, "color": "rgb(0,191,255)" } },
+        "symbol": {
+          "name": "保通线",
+          "type": "curve",
+          "styleOptions": { "width": 15, "clampToGround": true, "color": "rgb(0,191,255)" }
+        },
+        "graphicOptions": { "popup": "保通线" },
         "show": false
       },
       {
@@ -615,18 +519,15 @@
       {
         "pid": 102,
         "id": 1000,
-        "type": "wfs",
-        "name": "baihet",
-        "show": false,
-        "url": "/test",
-        "layer": "sf:bht2",
+        "type": "geojson",
+        "name": "隐患1",
+        "show": true,
+
+        "url": "../json/HPD.json",
         "zIndex": 10,
-        "graphicOptions": { "show": true },
-        "clustering": { "clampToGround": true, "radius": 1, "color": "red" },
-        "chinaCRS": "WGS84",
         "symbol": {
           "type": "point",
-          "styleOptions": { "opacity": 0.0, "color": "rgba(255,255,255,0)", "visibleDepth": true, "pixelSize": 1, "distanceDisplayCondition_near": 5 }
+          "styleOptions": { "opacity": 0.0, "color": "rgba(255,255,255,0)", "visibleDepth": true, "pixelSize": 3, "distanceDisplayCondition_near": 5 }
         }
       }
     ]
