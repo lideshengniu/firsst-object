@@ -1,5 +1,5 @@
 <template>
-  <div class="ni" v-if="shows">
+  <div class="ni" v-if="Test.gys">
     <div class="text">
       <img src="../imgs/gys.png" />
     </div>
@@ -8,9 +8,12 @@
 </template>
 <script setup lang="ts">
 import { ref } from "vue"
-const shows = ref(true)
+import { useTestStore } from "@/store/sy/index"
+const Test = useTestStore()
+
+// const shows = ref(true)
 const noshow = () => {
-  shows.value = false
+  Test.gys = !Test.gys
 }
 </script>
 <style scoped lang="less">
@@ -57,6 +60,7 @@ const noshow = () => {
   width: 30vw;
   height: 10vh;
   letter-spacing: 2vw;
+  border-radius: 40px;
   background-color: rgba(23, 62, 192, 0.5);
   &:hover {
     background-color: rgba(9, 23, 70, 0.4);

@@ -160,6 +160,7 @@ const sjgz = () => {
 const sy = () => {
   Test.showinsar()
   disableAll(true)
+  activate("toolbar")
 }
 const ruanji = () => {
   console.log(1)

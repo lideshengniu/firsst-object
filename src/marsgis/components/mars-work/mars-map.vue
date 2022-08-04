@@ -9,6 +9,7 @@
  */
 
 import { computed, onUnmounted, onMounted, h, ref } from "vue"
+
 import * as mars3d from "mars3d"
 import { getQueryString } from "@mars/utils/mars-util"
 import { getDefaultContextMenu } from "@mars/utils/getDefaultContextMenu"
@@ -16,7 +17,7 @@ import { $alert, $message, $alert as globalAlert } from "@mars/components/mars-u
 import { useWidget } from "@mars/common/store/widget"
 import { useTestStore } from "@/store/index"
 // import { graphicLayer } from "@/marsgis/widgets/demo/Road/map.js"
-// const Cesium = mars3d.Cesium
+const Cesium = mars3d.Cesium
 const Test = useTestStore()
 const { activate, disable, isActivate, updateWidget } = useWidget()
 const props = withDefaults(

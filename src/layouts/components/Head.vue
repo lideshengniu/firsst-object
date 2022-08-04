@@ -1,5 +1,5 @@
 <template>
-  <a-layout-header style="background: rgba(55, 170, 190, 0.8); padding: 0; margin-bottom: -25px">
+  <a-layout-header style="background: rgba(55, 170, 190, 0.8); padding: 0; margin-bottom: -1.7rem">
     <!-- <component :is="ismarsgis()"> </component> -->
     <Headers></Headers>
     <!-- <MapTitles></MapTitles> -->

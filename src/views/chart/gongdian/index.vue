@@ -1,5 +1,5 @@
 <template>
-  <!-- <teleport to="body" v-if="gys"><imgee></imgee> </teleport> -->
+  <teleport to="body" v-if="Test.gys"><imgee></imgee> </teleport>
   <a-table
     :columns="columns"
     :dataSource="data"
@@ -15,7 +15,7 @@
     </template>
     <template #bodyCell="{ column, record }">
       <template v-if="column.key === 'name'">
-        <a href="javascript:;">{{ record.name }}</a>
+        <a href="javascript:;" @click="showmessage(record)">{{ record.name }}</a>
       </template>
       <!-- <template v-else-if="column.key === 'weizhi'">
         <a> {{ record.weizhi }}</a>
@@ -31,7 +31,9 @@
 <script setup lang="ts">
 import { Snowman } from "@icon-park/svg"
 import imgee from "./son/index.vue"
-import { ref } from "vue"
+import { ref, nextTick } from "vue"
+import { useTestStore } from "@/store/sy/index"
+const Test = useTestStore()
 const columns = ref([
   {
     title: "工点信息",
@@ -99,6 +101,13 @@ const data = ref([
   }
 ])
 const gys = ref(false)
+
+const showmessage = (record: any) => {
+  if (record.name === "葛羊山") {
+    Test.gys = !Test.gys
+  }
+}
+
 // const gysshow = () => {}
 // function rowclick(record, index) {
 //   return (gys.value = true)

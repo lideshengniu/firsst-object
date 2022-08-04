@@ -82,7 +82,7 @@ const store: StoreOptions<WidgetState> = {
       },
       {
         component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/Point-echarts/subgrade/index.vue"))),
-        name: "road",
+        name: "road2",
         group: "tools3"
       },
       {
@@ -124,30 +124,30 @@ const store: StoreOptions<WidgetState> = {
         group: "tools4"
       },
       {
-        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/Road/index.vue"))),
+        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/insarsjgz/Road/index.vue"))),
         name: "road",
         group: "tools4"
       },
       {
-        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/sjgz/allroad/index.vue"))),
+        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/insarsjgz/allroad/index.vue"))),
         name: "allroad",
         group: "tools4"
       },
       {
-        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/ruanji/allroad/index.vue"))),
+        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/insarsjgz/ruanji/allroad/index.vue"))),
         name: "ruanji",
         group: "tools4"
       },
       {
-        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/ruanji/chenjiangqx/manage-layers/index.vue"))),
+        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/insarsjgz/ruanji/chenjiangqx/manage-layers/index.vue"))),
         name: "rjcjqx"
       },
       {
-        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/ruanji/chuangq/cgq/zsptc/index.vue"))),
+        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/insarsjgz/ruanji/chuangq/cgq/zsptc/index.vue"))),
         name: "zsptc"
       },
       {
-        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/ruanji/chuangq/index.vue"))),
+        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/insarsjgz/ruanji/chuangq/index.vue"))),
         name: "rjcgq"
       },
       {

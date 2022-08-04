@@ -1,6 +1,6 @@
 <template>
-  <mars-pannel customClass="base-pannel" right="10" top="130" height="70px">
-    <template v-for="(item, i) in data" :key="i">
+  <mars-pannel customClass="base-pannel" right="0" top="0" height="0" width="0">
+    <!-- <template v-for="(item, i) in data" :key="i">
       <div v-if="item.widget && !item.children" class="toolbar-item" @click="showWidget(item.widget)">
         <div class="icon">
           <mars-icon :icon="item.icon" width="30"></mars-icon>
@@ -23,7 +23,7 @@
           </a-menu>
         </template>
       </mars-dropdown-menu>
-    </template>
+    </template> -->
   </mars-pannel>
 </template>
 
@@ -33,42 +33,43 @@
  * @copyright 火星科技 mars3d.cn
  * @author 火星吴彦祖 2022-01-10
  */
-import { useWidget } from "@mars/common/store/widget"
+// import { useWidget } from "@mars/common/store/widget"
+import * as mapWork from "./map"
+import useLifecycle from "@/marsgis/common/uses/use-lifecycle"
+useLifecycle(mapWork)
+// const { activate } = useWidget()
+// const data = [
+//   { name: "底图", icon: "international", widget: "manage-basemap" },
+//   // { name: "隐患点", icon: "dot", widget: "point" },
+//   // { name: "图层", icon: "layers", widget: "manage-layers" },
+//   {
+//     name: "工具",
+//     icon: "tool",
+//     children: [
+//       // { name: "图上量算", icon: "ruler", widget: "measure" },
+//       // { name: "空间分析", icon: "analysis", widget: "analysis" },
+//       { name: "坐标定位", icon: "local", widget: "location-point" }
+//       // { name: "地区导航", icon: "navigation", widget: "location-region" },
+//       // { name: "我的标记", icon: "mark", widget: "addmarker" },
+//       // { name: "视角书签", icon: "bookmark", widget: "bookmark" },
+//       // { name: "地图打印", icon: "printer", widget: "print" },
+//       // { name: "飞行漫游", icon: "take-off", widget: "roamLine-list" },
+//       // { name: "图上标绘", icon: "hand-painted-plate", widget: "plot" },
+//       // { name: "路线导航", icon: "connection", widget: "query-route" },
+//       // { name: "卷帘对比", icon: "switch-contrast", widget: "map-split" },
+//       // { name: "分屏对比", icon: "full-screen-play", widget: "map-compare" }
+//       // { name: "百度街景", icon: h(City, { theme: "outline", size: "18" }), widget: "street-view" }
+//     ]
+//   }
+// ]
 
-const { activate } = useWidget()
+// const showWidget = (widget: string) => {
+//   activate(widget)
+// }
 
-const data = [
-  { name: "底图", icon: "international", widget: "manage-basemap" },
-  { name: "隐患点", icon: "dot", widget: "point" },
-  // { name: "图层", icon: "layers", widget: "manage-layers" },
-  {
-    name: "工具",
-    icon: "tool",
-    children: [
-      // { name: "图上量算", icon: "ruler", widget: "measure" },
-      // { name: "空间分析", icon: "analysis", widget: "analysis" },
-      { name: "坐标定位", icon: "local", widget: "location-point" }
-      // { name: "地区导航", icon: "navigation", widget: "location-region" },
-      // { name: "我的标记", icon: "mark", widget: "addmarker" },
-      // { name: "视角书签", icon: "bookmark", widget: "bookmark" },
-      // { name: "地图打印", icon: "printer", widget: "print" },
-      // { name: "飞行漫游", icon: "take-off", widget: "roamLine-list" },
-      // { name: "图上标绘", icon: "hand-painted-plate", widget: "plot" },
-      // { name: "路线导航", icon: "connection", widget: "query-route" },
-      // { name: "卷帘对比", icon: "switch-contrast", widget: "map-split" },
-      // { name: "分屏对比", icon: "full-screen-play", widget: "map-compare" }
-      // { name: "百度街景", icon: h(City, { theme: "outline", size: "18" }), widget: "street-view" }
-    ]
-  }
-]
-
-const showWidget = (widget: string) => {
-  activate(widget)
-}
-
-const clickMenu = ({ key }: any) => {
-  showWidget(key)
-}
+// const clickMenu = ({ key }: any) => {
+//   showWidget(key)
+// }
 </script>
 
 <style lang="less">

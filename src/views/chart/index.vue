@@ -97,7 +97,7 @@ import { ref, nextTick, onMounted } from "vue"
 import * as echarts from "echarts"
 import mars from "@mars/views/index.vue"
 import gd from "./gongdian/index.vue"
-import { useTestStore } from "@/store/xx"
+import { useTestStore } from "@/store/xx/index"
 const columns = ref([
   {
     title: "工点信息",
@@ -607,13 +607,15 @@ function initEcharts() {
   display: flex;
   .column {
     flex: 3;
+    height: 100%;
+    // background-color: red;
   }
   .column:nth-child(2) {
     flex: 5;
   }
   .panel {
     position: relative;
-    height: 19.3753rem;
+    height: 21rem;
     // background-color: red;
     border: 1px solid rgba(25, 186, 139, 0.17);
     background: rgba(255, 255, 255, 0.04) url(./images/line1.png);
@@ -687,66 +689,66 @@ function initEcharts() {
   .no {
     background: rgba(101, 132, 226, 0.1);
     padding: 0.8rem;
-    .no-hd {
-      position: relative;
-      border: 5px solid rgba(25, 186, 139, 0.17);
-      &::before {
-        content: "";
-        position: absolute;
-        width: 30px;
-        height: 10px;
-        border-top: 2px solid #02a6b5;
-        border-left: 2px solid #02a6b5;
-        top: 0;
-        left: 0;
-      }
-      &::after {
-        content: "";
-        position: absolute;
-        width: 30px;
-        height: 10px;
-        border-bottom: 2px solid #02a6b5;
-        border-right: 2px solid #02a6b5;
-        right: 0;
-        bottom: 0;
-      }
-      ul {
-        display: flex;
-        li {
-          position: relative;
-          flex: 1;
-          text-align: center;
-          height: 2rem;
-          line-height: 2rem;
-          font-size: 3rem;
-          color: #ffeb7b;
-          padding: 0.05rem 0;
-          font-family: electronicFont;
-          font-weight: bold;
-          &:first-child::after {
-            content: "";
-            position: absolute;
-            height: 50%;
-            width: 1px;
-            background: rgba(255, 255, 255, 0.2);
-            right: 0;
-            top: 25%;
-          }
-        }
-      }
-    }
-    .no-bd ul {
-      display: flex;
-      li {
-        flex: 1;
-        height: 0.5rem;
-        line-height: 0.5rem;
-        text-align: center;
-        font-size: 0.225rem;
-        color: rgba(255, 255, 255, 0.7);
-        padding-top: 0.125rem;
-      }
-    }
+    // .no-hd {
+    //   position: relative;
+    //   border: 5px solid rgba(25, 186, 139, 0.17);
+    //   &::before {
+    //     content: "";
+    //     position: absolute;
+    //     width: 30px;
+    //     height: 10px;
+    //     border-top: 2px solid #02a6b5;
+    //     border-left: 2px solid #02a6b5;
+    //     top: 0;
+    //     left: 0;
+    //   }
+    //   &::after {
+    //     content: "";
+    //     position: absolute;
+    //     width: 30px;
+    //     height: 10px;
+    //     border-bottom: 2px solid #02a6b5;
+    //     border-right: 2px solid #02a6b5;
+    //     right: 0;
+    //     bottom: 0;
+    //   }
+    //   ul {
+    //     display: flex;
+    //     li {
+    //       position: relative;
+    //       flex: 1;
+    //       text-align: center;
+    //       height: 2rem;
+    //       line-height: 2rem;
+    //       font-size: 3rem;
+    //       color: #ffeb7b;
+    //       padding: 0.05rem 0;
+    //       font-family: electronicFont;
+    //       font-weight: bold;
+    //       &:first-child::after {
+    //         content: "";
+    //         position: absolute;
+    //         height: 50%;
+    //         width: 1px;
+    //         background: rgba(255, 255, 255, 0.2);
+    //         right: 0;
+    //         top: 25%;
+    //       }
+    //     }
+    //   }
+    // }
+    // .no-bd ul {
+    //   // display: flex;
+    //   li {
+    //     flex: 1;
+    //     height: 0.5rem;
+    //     line-height: 0.5rem;
+    //     text-align: center;
+    //     font-size: 0.225rem;
+    //     color: rgba(255, 255, 255, 0.7);
+    //     padding-top: 0.125rem;
+    //   }
+    // }
   }
   .marsbd::after {
     position: absolute;
@@ -770,7 +772,7 @@ function initEcharts() {
   }
   .mars {
     //   margin-top: -20px;
-    height: 45rem;
+    // height: 45rem;
   }
   .map {
     // background-color: red;
