@@ -1,8 +1,8 @@
 <template>
-  <mars-dialog right="10" top="300" width="800" bottom="50">
+  <mars-dialog right="10" top="200" width="500" bottom="50">
     <a-row :gutter="[5, 25]">
       <a-col :span="24">
-        <a-table :pagination="true" :row-selection="rowSelection" :data-source="Source" :columns="columns" size="small" bordered>
+        <a-table :pagination="false" :row-selection="rowSelection" :dataSource="dataSource" :columns="columns" size="small" bordered>
           <template #bodyCell="{ column, record }">
             <template v-if="column.key === 'caozuo'">
               <a-space>
@@ -14,15 +14,18 @@
                 </mars-button>
               </a-space>
             </template>
-            <!-- <template v-if="column.key === 'name'">
+            <template v-else-if="column.key === 'img'">
+              {{ record.img }}
+            </template>
+            <template v-else-if="column.key === 'jgxx'">
+              {{ record.jgxx }}
+            </template>
+            <template v-else-if="column.key === 'xuhao'">
+              {{ record.xuhao }}
+            </template>
+            <template v-else>
               {{ record.name }}
             </template>
-            <template v-else-if="column.key === 'ban'">
-              {{ record.bannain }}
-            </template> -->
-            <!-- <template v-else>
-              {{ record.yinian }}
-            </template> -->
           </template>
         </a-table>
       </a-col>
@@ -35,40 +38,32 @@ import type { UnwrapRef } from "vue"
 import useLifecycle from "@mars/common/uses/use-lifecycle"
 import * as mapWork from "./map"
 import { useWidget } from "@mars/common/store/widget"
-import { table } from "console"
 const { activate, disable, isActivate, updateWidget } = useWidget()
 useLifecycle(mapWork)
 const rowKeys = ref<string[]>([])
-const Source = ref([])
+const dataSource = ref([])
 const columns = ref([
   {
     title: "序号",
     dataIndex: "xuhao",
     key: "xuhao"
+    // width: 80
   },
-
   {
-    title: "桩号",
+    title: "边坡名称",
     dataIndex: "name",
     key: "name"
   },
   {
-    title: "历史总沉降",
-    dataIndex: "zong",
-    key: "zong"
-    // width: 200
+    title: "照片",
+    dataIndex: "img",
+    key: "img"
   },
   {
-    title: "近半年沉降",
-    dataIndex: "bannian",
-    key: "bannian"
+    title: "警告信息",
+    dataIndex: "jgxx",
+    key: "jgxx"
   },
-  {
-    title: "备注",
-    dataIndex: "beizhu",
-    key: "beizhu"
-  },
-
   {
     title: "操作",
     dataIndex: "caozuo",
@@ -79,10 +74,7 @@ const columns = ref([
 interface TableItem {
   key: number
   name: string
-  bannian: string
-  yinian: string
 }
-
 const rowSelection = ref({
   hideSelectAll: true,
   hideDefaultSelections: true,
@@ -96,11 +88,9 @@ const rowSelection = ref({
   }
 })
 mapWork.eventTabel.on("tableObject", function (event: any) {
-  // dataSource.value = []
-
+  dataSource.value = []
   nextTick(() => {
-    Source.value = event.table
-    console.log("这里", Source.value)
+    dataSource.value = event.table
     // rowKeys.value = event.table.map((item: any) => item.key)
   })
 })
@@ -109,9 +99,9 @@ const flyto = (record: any) => {
 }
 const deleted = (record: any) => {
   mapWork.deletedGraphic(record.key)
-  Source.value = Source.value.filter((item: any) => item.key !== record.key)
+  dataSource.value = dataSource.value.filter((item: any) => item.key !== record.key)
 
-  mapWork.changeTable(Source.value)
+  mapWork.changeTable(dataSource.value)
 }
 const showEditor = (e: any) => {
   const graphic = e.graphic

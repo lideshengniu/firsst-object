@@ -1,7 +1,7 @@
 {
   "map3d": {
     "scene": {
-      "center": { "lat": 31.34, "lng": 118.496067, "alt": 80000.5, "heading": 32, "pitch": -87 },
+      "center": { "lat": 31.323461, "lng": 118.452459, "alt": 80000.5, "heading": 12, "pitch": 316 },
       "scene3DOnly": false,
       "shadows": false,
       "removeDblClick": true,
@@ -274,7 +274,21 @@
         "radio": true
       },
       { "pid": 60, "type": "terrain", "name": "无地形", "terrain": { "type": "none" }, "radio": true },
+      { "id": 2040, "name": "地形", "type": "group" },
+      {
+        "id": 204012,
+        "pid": 2040,
+        "type": "3dtiles",
+        "name": "上海市区",
+        "url": "http://localhost/mars3d-data/3dtiles/test/tileset.json",
+        "maximumScreenSpaceError": 4,
+        "maximumMemoryUsage": 1024,
+        "style": {},
+        "highlight": { "type": "click", "color": "#FFFF00" },
 
+        "center": { "lat": 31.257341, "lng": 121.466139, "alt": 2170.8, "heading": 122.2, "pitch": -31.8 },
+        "show": false
+      },
       { "id": 40, "name": "栅格数据", "type": "group" },
       { "id": 4020, "pid": 40, "name": "OGC WMS服务", "type": "group" },
 

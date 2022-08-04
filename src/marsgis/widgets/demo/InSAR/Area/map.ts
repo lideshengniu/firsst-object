@@ -14,6 +14,10 @@ const { activate, disable, isActivate, updateWidget } = useWidget()
  */
 export function onMounted(mapInstance) {
   map = mapInstance
+  const insar = map.getLayer(1002)
+  insar.show = false
+  //
+  // map.addLayer(insar)
   graphicLayer = new mars3d.layer.GraphicLayer()
   map.addLayer(graphicLayer)
   const graphicLayer2 = map.getLayer(1000, "id")
@@ -67,8 +71,11 @@ export function onMounted(mapInstance) {
   bindLayerEvent()
 }
 export function onUnmounted() {
+  const graphicLayer2 = map.getLayer(1000, "id")
+  graphicLayer2.show = false
   map = null
   table = []
+
   // graphicLayer.remove()
   // graphicLayer = null
 }

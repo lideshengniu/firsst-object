@@ -6,7 +6,7 @@
     </a-layout-sider>
     <a-layout>
       <Heads></Heads>
-      <a-layout-content style="margin: 25px 0px">
+      <a-layout-content class="layoutcontent">
         <!-- <a-breadcrumb style="margin: 16px 0">
           <map-titles z-index="1000"></map-titles> </component>
           <a-breadcrumb-item>User</a-breadcrumb-item>
@@ -56,6 +56,10 @@ let c
 <style>
 .logo {
   height: 100px;
+}
+.layoutcontent {
+  height: 100%;
+  margin-top: 25px;
 }
 #components-layout-demo-side .logo {
   height: 50px;

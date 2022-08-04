@@ -129,7 +129,7 @@ const store: StoreOptions<WidgetState> = {
         group: "tools4"
       },
       {
-        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/allroad/index.vue"))),
+        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/sjgz/allroad/index.vue"))),
         name: "allroad",
         group: "tools4"
       },
@@ -137,6 +137,38 @@ const store: StoreOptions<WidgetState> = {
         component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/ruanji/allroad/index.vue"))),
         name: "ruanji",
         group: "tools4"
+      },
+      {
+        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/ruanji/chenjiangqx/manage-layers/index.vue"))),
+        name: "rjcjqx"
+      },
+      {
+        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/ruanji/chuangq/cgq/zsptc/index.vue"))),
+        name: "zsptc"
+      },
+      {
+        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/ruanji/chuangq/index.vue"))),
+        name: "rjcgq"
+      },
+      {
+        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/sjyy/kcsj/dzks/Area/index.vue"))),
+        name: "dzks"
+      },
+      {
+        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/sjyy/sgjd/bpkw/index.vue"))),
+        name: "bpkw"
+      },
+      {
+        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/sjyy/sgjd/rjyy/index.vue"))),
+        name: "rjyy"
+      },
+      {
+        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/sjyy/yyjd/bxyy/index.vue"))),
+        name: "bxyy"
+      },
+      {
+        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/sjyy/yyjd/jcyj/bp/index.vue"))),
+        name: "jcbp"
       }
     ],
     openAtStart: []

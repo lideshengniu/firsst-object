@@ -113,7 +113,7 @@ function add1(graphicLayer) {
 
     id: 1,
     name: "钟山人工堆土边坡",
-    show: true
+    show: false
   })
   graphicLayer.addGraphic(graphic)
   addTableItem(graphic)
@@ -161,7 +161,7 @@ function add2(graphicLayer) {
 
     id: 2,
     name: "大青山尾矿库",
-    show: true
+    show: false
   })
   graphicLayer.addGraphic(graphic)
   addTableItem(graphic)

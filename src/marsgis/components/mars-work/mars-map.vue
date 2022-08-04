@@ -15,6 +15,8 @@ import { getDefaultContextMenu } from "@mars/utils/getDefaultContextMenu"
 import { $alert, $message, $alert as globalAlert } from "@mars/components/mars-ui/index"
 import { useWidget } from "@mars/common/store/widget"
 import { useTestStore } from "@/store/index"
+// import { graphicLayer } from "@/marsgis/widgets/demo/Road/map.js"
+// const Cesium = mars3d.Cesium
 const Test = useTestStore()
 const { activate, disable, isActivate, updateWidget } = useWidget()
 const props = withDefaults(
@@ -54,47 +56,47 @@ const initMars3d = (option: any) => {
   // 绑定当前项目的默认右键菜单
   map.bindContextMenu(getDefaultContextMenu(map))
   let terrainClip
-  addTerrainClip()
-  function addTerrainClip() {
-    terrainClip = new mars3d.thing.TerrainClip({
-      // diffHeight: 20, // 井的深度
-      image: "/img/textures/excavate_side_min.jpg",
-      imageBottom: "/img/textures/excavate_bottom_min.jpg",
-      splitNum: 80, // 井边界插值数,
-      enabled: true
-    })
-    map.addThing(terrainClip)
+  // addTerrainClip()
+  // function addTerrainClip() {
+  //   terrainClip = new mars3d.thing.TerrainClip({
+  //     // diffHeight: 20, // 井的深度
+  //     image: "/img/textures/excavate_side_min.jpg",
+  //     imageBottom: "/img/textures/excavate_bottom_min.jpg",
+  //     splitNum: 80, // 井边界插值数,
+  //     enabled: true
+  //   })
+  //   map.addThing(terrainClip)
 
-    const areaItem = terrainClip.addArea(
-      [
-        [103.19, 26.899171, 645.46],
-        [103.22, 26.899171, 645.46],
-        [103.22, 26.944509, 645.46],
-        [103.19, 26.944509, 645.46]
-      ],
-      { diffHeight: 900 }
-    )
-    // addTableItem(areaItem)
+  //   const areaItem = terrainClip.addArea(
+  //     [
+  //       [103.19, 26.899171, 645.46],
+  //       [103.22, 26.899171, 645.46],
+  //       [103.22, 26.944509, 645.46],
+  //       [103.19, 26.944509, 645.46]
+  //     ],
+  //     { diffHeight: 900 }
+  //   )
+  //   // addTableItem(areaItem)
 
-    const areaItem2 = terrainClip.addArea(
-      [
-        [116.416497, 30.934256, 775.89],
-        [116.427392, 30.962941, 1084.88],
-        [116.434838, 30.932608, 900.43],
-        [116.462994, 30.923081, 771.42],
-        [116.437571, 30.916044, 906.39],
-        [116.44977, 30.894487, 776.06],
-        [116.424183, 30.908752, 727.02],
-        [116.402218, 30.898406, 593.08],
-        [116.414309, 30.918806, 588.78],
-        [116.387022, 30.933539, 700.65]
-      ],
-      { diffHeight: 200 }
-    )
-    // addTableItem(areaItem2)
+  //   const areaItem2 = terrainClip.addArea(
+  //     [
+  //       [116.416497, 30.934256, 775.89],
+  //       [116.427392, 30.962941, 1084.88],
+  //       [116.434838, 30.932608, 900.43],
+  //       [116.462994, 30.923081, 771.42],
+  //       [116.437571, 30.916044, 906.39],
+  //       [116.44977, 30.894487, 776.06],
+  //       [116.424183, 30.908752, 727.02],
+  //       [116.402218, 30.898406, 593.08],
+  //       [116.414309, 30.918806, 588.78],
+  //       [116.387022, 30.933539, 700.65]
+  //     ],
+  //     { diffHeight: 200 }
+  //   )
+  //   // addTableItem(areaItem2)
 
-    // eventTabel.fire("loadTerrainClip", { terrainClip })
-  }
+  //   // eventTabel.fire("loadTerrainClip", { terrainClip })
+  // }
   // 如果有xyz传参，进行定位
   const lat = getQueryString("lat")
   const lng = getQueryString("lng")
@@ -134,7 +136,8 @@ const initMars3d = (option: any) => {
     await $alert("程序内存消耗过大，请重启浏览器")
     window.location.reload()
   })
-  const bhtroad = map.getLayer(10001, "id")
+  const ninghuroad = map.getLayer(10001, "id")
+
   const eventTarget = new mars3d.BaseClass()
   const showEditor = (e: any) => {
     const graphic = e.graphic
@@ -162,24 +165,24 @@ const initMars3d = (option: any) => {
   })
   eventTarget.on("graphicEditor-stop", async (e: any) => {
     setTimeout(() => {
-      if (!bhtroad.isEditing) {
+      if (!ninghuroad.isEditing) {
         disable("graphic-editor")
       }
     }, 100)
   })
   function bindLayerEvent() {
-    bhtroad.on(mars3d.EventType.drawCreated, function (e) {
+    ninghuroad.on(mars3d.EventType.drawCreated, function (e) {
       eventTarget.fire("graphicEditor-start", e)
     })
 
-    bhtroad.on(
+    ninghuroad.on(
       [mars3d.EventType.editStart, mars3d.EventType.editMovePoint, mars3d.EventType.editStyle, mars3d.EventType.editRemovePoint],
       function (e) {
         eventTarget.fire("graphicEditor-update", e)
       }
     )
 
-    bhtroad.on([mars3d.EventType.editStop, mars3d.EventType.removeGraphic], function (e) {
+    ninghuroad.on([mars3d.EventType.editStop, mars3d.EventType.removeGraphic], function (e) {
       eventTarget.fire("graphicEditor-stop", e)
     })
   }
@@ -194,14 +197,81 @@ const initMars3d = (option: any) => {
 function onMapLoad() {
   // Mars3D地图内部使用，如右键菜单弹窗
   // @ts-ignore
-  const bhtroad = map.getLayer(10001, "id")
-
-  bhtroad.bindContextMenu([
+  const ninghuroad = map.getLayer(10001, "id")
+  function addjiance(graphicLayer) {
+    const Cesium = mars3d.Cesium
+    const graphic1 = new mars3d.graphic.DivGraphic({
+      position: [118.529255, 31.552994, 70.4],
+      style: {
+        html: `<div class="marsTiltPanel marsTiltPanel-theme-blue">
+          <div class="marsTiltPanel-wrap">
+              <div class="area">
+                  <div class="arrow-lt"></div>
+                  <div class="b-t"></div>
+                  <div class="b-r"></div>
+                  <div class="b-b"></div>
+                  <div class="b-l"></div>
+                  <div class="arrow-rb"></div>
+                  <div class="label-wrap">
+                      <div class="title">2号传感器</div>
+                      <div class="label-content">
+                          <div class="data-li">
+                              <div class="data-label">沉降量：</div>
+                              <div class="data-value"><span class="label-num">10</span><span class="label-unit">mm</span>
+                              </div>
+                          </div>
+                          <div class="data-li">
+                              <div class="data-label">监测数据：</div>
+                              <div class="data-value"><span class="label-num">20</span><span class="label-unit">km</span>
+                              </div>
+                          </div>
+                          <div class="data-li">
+                              <div class="data-label">传感器状态：</div>
+                              <div class="data-value"><span class="label-tag data-value-status-1" alt="中间状态">开启状态</span><span
+                                      class="label-tag data-value-status-0" alt="关闭状态">关闭状态</span></div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="b-t-l"></div>
+              <div class="b-b-r"></div>
+          </div>
+          <div class="arrow" ></div>
+      </div>`
+        // horizontalOrigin: Cesium.HorizontalOrigin.LEFT,
+        // verticalOrigin: Cesium.VerticalOrigin.BOTTOM,
+        // clampToGround: true,
+        // distanceDisplayCondition: new Cesium.DistanceDisplayCondition(0, 200000) // 按视距距离显示
+      },
+      id: 1,
+      name: "2号",
+      show: true
+      // pointerEvents: true
+    })
+    const graphic11 = new mars3d.graphic.DivLightPoint({
+      position: [118.529255, 31.552994, 70.4],
+      style: {
+        color: "#f33349"
+        // distanceDisplayCondition: new Cesium.DistanceDisplayCondition(0, 200000), // 按视距距离显示
+        // heightReference: Cesium.HeightReference.CLAMP_TO_GROUND
+      },
+      attr: { remark: "示例5" },
+      popup: "测试popup",
+      hasEdit: true,
+      id: 11,
+      name: "2号",
+      show: true
+    })
+    graphicLayer.addGraphic(graphic1)
+    graphicLayer.addGraphic(graphic11)
+  }
+  addjiance(ninghuroad)
+  ninghuroad.bindContextMenu([
     {
       text: "开始编辑对象",
       show: function (e) {
         const graphic = e.graphic
-        if (!bhtroad || !graphic.startEditing) {
+        if (!ninghuroad || !graphic.startEditing) {
           return false
         }
         return !graphic.isEditing
@@ -212,7 +282,7 @@ function onMapLoad() {
           return false
         }
         if (graphic) {
-          bhtroad.startEditing(graphic)
+          ninghuroad.startEditing(graphic)
         }
       }
     },
@@ -232,7 +302,7 @@ function onMapLoad() {
           return false
         }
         if (graphic) {
-          bhtroad.stopEditing(graphic)
+          ninghuroad.stopEditing(graphic)
         }
       }
     }
@@ -254,7 +324,7 @@ function onMapLoad() {
       }
     }
   ])
-  const Cesium = mars3d.Cesium
+
   // 显示沉降const Cesium = mars3d.Cesium
   // const insar = map.getLayer(1000, "id")
   // insar.bindContextMenu([
@@ -310,26 +380,7 @@ function onMapLoad() {
   }
 
   // 用于 config.json中配置的图层，绑定额外方法和参数
-  const tiles3dLayer = map.getLayer(204012, "id") // 上海市区
-  if (tiles3dLayer) {
-    tiles3dLayer.options.onSetOpacity = function (opacity: number) {
-      tiles3dLayer.style = {
-        color: {
-          conditions: [
-            ["${floor} >= 200", "rgba(45, 0, 75," + 0.5 * opacity + ")"],
-            ["${floor} >= 100", "rgba(170, 162, 204," + opacity + ")"],
-            ["${floor} >= 50", "rgba(224, 226, 238," + opacity + ")"],
-            ["${floor} >= 25", "rgba(252, 230, 200," + opacity + ")"],
-            ["${floor} >= 10", "rgba(248, 176, 87," + opacity + ")"],
-            ["${floor} >= 5", "rgba(198, 106, 11," + opacity + ")"],
-            ["true", "rgba(127, 59, 8," + opacity + ")"]
-          ]
-        }
-      }
-    }
-  }
 }
-
 // 组件卸载之前销毁mars3d实例
 onUnmounted(() => {
   if (map) {

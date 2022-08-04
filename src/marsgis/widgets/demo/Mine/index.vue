@@ -126,7 +126,7 @@ mapWork.eventTabel.on("tableObject", function (event: any) {
   nextTick(() => {
     console.log(event, "event")
     dataSource.value = event.table
-    rowKeys.value = event.table.map((item: any) => item.key)
+    // rowKeys.value = event.table.map((item: any) => item.key)
   })
 })
 

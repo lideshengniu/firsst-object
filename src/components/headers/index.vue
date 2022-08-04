@@ -40,7 +40,7 @@ console.log(times, "@#@#")
     height: 3.5rem;
     color: #fff;
     text-align: center;
-    line-height: 3.5rem;
+    line-height: 3.9rem;
     letter-spacing: 9px;
     font-family: "system-ui", -apple-system, "Helvetica", Arial, sans-serif;
     margin-left: -15vw;

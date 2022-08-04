@@ -354,6 +354,7 @@ export default {
     linear-gradient(to bottom, @mars-content-color, @mars-content-color) left bottom no-repeat,
     linear-gradient(to left, @mars-content-color, @mars-content-color) right bottom no-repeat,
     linear-gradient(to left, @mars-content-color, @mars-content-color) right bottom no-repeat;
+
   background-size: 1px 10px, 10px 1px, 1px 10px, 10px 1px;
   background-color: @mars-bg-base;
 }

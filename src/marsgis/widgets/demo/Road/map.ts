@@ -98,7 +98,7 @@ function add1(graphicLayer) {
 
     id: 1,
     name: "K56",
-    show: true
+    show: false
   })
   graphicLayer.addGraphic(graphic)
   addTableItem(graphic)

@@ -81,7 +81,7 @@
           </ul>
         </div>
         <div class="panel pie1">
-          <h2>xx</h2>
+          <h2>工点状况</h2>
           <div pie1>
             <gd />
           </div>
@@ -108,8 +108,8 @@ const columns = ref([
     title: "位置",
     dataIndex: "weizhi",
     key: "weizhi",
-    width: 150
-    // ellipsis: true
+    width: 150,
+    ellipsis: true
   },
   {
     title: "状态",
@@ -935,5 +935,8 @@ function initEcharts() {
   width: 100%;
   height: 100%;
   font-size: 20px;
+}
+.ant-table-fixed .ant-table-row-hover {
+  background: #eef1f6 !important;
 }
 </style>

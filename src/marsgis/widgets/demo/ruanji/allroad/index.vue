@@ -1,5 +1,5 @@
 <template>
-  <mars-dialog right="10" top="10" width="800" bottom="50">
+  <mars-dialog right="10" top="500" width="800" bottom="50">
     <a-row :gutter="[5, 25]">
       <a-col :span="24">
         <a-table :pagination="true" :row-selection="rowSelection" :data-source="Source" :columns="columns" size="small" bordered>

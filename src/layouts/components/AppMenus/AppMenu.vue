@@ -1,4 +1,5 @@
 <template>
+  <!-- <teleport to="body"><div class="bbody"></div></teleport> -->
   <a-menu v-model:selectedKeys="selectedKeys" theme="dark" mode="inline">
     <a-menu-item key="1" class="menu-item" @click="sy">
       <pie-chart-outlined />
@@ -43,7 +44,7 @@
           <span>地表数据感知</span>
         </span>
       </template>
-      <a-menu-item key="6" @click="gaobp(gaopo)">高边坡</a-menu-item>
+      <a-menu-item key="6" @click="gbp()">高边坡</a-menu-item>
       <a-menu-item key="7" @click="gaobp(bridge)">特大桥梁</a-menu-item>
       <a-menu-item key="8" @click="ruanji()">深厚软基</a-menu-item>
       <!-- <a-menu-item key="8" @click="MineSee()">分析</a-menu-item> -->
@@ -75,8 +76,8 @@
           </span>
         </template>
 
-        <a-menu-item key="10" @click="gaobp(Mine)">边坡开挖监测</a-menu-item>
-        <a-menu-item key="101" @click="gaobp(Mine)">软基预压效果</a-menu-item>
+        <a-menu-item key="10" @click="bpkw()">边坡开挖监测</a-menu-item>
+        <a-menu-item key="101" @click="rjyy()">软基预压效果</a-menu-item>
         <!-- <a-menu-item key="8" @click="MineSee()">特大桥梁</a-menu-item>
         <a-menu-item key="9" @click="MineSee()">深厚软基</a-menu-item> -->
         <!-- <a-menu-item key="8" @click="MineSee()">分析</a-menu-item> -->
@@ -89,19 +90,19 @@
           </span>
         </template>
 
-        <a-menu-item key="11" @click="gaobp(Mine)">靶向管养</a-menu-item>
+        <a-menu-item key="11" @click="bxyy()">靶向管养</a-menu-item>
         <a-sub-menu key="sub16" class="menu-item">
           <template #title>
             <span>
-              <team-outlined />
+              <!-- <team-outlined /> -->
               监测预警
             </span>
           </template>
 
-          <a-menu-item key="10" @click="gaobp(Mine)">桥梁</a-menu-item>
-          <a-menu-item key="101" @click="gaobp(Mine)">边坡</a-menu-item>
-          <a-menu-item key="101" @click="gaobp(Mine)">软基</a-menu-item>
-          <a-menu-item key="101" @click="gaobp(Mine)">尾矿坝</a-menu-item>
+          <a-menu-item key="1000" @click="gaobp(Mine)">桥梁</a-menu-item>
+          <a-menu-item key="1001" @click="jcbp()">边坡</a-menu-item>
+          <a-menu-item key="1002" @click="gaobp(Mine)">软基</a-menu-item>
+          <a-menu-item key="1003" @click="gaobp(Mine)">尾矿坝</a-menu-item>
           <!-- <a-menu-item key="8" @click="MineSee()">特大桥梁</a-menu-item>
         <a-menu-item key="9" @click="MineSee()">深厚软基</a-menu-item> -->
           <!-- <a-menu-item key="8" @click="MineSee()">分析</a-menu-item> -->
@@ -115,7 +116,7 @@
       <a-menu-item key="10" @click="MineSee()">深厚软基</a-menu-item> -->
       <!-- <a-menu-item key="8" @click="MineSee()">分析</a-menu-item> -->
     </a-sub-menu>
-    <a-menu-item key="12" class="menu-item">
+    <a-menu-item key="122" class="menu-item">
       <user-outlined />
       <!-- style="font-size: 25px !important" -->
       <span>用户管理</span>
@@ -164,17 +165,59 @@ const ruanji = () => {
   console.log(1)
   Test.showechart()
   disableAll(true)
-  activate("demo-manage-layers")
+
+  activate("rjcjqx")
+  activate("rjcgq")
   // activate("road")
   activate("ruanji")
 }
-const tochart = function () {
-  router.push("./chart")
+const bpkw = () => {
+  Test.showechart()
+  disableAll(true)
+  // disableAll(true)
+  activate("bpkw")
+}
+const rjyy = () => {
+  Test.showechart()
+  disableAll(true)
+  activate("rjyy")
+}
+function showArea() {
+  Test.showechart()
+  disableAll(true)
+  activate("dzks")
 }
 
-function tomap() {
-  router.push("./marsgis")
+const gbp = () => {
+  disableAll(true)
 }
+const bxyy = () => {
+  Test.showechart()
+  disableAll(true)
+  activate("bxyy")
+}
+const jcbp = () => {
+  Test.showechart()
+  disableAll(true)
+  activate("jcbp")
+}
+const showgbp = ref(false)
+function gaobp(xx) {
+  disableAll(true)
+  showgbp.value = !showgbp.value
+  if (showgbp.value) {
+    activate(xx)
+  } else {
+    disable(xx)
+  }
+}
+// const tochart = function () {
+//   router.push("./chart")
+// }
+
+// function tomap() {
+//   router.push("./marsgis")
+// }
 console.log("yes")
 // function showinsar() {}
 const buildshow = ref(false)
@@ -206,24 +249,8 @@ function MineSee() {
     disable("road")
   }
 }
-const showAreas = ref(false)
-function showArea() {
-  showAreas.value = !showAreas.value
-  if (showAreas.value) {
-    activate("threshold")
-  } else {
-    disable("threshold")
-  }
-}
-const showgbp = ref(false)
-function gaobp(xx) {
-  showgbp.value = !showgbp.value
-  if (showgbp.value) {
-    activate(xx)
-  } else {
-    disable(xx)
-  }
-}
+// const showAreas = ref(false)
+
 // function showinsar(show: boolean): void {}
 </script>
 <style scoped lang="less">
@@ -231,5 +258,22 @@ function gaobp(xx) {
   font-size: 15px !important;
   margin-top: 40px !important;
   /* color: rgb(35, 99, 219) !important; */
+}
+.bbody {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0;
+  padding: 0;
+  /* 100%的窗口高度 */
+  height: 100vh;
+  /* 弹性布局 水平+垂直居中 */
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+  /* 渐变背景 */
+  background-color: aqua;
 }
 </style>

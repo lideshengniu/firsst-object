@@ -33,6 +33,11 @@ export default ({ mode }: ConfigEnv) => {
           target: "http://124.221.236.190:8642/",
           changeOrigin: true,
           rewrite: (path) => path.replace(/^\/xy/, "")
+        },
+        "/x": {
+          target: "http://localhost/mars3d-data/3dtiles/test/tileset.json",
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/xy/, "")
         }
       }
     },
