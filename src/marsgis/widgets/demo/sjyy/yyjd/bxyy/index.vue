@@ -1,5 +1,5 @@
 <template>
-  <mars-dialog right="10" top="200" width="500" title="养护重点沉降" bottom="50">
+  <mars-dialog right="10" top="200" width="500" bottom="50">
     <a-row :gutter="[5, 25]">
       <a-col :span="24">
         <a-table :pagination="false" :row-selection="rowSelection" :dataSource="dataSource" :columns="columns" size="small" bordered>
@@ -10,21 +10,21 @@
                   <mars-icon icon="move-one" color="#f2f2f2" class="icon-vertical-a" @click="flyto(record)" />
                 </mars-button>
                 <mars-button type="link">
-                  <mars-icon icon="delete" color="#f2f2f2" class="icon-vertical-a" @click="deleted(record)" />
+                  <mars-icon icon="save" color="#f2f2f2" class="icon-vertical-a" @click="deleted(record)" />
                 </mars-button>
               </a-space>
             </template>
-            <template v-else-if="column.key === 'zhuanghao'">
-              {{ record.zhuanghao }}
+            <template v-else-if="column.key === 'cjl'">
+              {{ record.cjl }}
             </template>
-            <template v-else-if="column.key === 'beizhu'">
-              {{ record.beizhu }}
+            <template v-else-if="column.key === 'bz'">
+              {{ record.bz }}
             </template>
             <template v-else-if="column.key === 'xuhao'">
               {{ record.xuhao }}
             </template>
             <template v-else>
-              {{ record.cjl }}
+              {{ record.cgyzqy }}
             </template>
           </template>
         </a-table>
@@ -50,9 +50,9 @@ const columns = ref([
     // width: 80
   },
   {
-    title: "桩号",
-    dataIndex: "zhuanghao",
-    key: "zhuanghao"
+    title: "超过阈值的区域",
+    dataIndex: "cgyzqy",
+    key: "cgyzqy"
   },
   {
     title: "沉降量",
@@ -61,8 +61,8 @@ const columns = ref([
   },
   {
     title: "备注",
-    dataIndex: "beizhu",
-    key: "beizhu"
+    dataIndex: "bz",
+    key: "bz"
   },
   {
     title: "操作",
@@ -70,6 +70,12 @@ const columns = ref([
     key: "caozuo",
     width: 80
   }
+  // {
+  //   title: "导出",
+  //   dataIndex: "daochu",
+  //   key: "daochu",
+  //   width: 80
+  // }
 ])
 interface TableItem {
   key: number

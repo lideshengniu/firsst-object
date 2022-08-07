@@ -1,5 +1,8 @@
 <template>
+  <!-- <teleport to="body" v-if="true"><shili></shili> </teleport> -->
+  <teleport to="body" v-if="Test.shili"><shili></shili> </teleport>
   <teleport to="body" v-if="Test.gys"><imgee></imgee> </teleport>
+
   <a-table
     :columns="columns"
     :dataSource="data"
@@ -17,20 +20,13 @@
       <template v-if="column.key === 'name'">
         <a href="javascript:;" @click="showmessage(record)">{{ record.name }}</a>
       </template>
-      <!-- <template v-else-if="column.key === 'weizhi'">
-        <a> {{ record.weizhi }}</a>
-      </template> -->
-
-      <!-- <template v-else-if="column.key === 'tags'">
-        <span><a-tag v-for="tag in record.tags" :key="tag" :color="tag === '正常' ? 'green' : 'red'"></a-tag> </span>
-        <a> {{ record.tags }}</a> -->
-      <!-- </template> -->
     </template>
   </a-table>
 </template>
 <script setup lang="ts">
 import { Snowman } from "@icon-park/svg"
 import imgee from "./son/index.vue"
+import shili from "./son/shili.vue"
 import { ref, nextTick } from "vue"
 import { useTestStore } from "@/store/sy/index"
 const Test = useTestStore()
@@ -57,8 +53,9 @@ const columns = ref([
   }
 ])
 const data = ref([
+  { key: "1", name: "示例1", weizhi: "Kxx+xxx-Kxx+xxx", tags: "预警" },
   {
-    key: "1",
+    key: "8",
     name: "葛羊山",
     weizhi: "32",
     tags: "正常"
@@ -103,6 +100,9 @@ const data = ref([
 const gys = ref(false)
 
 const showmessage = (record: any) => {
+  if (record.name === "示例1") {
+    Test.shili = !Test.shili
+  }
   if (record.name === "葛羊山") {
     Test.gys = !Test.gys
   }

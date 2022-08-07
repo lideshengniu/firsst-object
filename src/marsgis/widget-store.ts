@@ -11,6 +11,12 @@ const store: StoreOptions<WidgetState> = {
   state: {
     widgets: [
       {
+        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/basic/points11/index.vue"))),
+        name: "point11",
+        autoDisable: true
+      },
+
+      {
         component: markRaw(defineAsyncComponent(() => import("@mars/widgets/basic/query-poi/index.vue"))),
         name: "query-poi",
         autoDisable: true
@@ -48,43 +54,29 @@ const store: StoreOptions<WidgetState> = {
         name: "location-point",
         group: "tools"
       },
-      {
-        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/geojson/index.vue"))),
-        name: "geojson",
-        group: "tools"
-      },
+
       {
         component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/file/index.vue"))),
         name: "file",
         group: "tools2"
       },
+      // insar 数据感知
       {
-        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/Point-echarts/dangerpoints/points-echarts/index.vue"))),
-        name: "point2",
-        group: "tools2"
-        // autoDisable: true
-      },
-      {
-        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/Point-echarts/dangerpoints/points-echartss/index.vue"))),
-        name: "point3",
-        group: "tools2"
-        // autoDisable: true
-      },
-      {
-        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/Point-echarts/dangerpoints/index.vue"))),
-        name: "point",
-        group: "tools3"
-      },
-      {
-        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/manage-layers/index.vue"))),
+        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/insarsjgz/manage-layers/index.vue"))),
         name: "demo-manage-layers",
         group: "tools3"
       },
       {
-        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/Point-echarts/subgrade/index.vue"))),
-        name: "road2",
+        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/insarsjgz/allroad/index.vue"))),
+        name: "insarsjgzallroad",
         group: "tools3"
       },
+      {
+        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/insarsjgz/subgrade/index.vue"))),
+        name: "insarsjgzechart",
+        group: "tools3"
+      },
+      // insar 数据感知
       {
         component: markRaw(defineAsyncComponent(() => import("@mars/widgets/basic/graphic-editor/index.vue"))),
         name: "graphic-editor",
@@ -109,11 +101,6 @@ const store: StoreOptions<WidgetState> = {
         group: "tools4"
       },
       {
-        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/InSAR/Area/index.vue"))),
-        name: "threshold",
-        group: "tools4"
-      },
-      {
         component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/gaobp/index.vue"))),
         name: "gaopo",
         group: "tools4"
@@ -129,46 +116,150 @@ const store: StoreOptions<WidgetState> = {
         group: "tools4"
       },
       {
-        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/insarsjgz/allroad/index.vue"))),
-        name: "allroad",
+        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/insarsjgz/subgrade/index.vue"))),
+        name: "echartcjlx",
+        group: "tools4"
+      },
+      /// /////////////////////
+      /// ///////////////
+      // 地表数据感知
+      /// ////////////////
+      /// //////
+      {
+        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/dbsjgz/ruanji/gdb/index.vue"))),
+        name: "dbsjgzgdb",
         group: "tools4"
       },
       {
-        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/insarsjgz/ruanji/allroad/index.vue"))),
-        name: "ruanji",
+        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/dbsjgz/gbp/gdb/index.vue"))),
+        name: "dbsjgzgbpgdb",
         group: "tools4"
       },
       {
-        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/insarsjgz/ruanji/chenjiangqx/manage-layers/index.vue"))),
+        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/dbsjgz/gbp/chuangq/index.vue"))),
+        name: "dbsjgzgbpcgq",
+        group: "tools4"
+      },
+      {
+        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/dbsjgz/gbp/chenjiangqx/manage-layers/index.vue"))),
+        name: "dbsjgzgbplayer",
+        group: "tools4"
+      },
+
+      {
+        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/dbsjgz/ruanji/chenjiangqx/manage-layers/index.vue"))),
         name: "rjcjqx"
       },
       {
-        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/insarsjgz/ruanji/chuangq/cgq/zsptc/index.vue"))),
+        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/dbsjgz/ruanji/chuangq/index.vue"))),
         name: "zsptc"
       },
       {
-        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/insarsjgz/ruanji/chuangq/index.vue"))),
+        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/dbsjgz/ruanji/chuangq/index.vue"))),
         name: "rjcgq"
       },
+      // 示例 传感器曲线1
+      {
+        component: markRaw(defineAsyncComponent(() => import("@/marsgis/widgets/demo/dbsjgz/ruanji/chuangq/hmscjcgq/index.vue"))),
+        name: "hmscjcgq1"
+      },
+      {
+        component: markRaw(defineAsyncComponent(() => import("@/marsgis/widgets/demo/dbsjgz/ruanji/chuangq/hmscjcgq2/index.vue"))),
+        name: "hmscjcgq2"
+      },
+      // 传感器曲线
+      {
+        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/dbsjgz/tdql/chuangq/index.vue"))),
+        name: "dbsjgztdqlcgq",
+        group: "tools4"
+      },
+      {
+        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/dbsjgz/tdql/gdb/index.vue"))),
+        name: "dbsjgztdqlgdb",
+        group: "tools4"
+      },
+      {
+        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/dbsjgz/tdql/chenjiangqx/manage-layers/index.vue"))),
+        name: "dbsjgztdqllayer",
+        group: "tools4"
+      },
+      /// /////////////////////
+      /// ///////////////
+      // 数据应用
+      /// ////////////////
+      /// //////
+
+      // 勘察设计
       {
         component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/sjyy/kcsj/dzks/Area/index.vue"))),
         name: "dzks"
       },
+      // 施工阶段
+
       {
-        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/sjyy/sgjd/bpkw/index.vue"))),
+        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/sjyy/sgjd/bpkw/liebiao/index.vue"))),
         name: "bpkw"
       },
       {
         component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/sjyy/sgjd/rjyy/index.vue"))),
         name: "rjyy"
       },
+      // 运营阶段
+
+      // 软基
+      {
+        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/sjyy/yyjd/jcyj/rj/index.vue"))),
+        name: "yyjdjceyjrj"
+      },
+      {
+        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/sjyy/yyjd/jcyj/rj/yujing/index.vue"))),
+        name: "yyjdjceyjrjys"
+      },
+      {
+        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/sjyy/yyjd/jcyj/rj/cgq/index.vue"))),
+        name: "yyjdjceyjrjcgq"
+      },
+      {
+        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/sjyy/yyjd/jcyj/rj/ditu/index.vue"))),
+        name: "yyjdjcyjrjditu"
+      },
+      // 软基完
+      // 边坡
+      {
+        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/sjyy/yyjd/jcyj/bp/index.vue"))),
+        name: "jcbp"
+      },
+      {
+        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/sjyy/yyjd/jcyj/bp/cgq/index.vue"))),
+        name: "yyjdjcyjbpcgq"
+      },
+      {
+        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/sjyy/yyjd/jcyj/bp/ditu/index.vue"))),
+        name: "yyjdjcyjbpditu"
+      },
+      {
+        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/sjyy/yyjd/jcyj/bp/yujing/index.vue"))),
+        name: "yyjdjcyjbpyujing"
+      },
+      {
+        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/sjyy/yyjd/jcyj/bp/index.vue"))),
+        name: "yyjdjcyjbp"
+      },
+      // 运营阶段
+      /// 靶向运营
+      {
+        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/sjyy/yyjd/bxyy/ditu/index.vue"))),
+        name: "bxyydt"
+      },
       {
         component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/sjyy/yyjd/bxyy/index.vue"))),
         name: "bxyy"
       },
+      //
+      // 黄梅山介绍
       {
-        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/sjyy/yyjd/jcyj/bp/index.vue"))),
-        name: "jcbp"
+        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/sjyy/sgjd/bpkw/liebiao/jiesao/huangmeishan/index.vue"))),
+        name: "hmsjs"
       }
     ],
     openAtStart: []

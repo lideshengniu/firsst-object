@@ -14,7 +14,7 @@ const { activate, disable, isActivate, updateWidget } = useWidget()
  */
 export function onMounted(mapInstance) {
   map = mapInstance
-  map.flyToPoint([118.540203984638, 31.58308348261099], { pitch: -69, radius: 27500, heading: 50, roll: 90 })
+  map.flyToPoint([118.540203984638, 31.58308348261099], { pitch: -69, radius: 37000, heading: 50, roll: 90 })
   const zongroad = map.getLayerById(10001)
   const zongzh = map.getLayerById(10005)
   zongroad.show = true

@@ -7,13 +7,17 @@ import { Result } from "ant-design-vue"
 export const useTestStore = defineStore(Names.Test3, {
   state: () => {
     return {
-      gys: false
+      gys: false,
+      shili: false
     }
   },
   getters: {},
   actions: {
     showgys() {
       this.gys = !this.gys
+    },
+    showshili() {
+      this.shili = !this.shili
     }
   }
 })

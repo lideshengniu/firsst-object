@@ -5,6 +5,9 @@ import vue from "@vitejs/plugin-vue"
 import eslintPlugin from "vite-plugin-eslint"
 import mars3dCesium from "vite-plugin-mars3d"
 import postCssPxToRem from "postcss-pxtorem"
+import OptimizationPersist from "vite-plugin-optimize-persist"
+import PkgConfig from "vite-plugin-package-config"
+
 import { createStyleImportPlugin, AndDesignVueResolve } from "vite-plugin-style-import"
 function pathResolve(dir: string) {
   return resolve(process.cwd(), ".", dir)
@@ -38,6 +41,11 @@ export default ({ mode }: ConfigEnv) => {
           target: "http://localhost/mars3d-data/3dtiles/test/tileset.json",
           changeOrigin: true,
           rewrite: (path) => path.replace(/^\/xy/, "")
+        },
+        "/insar": {
+          target: "http://124.221.236.190:80/insar/",
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/insar/, "")
         }
       }
     },
@@ -120,6 +128,8 @@ export default ({ mode }: ConfigEnv) => {
       eslintPlugin({ cache: false }),
       // postCssPxToRem({
       //   rootValue: 16,
+      PkgConfig(),
+      OptimizationPersist(),
       //   propList: ["*"]
       // }),
       mars3dCesium(),

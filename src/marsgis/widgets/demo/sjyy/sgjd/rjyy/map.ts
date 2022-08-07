@@ -1,12 +1,14 @@
 import { Maya } from "@icon-park/svg"
 import * as mars3d from "mars3d"
 import { useWidget } from "@mars/common/store/widget"
+import { mapOptions } from "@/components/title"
 
 export let graphicLayer
 export let map
 export const eventTabel = new mars3d.BaseClass()
-const { activate, disable, isActivate, updateWidget } = useWidget()
-/**
+let btroad
+let threed
+/** const btroad
  * 初始化地图业务，生命周期钩子函数（必须）
  * 框架在地图初始化完成后自动调用该函数
  * @param {mars3d.Map} mapInstance 地图对象
@@ -14,17 +16,29 @@ const { activate, disable, isActivate, updateWidget } = useWidget()
  */
 export function onMounted(mapInstance) {
   map = mapInstance
-  map.flyToPoint([118.538492, 31.602902], { pitch: -27, radius: 250, heading: 30, roll: 90 })
+  // btroad = map.getLayerById(10002)
+  // btroad.show = true
+  // map.addLayer(btroad)
+  map.getLayerById(10001).show = true
+  map.flyToPoint([118.538492, 31.602902], { pitch: -45, radius: 80000, heading: 0, roll: 90 })
   // const insar = map.getLayer(1002)
   // const insarPoints = map.getLayer(1000)
   // insarPoints.show = true
-  const threed = map.getLayerById(204012)
-  threed.show = true
-  map.addLayer(threed)
+  // const threed = map.getLayerById(204012)
+  // threed.show = true
+  // map.addLayer(threed)
   // insar.show = false
+  // map.eachLayer((e) => {
+  //   if (e.id === 10002) {
+  //     e.show = true
+  //   }
+  // })
   map.eachLayer((e) => {
-    if (e.id === 10001 || e.id === 10005 || e.id === 1002) {
+    if (e.id === 1002) {
       e.show = false
+    }
+    if (e.id === 10005) {
+      e.show = true
     }
   })
 
@@ -81,18 +95,48 @@ export function onMounted(mapInstance) {
     }
   ])
   bindLayerEvent()
+  addstart(graphicLayer, [118.491453, 31.43254], "k64", 1, "k64", "1mm", "轻微沉降")
 }
+// (graphicLayer, position, text, xuhao, zhuanghao, cjl, beizhu)
 export function onUnmounted() {
   // const insarPoints = map.getLayer(1000, "id")
   // insarPoints.show = false
-  const threed = map.getLayerById(204012)
-  threed.show = false
-
+  // const threed = map.getLayerById(204012)
+  // threed.show = false
+  // const btroad = map.getLayerById(10002)
+  // btroad.show = false
+  // btroad.remove(true)
+  // threed.remove(true)
   map = null
   table = []
 
   // graphicLayer.remove()
   // graphicLayer = null
+}
+function addstart(graphicLayer, position, text, xuhao, zhuanghao, cjl, beizhu) {
+  const graphic = new mars3d.graphic.PointEntity({
+    position: position,
+    style: {
+      color: "#ff0000",
+      pixelSize: 10,
+      outline: true,
+      outlineColor: "#ffffff",
+      outlineWidth: 2,
+      label: {
+        text: text,
+        font_size: 18,
+        color: "#ffffff",
+        pixelOffsetY: -50,
+        distanceDisplayCondition: true,
+        distanceDisplayCondition_far: 200000,
+        distanceDisplayCondition_near: 0
+      },
+      clampToGround: true
+    },
+    attr: { xuhao, zhuanghao: zhuanghao, cjl: cjl, beizhu: beizhu }
+  })
+  graphicLayer.addGraphic(graphic)
+  addTableItem(graphic)
 }
 function add1(graphicLayer) {
   const graphic = new mars3d.graphic.CurveEntity({
@@ -105,7 +149,7 @@ function add1(graphicLayer) {
     ],
     style: {
       color: "skyblue",
-      with: 10,
+      with: 5,
       opacity: 0.5,
 
       // label: { text: "鼠标移入会高亮", pixelOffsetY: -30 },
@@ -127,12 +171,11 @@ function add1(graphicLayer) {
     show: false
   })
   graphicLayer.addGraphic(graphic)
-  addTableItem(graphic)
 }
 
 let table = []
 function addTableItem(item) {
-  table.push({ key: item.id, name: item.attr.zhuanghao, cjl: item.attr.cjl, beizhu: item.attr.beizhu, xuhao: item.attr.xuhao })
+  table.push({ key: item.id, zhuanghao: item.attr.zhuanghao, cjl: item.attr.cjl, beizhu: item.attr.beizhu, xuhao: item.attr.xuhao })
   eventTabel.fire("tableObject", { table })
 }
 export function changeTable(data) {

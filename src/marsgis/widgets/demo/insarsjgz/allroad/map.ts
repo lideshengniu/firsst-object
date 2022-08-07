@@ -67,6 +67,7 @@ export function onMounted(mapInstance) {
 }
 export function onUnmounted() {
   map = null
+  graphicLayer.remove(true)
   table = []
 }
 
@@ -138,7 +139,7 @@ function add2(graphicLayer) {
 
     id: 2,
     name: "大青山尾矿库",
-    show: true
+    show: false
   })
   graphicLayer.addGraphic(graphic)
   addTableItem(graphic)

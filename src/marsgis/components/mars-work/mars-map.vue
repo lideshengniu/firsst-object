@@ -308,8 +308,27 @@ function onMapLoad() {
       }
     }
   ])
-  const bhtpoints = map.getLayer(1000, "id")
-  bhtpoints.bindContextMenu([
+  // const bhtpoints = map.getLayer(1000, "id")
+  // bhtpoints.bindContextMenu([
+  //   {
+  //     text: "沉降量",
+  //     show: true,
+  //     callback: (e) => {
+  //       const graphic = e.graphic
+  //       console.log(graphic.attr)
+  //       // const html = `${graphic.attr.D_20220217}`
+  //       // alert(html)
+  //       Test.showinsar2(graphic.attr)
+  //       setTimeout(() => {
+  //         activate("point3")
+  //       }, 2000)
+  //     }
+  //   }
+  // ])
+  const insarPoints = map.getLayerById(20222)
+  insarPoints.show = true
+  map.addLayer(insarPoints)
+  insarPoints.bindContextMenu([
     {
       text: "沉降量",
       show: true,
@@ -320,12 +339,11 @@ function onMapLoad() {
         // alert(html)
         Test.showinsar2(graphic.attr)
         setTimeout(() => {
-          activate("point3")
+          activate("point11")
         }, 2000)
       }
     }
   ])
-
   // 显示沉降const Cesium = mars3d.Cesium
   // const insar = map.getLayer(1000, "id")
   // insar.bindContextMenu([

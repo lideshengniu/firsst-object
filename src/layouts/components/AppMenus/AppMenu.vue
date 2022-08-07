@@ -5,38 +5,11 @@
       <pie-chart-outlined />
       <span>首页</span>
     </a-menu-item>
-    <!-- <a-menu-item key="2" class="menu-item" @click="tomap">
-      <environment-outlined />
-      <span>三维地球</span>
-    </a-menu-item> -->
-    <!-- <a-sub-menu key="sub1" class="menu-item">
-      <template #title>
-        <span>
-        <file-outlined /> -->
-    <!-- </span> -->
-    <!-- </template> -->
-    <!-- <a-menu-item key="16" @click="showinsar()">InSAR全局数据展示</a-menu-item>
-      <a-menu-item key="17" @click="gaobp(road)">沿线沉降数据分析</a-menu-item> -->
-    <!-- <a-menu-item key="4" @click="Building()">Building</a-menu-item>
-      <a-menu-item key="5" @click="Sensors()">传感器</a-menu-item> -->
-    <!-- </a-sub-menu> -->
-
     <a-menu-item key="12" class="menu-item">
       <WarningOutlined />
       <!-- style="font-size: 25px !important" -->
-      <span @click="sjgz">InSAR数据感知</span>
+      <span @click="insarsjgz">InSAR数据感知</span>
     </a-menu-item>
-    <!-- <a-sub-menu key="sub2" class="menu-item">
-      <template #title>
-        <span>
-          <team-outlined />
-          <span>尾矿分析</span>
-        </span>
-      </template>
-      <a-menu-item key="6" @click="gaobp(Mine)">尾矿查看</a-menu-item>
-      <a-menu-item key="8" @click="MineSee()">分析</a-menu-item>
-      <a-menu-item key="8" @click="MineSee()">分析</a-menu-item> -->
-    <!-- </a-sub-menu>  -->
     <a-sub-menu key="sub3" class="menu-item">
       <template #title>
         <span>
@@ -45,8 +18,8 @@
         </span>
       </template>
       <a-menu-item key="6" @click="gbp()">高边坡</a-menu-item>
-      <a-menu-item key="7" @click="gaobp(bridge)">特大桥梁</a-menu-item>
-      <a-menu-item key="8" @click="ruanji()">深厚软基</a-menu-item>
+      <a-menu-item key="7" @click="tdql()">特大桥梁</a-menu-item>
+      <a-menu-item key="8" @click="shruanji()">深厚软基</a-menu-item>
       <!-- <a-menu-item key="8" @click="MineSee()">分析</a-menu-item> -->
     </a-sub-menu>
     <a-sub-menu key="sub4" class="menu-item">
@@ -63,7 +36,7 @@
             勘察设计阶段
           </span>
         </template>
-        <a-menu-item key="116" @click="showArea()">对症勘设</a-menu-item>
+        <a-menu-item key="116" @click="dzks()">对症勘设</a-menu-item>
         <!-- <a-menu-item key="8" @click="MineSee()">特大桥梁</a-menu-item>
         <a-menu-item key="9" @click="MineSee()">深厚软基</a-menu-item> -->
         <!-- <a-menu-item key="8" @click="MineSee()">分析</a-menu-item> -->
@@ -99,10 +72,10 @@
             </span>
           </template>
 
-          <a-menu-item key="1000" @click="gaobp(Mine)">桥梁</a-menu-item>
-          <a-menu-item key="1001" @click="jcbp()">边坡</a-menu-item>
-          <a-menu-item key="1002" @click="gaobp(Mine)">软基</a-menu-item>
-          <a-menu-item key="1003" @click="gaobp(Mine)">尾矿坝</a-menu-item>
+          <a-menu-item key="1000">桥梁</a-menu-item>
+          <a-menu-item key="1001" @click="yyjdjcyjbp()">边坡</a-menu-item>
+          <a-menu-item key="1002" @click="yyjdjceyjrj()">软基</a-menu-item>
+          <a-menu-item key="1003">尾矿坝</a-menu-item>
           <!-- <a-menu-item key="8" @click="MineSee()">特大桥梁</a-menu-item>
         <a-menu-item key="9" @click="MineSee()">深厚软基</a-menu-item> -->
           <!-- <a-menu-item key="8" @click="MineSee()">分析</a-menu-item> -->
@@ -150,19 +123,19 @@ const file = ref("file")
 const Mine = ref("Mine")
 const road = ref("road")
 const bridge = ref("bridge")
-const sjgz = () => {
+const insarsjgz = () => {
   Test.showechart()
   disableAll(true)
   activate("demo-manage-layers")
-  activate("road")
-  activate("allroad")
+  activate("insarsjgzechart")
+  activate("insarsjgzallroad")
 }
 const sy = () => {
   Test.showinsar()
   disableAll(true)
   activate("toolbar")
 }
-const ruanji = () => {
+const shruanji = () => {
   console.log(1)
   Test.showechart()
   disableAll(true)
@@ -170,7 +143,7 @@ const ruanji = () => {
   activate("rjcjqx")
   activate("rjcgq")
   // activate("road")
-  activate("ruanji")
+  activate("dbsjgzgdb")
 }
 const bpkw = () => {
   Test.showechart()
@@ -183,34 +156,54 @@ const rjyy = () => {
   disableAll(true)
   activate("rjyy")
 }
-function showArea() {
+function dzks() {
   Test.showechart()
   disableAll(true)
   activate("dzks")
 }
 
 const gbp = () => {
+  Test.showechart()
   disableAll(true)
+  activate("dbsjgzgbpcgq")
+  activate("dbsjgzgbplayer")
+  activate("dbsjgzgbpgdb")
+}
+const tdql = () => {
+  Test.showechart()
+  disableAll(true)
+  activate("dbsjgztdqlcgq")
+  activate("dbsjgztdqllayer")
+  activate("dbsjgztdqlgdb")
 }
 const bxyy = () => {
   Test.showechart()
   disableAll(true)
+
   activate("bxyy")
+  activate("bxyydt")
 }
-const jcbp = () => {
+// const jcbp = () => {
+//   Test.showechart()
+//   disableAll(true)
+//   activate("jcbp")
+// }
+// const showgbp = ref(false)
+function yyjdjceyjrj() {
   Test.showechart()
   disableAll(true)
-  activate("jcbp")
+  activate("yyjdjceyjrj")
+  activate("yyjdjceyjrjys")
+  activate("yyjdjceyjrjcgq")
+  activate("yyjdjcyjrjditu")
 }
-const showgbp = ref(false)
-function gaobp(xx) {
+function yyjdjcyjbp() {
+  Test.showechart()
   disableAll(true)
-  showgbp.value = !showgbp.value
-  if (showgbp.value) {
-    activate(xx)
-  } else {
-    disable(xx)
-  }
+  activate("yyjdjcyjbpcgq")
+  activate("yyjdjcyjbpditu")
+  activate("yyjdjcyjbpyujing")
+  activate("yyjdjcyjbp")
 }
 // const tochart = function () {
 //   router.push("./chart")

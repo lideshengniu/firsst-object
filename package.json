@@ -34,6 +34,8 @@
     "nprogress": "^0.2.0",
     "pinia": "^2.0.17",
     "uuid": "^8.3.2",
+    "vite-plugin-optimize-persist": "^0.1.2",
+    "vite-plugin-package-config": "^0.1.1",
     "vue": "^3.2.31",
     "vue-color-kit": "^1.0.5",
     "vue-router": "^4.0.14",

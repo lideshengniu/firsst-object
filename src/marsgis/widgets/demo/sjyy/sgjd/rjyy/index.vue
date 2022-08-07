@@ -17,14 +17,14 @@
             <template v-else-if="column.key === 'cjl'">
               {{ record.cjl }}
             </template>
-            <template v-else-if="column.key === 'bz'">
-              {{ record.bz }}
+            <template v-else-if="column.key === 'beizhu'">
+              {{ record.beizhu }}
             </template>
             <template v-else-if="column.key === 'xuhao'">
               {{ record.xuhao }}
             </template>
             <template v-else>
-              {{ record.name }}
+              {{ record.zhuanghao }}
             </template>
           </template>
         </a-table>
@@ -51,8 +51,8 @@ const columns = ref([
   },
   {
     title: "桩号",
-    dataIndex: "name",
-    key: "name"
+    dataIndex: "zhuanghao",
+    key: "zhuanghao"
   },
   {
     title: "沉降量",
@@ -61,8 +61,8 @@ const columns = ref([
   },
   {
     title: "备注",
-    dataIndex: "bz",
-    key: "bz"
+    dataIndex: "beizhu",
+    key: "beizhu"
   },
   {
     title: "操作",

@@ -10,7 +10,7 @@
                   <mars-icon icon="move-one" color="#f2f2f2" class="icon-vertical-a" @click="flyto(record)" />
                 </mars-button>
                 <mars-button type="link">
-                  <mars-icon icon="delete" color="#f2f2f2" class="icon-vertical-a" @click="deleted(record)" />
+                  <mars-icon icon="save" color="#f2f2f2" class="icon-vertical-a" @click="deleted(record)" />
                 </mars-button>
               </a-space>
             </template>
@@ -24,7 +24,7 @@
               {{ record.xuhao }}
             </template>
             <template v-else>
-              {{ record.name }}
+              {{ record.cgyzqy }}
             </template>
           </template>
         </a-table>
@@ -51,8 +51,8 @@ const columns = ref([
   },
   {
     title: "超过阈值的区域",
-    dataIndex: "name",
-    key: "name"
+    dataIndex: "cgyzqy",
+    key: "cgyzqy"
   },
   {
     title: "沉降量",
@@ -70,6 +70,12 @@ const columns = ref([
     key: "caozuo",
     width: 80
   }
+  // {
+  //   title: "导出",
+  //   dataIndex: "daochu",
+  //   key: "daochu",
+  //   width: 80
+  // }
 ])
 interface TableItem {
   key: number

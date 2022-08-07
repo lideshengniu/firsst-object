@@ -280,7 +280,7 @@
         "pid": 2040,
         "type": "3dtiles",
         "name": "上海市区",
-        "url": "http://localhost/mars3d-data/3dtiles/test/tileset.json",
+        "url": "/insar/tileset.json",
         "maximumScreenSpaceError": 4,
         "maximumMemoryUsage": 1024,
         "style": {},
@@ -450,18 +450,19 @@
       {
         "pid": 100,
         "type": "graphic",
+        "chinaCRS": "GCJ02",
         "id": 1002,
         "name": "总InSAR",
         "show": false,
         "data": [
           {
             "positions": [
-              [118.7180688845, 31.8370379613],
-              [118.2553373945, 31.2126129393]
+              [118.5501756005, 31.79947696380002],
+              [118.4372301185, 31.2747979518]
             ],
             "style": {
               "clampToGround": true,
-              "image": "img/Layer0.png"
+              "image": "img/insar/lx.png"
             },
             "type": "rectangle",
             "hasEdit": false,
@@ -469,13 +470,30 @@
           }
         ]
       },
+      {
+        "pid": 100,
+        "name": "InSAR11解译",
+        "type": "geojson",
+        "crs": "EPSG:4326",
+        "id": 20221,
+        "url": "../json/zonginsar.json",
+        "show": false,
+        "symbol": {
+          "name": "zonginsar",
+          "type": "rectangle",
+          "styleOptions": { "clampToGround": true, "image": "img/insar/jieyi11.png" }
+        }
+      },
+
       { "id": 101, "name": "路线", "type": "group" },
       {
         "pid": 101,
         "id": 10001,
         "name": "宁芜高速",
+        "crs": "EPSG:4326",
         "url": "../json/road2.json",
         "type": "geojson",
+        "chinaCRS": "GCJ02",
         "flyTo": true,
         "popup": "{name}",
         "symbol": {
@@ -489,6 +507,7 @@
         "pid": 101,
         "id": 10005,
         "name": "桩号",
+        "crs": "EPSG:4326",
         "url": "../json/zhuanghao.json",
         "type": "geojson",
         "show": true,
@@ -514,13 +533,14 @@
         "pid": 101,
         "id": 10002,
         "name": "宝通路线",
+        "chinaCRS": "GCJ02",
         "url": "../json/baotong.json",
         "type": "geojson",
         "zIndex": 1000,
         "symbol": {
           "name": "保通线",
           "type": "curve",
-          "styleOptions": { "width": 15, "clampToGround": true, "color": "rgb(0,191,255)" }
+          "styleOptions": { "width": 4, "clampToGround": true, "color": "rgb(0,191,255)" }
         },
         "graphicOptions": { "popup": "保通线" },
         "show": false
@@ -535,13 +555,29 @@
         "id": 1000,
         "type": "geojson",
         "name": "隐患1",
-        "show": true,
-
-        "url": "../json/HPD.json",
+        "show": false,
+        "url": "../json/insar.json",
         "zIndex": 10,
         "symbol": {
           "type": "point",
           "styleOptions": { "opacity": 0.0, "color": "rgba(255,255,255,0)", "visibleDepth": true, "pixelSize": 3, "distanceDisplayCondition_near": 5 }
+        }
+      },
+      {
+        "pid": 102,
+        "id": 20222,
+        "type": "wfs",
+        "name": "baihet",
+        "show": false,
+        "url": "/test",
+        "layer": "sf:insar",
+        "zIndex": 10,
+        "graphicOptions": { "show": true },
+        "clustering": { "clampToGround": true, "radius": 8, "color": "red" },
+        "chinaCRS": "WGS84",
+        "symbol": {
+          "type": "point",
+          "styleOptions": { "opacity": 0.0, "color": "rgba(255,255,255,0)", "visibleDepth": true, "pixelSize": 7, "distanceDisplayCondition_near": 5 }
         }
       }
     ]
