@@ -325,7 +325,7 @@ function onMapLoad() {
   //     }
   //   }
   // ])
-  const insarPoints = map.getLayerById(20222)
+  const insarPoints = map.getLayerById(1000)
   insarPoints.show = true
   map.addLayer(insarPoints)
   insarPoints.bindContextMenu([

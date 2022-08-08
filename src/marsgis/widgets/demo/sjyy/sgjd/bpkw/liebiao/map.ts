@@ -16,38 +16,39 @@ export const eventTabel = new mars3d.BaseClass()
 export function onMounted(mapInstance) {
   map = mapInstance
   const road = map.getLayerById(10002)
-  const overviewMap = new mars3d.control.OverviewMap({
-    id: 1000,
-    basemap: {
-      name: "天地图影像",
-      type: "group",
-      layers: [
-        { name: "底图", type: "tdt", layer: "img_d" },
-        { name: "注记", type: "tdt", layer: "img_z" }
-      ]
-    },
-    layers: [{ type: "geojson", id: 10002, pid: 101, show: true }],
+  // const overviewMap = new mars3d.control.OverviewMap({
+  //   id: 1000,
+  //   basemap: {
+  //     name: "天地图影像",
+  //     type: "group",
+  //     layers: [
+  //       { name: "底图", type: "tdt", layer: "img_d" },
+  //       { name: "注记", type: "tdt", layer: "img_z" }
+  //     ]
+  //   },
+  //   layers: [{ type: "geojson", id: 10002, pid: 101, show: true }],
 
-    rectangle: {
-      color: "#fecd78",
-      opacity: 0.2,
-      outline: 1,
-      outlineColor: "#ff7800"
-    },
-    style: {
-      left: "5px",
-      top: "5px",
-      width: "200px",
-      height: "150px"
-    }
-  })
-  map.addControl(overviewMap)
-  map.flyToPoint([118.542203984638, 31.60508348261099], { pitch: -27, radius: 10000, heading: 30, roll: 90 })
+  //   rectangle: {
+  //     color: "#fecd78",
+  //     opacity: 0.2,
+  //     outline: 1,
+  //     outlineColor: "#ff7800"
+  //   },
+  //   style: {
+  //     left: "5px",
+  //     top: "5px",
+  //     width: "200px",
+  //     height: "150px"
+  //   }
+  // })
+  // map.addControl(overviewMap)
+  map.flyToPoint([118.542203984638, 31.60508348261099], { pitch: -27, radius: 30000, heading: 30, roll: 90 })
   const threed = map.getLayerById(204012)
   threed.show = true
+  // 开路线和桩号
   map.eachLayer((e) => {
     if (e.id === 10001 || e.id === 10005) {
-      e.show = false
+      e.show = true
     }
   })
   map.addLayer(threed)
@@ -119,11 +120,16 @@ export function onMounted(mapInstance) {
   bindLayerEvent()
 }
 export function onUnmounted() {
+  map.eachLayer((e) => {
+    if (e.id === 10001 || e.id === 10005 || e.id === 204012 || e.id === 1000) {
+      e.show = false
+    }
+  })
   const threed = map.getLayerById(204012)
-  const control = map.getControl(1000, "id")
-  console.log("niubi", control)
-  map.removeControl(control)
-  control.enabled = false
+  // const control = map.getControl(1000, "id")
+  // console.log("niubi", control)
+  // map.removeControl(control)
+  // control.enabled = false
   threed.show = false
   graphicLayer.remove(true)
   map = null

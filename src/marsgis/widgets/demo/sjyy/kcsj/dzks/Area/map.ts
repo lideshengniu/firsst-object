@@ -17,7 +17,6 @@ const Test = useTestStore()
 export function onMounted(mapInstance) {
   map = mapInstance
   map.flyToPoint([118.542203984638, 31.60508348261099], { pitch: -27, radius: 10000, heading: 30, roll: 90 })
-  /// /////////////////////
 
   /// /////////insar points
   const insar = map.getLayer(1002)
@@ -536,8 +535,8 @@ export function onMounted(mapInstance) {
 }
 export function onUnmounted() {
   map.getLayer(1000, "id").show = false
-  graphicLayer.remove(true)
-  insarPoints.remove(true)
+  // graphicLayer.remove(true)
+  // insarPoints.show = false
   //  const insarPoints =
   // insarPoints.show = false
   // graphicLayer.removeLayer()

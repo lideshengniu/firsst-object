@@ -8,7 +8,7 @@ import * as mars3d from "mars3d"
 const Cesium = mars3d.Cesium
 
 let map: mars3d.Map // 地图对象
-
+let insarzong
 /**
  * 初始化地图业务，生命周期钩子函数（必须）
  * 框架在地图初始化完成后自动调用该函数
@@ -17,7 +17,7 @@ let map: mars3d.Map // 地图对象
  */
 export function onMounted(mapInstance: mars3d.Map) {
   map = mapInstance // 记录首次创建的map
-  const insarzong = map.getLayerById(1002)
+  insarzong = map.getLayerById(1002)
   insarzong.show = true
   map.addLayer(insarzong)
   map.flyToPoint([118.540203984638, 31.58308348261099], { pitch: -69, radius: 35000, heading: 50, roll: 90 })
@@ -43,6 +43,7 @@ export function onMounted(mapInstance: mars3d.Map) {
  * @returns {void} 无
  */
 export function onUnmounted() {
+  insarzong.remove(true)
   map.eachLayer((e) => {
     if (e.id === 10001 || e.id === 10005 || e.id === 1002) {
       e.show = false

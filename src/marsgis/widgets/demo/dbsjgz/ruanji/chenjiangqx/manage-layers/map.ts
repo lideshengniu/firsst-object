@@ -23,7 +23,7 @@ export function onMounted(mapInstance: mars3d.Map) {
   const grapichlayer = map.getLayerById(1002)
   const grapichlayerroad = map.getLayerById(10001)
   const grapichlayerzhuanghao = map.getLayerById(10005)
-  grapichlayer.show = true
+  // grapichlayer.show = true
   grapichlayerroad.show = false
   grapichlayerzhuanghao.show = false
   // map.eachLayer((e)=>{if(e.id)})
