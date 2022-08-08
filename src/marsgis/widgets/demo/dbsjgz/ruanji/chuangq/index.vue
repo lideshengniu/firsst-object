@@ -156,6 +156,12 @@ const flyto = (record: any) => {
   if (record.key === 2) {
     activate("hmscjcgq2")
   }
+  if (record.key === 3) {
+    activate("hmsspcgq1")
+  }
+  if (record.key === 4) {
+    activate("hmsspcgq2")
+  }
   // activate("zsptc")
 }
 const deleted = (record: any) => {

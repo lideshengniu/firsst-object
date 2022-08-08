@@ -74,7 +74,7 @@ const columns = ref([
 ])
 interface TableItem {
   key: number
-  name: string
+  bpmc: string
 }
 const rowSelection = ref({
   hideSelectAll: true,
@@ -85,6 +85,14 @@ const rowSelection = ref({
     rowKeys.value = selectedRowKeys
   },
   onSelect: (record: TableItem, selected: boolean) => {
+    if (record.bpmc === "黄梅山边坡") {
+      activate("bpkwhmsdt")
+    } else if (record.bpmc === "葛羊山") {
+      activate("bpkwgysdt")
+    } else {
+      activate("bpkwzsdt")
+    }
+
     mapWork.showHideArea(record.key, selected)
   }
 })

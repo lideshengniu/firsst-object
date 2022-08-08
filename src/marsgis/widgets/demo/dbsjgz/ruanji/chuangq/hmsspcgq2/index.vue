@@ -2,7 +2,7 @@
   <mars-dialog title="沉降" top="20" right="2" bottom="500" width="500">
     <ul class="chart">
       <li class="chart1">
-        <div class="chart1-title">沉降器传感器</div>
+        <div class="chart1-title">水平位移传感器2</div>
         <div class="chart1-points" ref="chart1"></div>
       </li>
       <li class="chart2">2</li>

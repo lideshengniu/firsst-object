@@ -7,8 +7,20 @@ export function onMounted(mapInstance) {
   map = mapInstance
   graphicLayer = new mars3d.layer.GraphicLayer()
   map.addLayer(graphicLayer)
-  insarcgq(graphicLayer, [118.537528, 31.603128121, 10], "black", 10, "insar传感器")
-  insarcgq(graphicLayer, [118.537328, 31.603128121, 10], "red", 11, "地表传感器")
+  insarcjt(
+    graphicLayer,
+    [
+      [118.5329512895, 31.6202591328],
+      [118.5397010195, 31.6202591328],
+      [118.5397010195, 31.5947601528],
+      [118.5329512895, 31.5947601528],
+      [118.5329512895, 31.6202591328]
+    ],
+    "public/img/insar/yujingbp/bp.png",
+    10,
+    "insar沉降图"
+  )
+  dbcgq(graphicLayer, [118.537328, 31.603128121, 10], "red", 11, "地表传感器")
 
   // insarcgq(graphicLayer)
 }
@@ -98,8 +110,25 @@ function hmscjcgq(graphicLayer) {
 //   // addTableItem(graphic)
 //   console.log("asdasd")
 // }
+function insarcjt(graphicLayer, positions, image, id, cgqlx) {
+  const graphic = new mars3d.graphic.RectangleEntity({
+    positions: positions,
+    style: {
+      clampToGround: true,
+      image: image
+    },
+    attr: { cgqlx: cgqlx },
 
-function insarcgq(graphicLayer, position, color, id, cgqlx) {
+    // hasEdit: true,
+    id: id,
+    // name: "1号",
+    show: false
+  })
+  graphicLayer.addGraphic(graphic)
+  addTableItem(graphic)
+  console.log("asdasd")
+}
+function dbcgq(graphicLayer, position, color, id, cgqlx) {
   const graphic = new mars3d.graphic.EllipseEntity({
     position: position,
     style: {

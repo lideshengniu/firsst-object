@@ -5,6 +5,7 @@ export let graphicLayer
 export let map
 export const eventTabel = new mars3d.BaseClass()
 let btroad
+let zhuanghao
 /**
  * 初始化地图业务，生命周期钩子函数（必须）
  * 框架在地图初始化完成后自动调用该函数
@@ -15,39 +16,44 @@ export function onMounted(mapInstance) {
   map = mapInstance
 
   // 加天眼
-  const overviewMap = new mars3d.control.OverviewMap({
-    id: 1000,
-    basemap: {
-      name: "天地图影像",
-      type: "group",
-      layers: [
-        { name: "底图", type: "tdt", layer: "img_d" },
-        { name: "注记", type: "tdt", layer: "img_z" }
-      ]
-    },
-    layers: [{ id: 10002, type: "geojson" }],
+  // const overviewMap = new mars3d.control.OverviewMap({
+  //   id: 1000,
+  //   basemap: {
+  //     name: "天地图影像",
+  //     type: "group",
+  //     layers: [
+  //       { name: "底图", type: "tdt", layer: "img_d" },
+  //       { name: "注记", type: "tdt", layer: "img_z" }
+  //     ]
+  //   },
+  //   layers: [{ id: 10002, type: "geojson" }],
 
-    rectangle: {
-      color: "#fecd78",
-      opacity: 0.2,
-      outline: 1,
-      outlineColor: "#ff7800"
-    },
-    style: {
-      left: "5px",
-      top: "5px",
-      width: "200px",
-      height: "150px"
-    }
-  })
+  //   rectangle: {
+  //     color: "#fecd78",
+  //     opacity: 0.2,
+  //     outline: 1,
+  //     outlineColor: "#ff7800"
+  //   },
+  //   style: {
+  //     left: "5px",
+  //     top: "5px",
+  //     width: "200px",
+  //     height: "150px"
+  //   }
+  // })
   //
-  map.addControl(overviewMap)
+  // map.addControl(overviewMap)
   map.flyToPoint([118.54389, 31.603902], { pitch: -70, radius: 5000, heading: 60, roll: 150 })
   btroad = map.getLayerById(10002)
+  zhuanghao = map.getLayerById(10005)
+  zhuanghao.show = true
   btroad.show = true
   map.addLayer(btroad)
+  map.addLayer(zhuanghao)
+  // graphicLayer, position, text
+  // || e.id === 10005
   map.eachLayer((e) => {
-    if (e.id === 10001 || e.id === 10005) {
+    if (e.id === 10001) {
       e.show = false
     }
   })
@@ -99,6 +105,7 @@ export function onMounted(mapInstance) {
 export function onUnmounted() {
   // const btroad = map.getLayerById(10002)
   btroad.show = false
+  zhuanghao.show = false
   const control = map.getControl(1000, "id")
   console.log("niubi", control)
   graphicLayer.remove(true)
@@ -177,6 +184,30 @@ function add(graphicLayer, positions, xuhao, cgyzqy, cjl, bz, id, name) {
   })
   graphicLayer.addGraphic(graphic)
   addTableItem(graphic)
+}
+function addstart(graphicLayer, position, text) {
+  const graphic = new mars3d.graphic.PointEntity({
+    position: position,
+    style: {
+      color: "#ff0000",
+      pixelSize: 10,
+      outline: true,
+      outlineColor: "#ffffff",
+      outlineWidth: 2,
+      label: {
+        text: text,
+        font_size: 18,
+        color: "#ffffff",
+        pixelOffsetY: -50,
+        distanceDisplayCondition: true,
+        distanceDisplayCondition_far: 200000,
+        distanceDisplayCondition_near: 0
+      },
+      clampToGround: true
+    },
+    attr: { remark: "示例2" }
+  })
+  graphicLayer.addGraphic(graphic)
 }
 export function bindLayerPopup() {
   graphicLayer.bindPopup(function (event) {

@@ -1,12 +1,13 @@
 import { Maya } from "@icon-park/svg"
 import * as mars3d from "mars3d"
-import { useWidget } from "@mars/common/store/widget"
+// import { useWidget } from "@mars/common/store/widget"
 import { $alert, $message, $alert as globalAlert } from "@mars/components/mars-ui/index"
 import { geojson } from "mapv"
+import { use } from "echarts"
 export let graphicLayer
 export let map
 export const eventTabel = new mars3d.BaseClass()
-
+// const { activate } = useWidget()
 /**
  * 初始化地图业务，生命周期钩子函数（必须）
  * 框架在地图初始化完成后自动调用该函数
@@ -272,8 +273,14 @@ export function showHideArea(id, selected) {
 
   if (selected) {
     graphic.show = true
+    // 显示地图
+    // if (graphic.name === "黄梅山") {
+
+    // }
+    // --------------
     if (graphic.attr.bpmc === "黄梅山边坡") {
       $alert("该处沉降较大")
+      // activate("bpkwhmsdt")
     } else if (graphic.attr.bpmc === "葛羊山边坡") {
       $alert("该处沉降较大")
     }

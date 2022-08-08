@@ -30,7 +30,7 @@ const columns = ref([
 ])
 interface TableItem {
   key: number
-  name: string
+  cgqlx: string
 }
 const rowSelection = ref({
   hideSelectAll: true,
@@ -41,6 +41,7 @@ const rowSelection = ref({
     rowKeys.value = selectedRowKeys
   },
   onSelect: (record: TableItem, selected: boolean) => {
+    // if(record.cgqlx === '地表传感器')
     mapWork.showHideArea(record.key, selected)
   }
 })

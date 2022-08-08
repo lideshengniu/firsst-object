@@ -46,13 +46,12 @@ export function onMounted(mapInstance) {
   // map.addLayer(insar)
   graphicLayer = new mars3d.layer.GraphicLayer()
   map.addLayer(graphicLayer)
-  const graphicLayer2 = map.getLayer(1000, "id")
-  map.addLayer(graphicLayer2)
+  // const graphicLayer2 = map.getLayer(1000, "id")
+  // map.addLayer(graphicLayer2)
   // graphicLayer = map.getLayer(1002, "id")
   console.log("123123", graphicLayer)
-  add1(graphicLayer)
-  // add2(graphicLayer)
-  // add3(graphicLayer)
+  // add1(graphicLayer)
+
   graphicLayer.bindContextMenu([
     {
       text: "开始编辑对象",
@@ -95,6 +94,8 @@ export function onMounted(mapInstance) {
     }
   ])
   bindLayerEvent()
+
+  // 加点
   addstart(graphicLayer, [118.491453, 31.43254], "k64", 1, "k64", "1mm", "轻微沉降")
 }
 // (graphicLayer, position, text, xuhao, zhuanghao, cjl, beizhu)
@@ -117,7 +118,7 @@ function addstart(graphicLayer, position, text, xuhao, zhuanghao, cjl, beizhu) {
   const graphic = new mars3d.graphic.PointEntity({
     position: position,
     style: {
-      color: "#ff0000",
+      color: "yellow",
       pixelSize: 10,
       outline: true,
       outlineColor: "#ffffff",
@@ -133,45 +134,46 @@ function addstart(graphicLayer, position, text, xuhao, zhuanghao, cjl, beizhu) {
       },
       clampToGround: true
     },
-    attr: { xuhao, zhuanghao: zhuanghao, cjl: cjl, beizhu: beizhu }
+    attr: { xuhao, zhuanghao: zhuanghao, cjl: cjl, beizhu: beizhu },
+    show: false
   })
   graphicLayer.addGraphic(graphic)
   addTableItem(graphic)
 }
-function add1(graphicLayer) {
-  const graphic = new mars3d.graphic.CurveEntity({
-    positions: [
-      [118.52022691784931, 31.47988479851522],
-      [118.52022706969107, 31.479893816518057],
-      [118.52022721788605, 31.479902834565443],
-      [118.52022736244786, 31.479911852656127],
-      [118.52022750339006, 31.47992087078887]
-    ],
-    style: {
-      color: "skyblue",
-      with: 5,
-      opacity: 0.5,
+// function add1(graphicLayer) {
+//   const graphic = new mars3d.graphic.CurveEntity({
+//     positions: [
+//       [118.52022691784931, 31.47988479851522],
+//       [118.52022706969107, 31.479893816518057],
+//       [118.52022721788605, 31.479902834565443],
+//       [118.52022736244786, 31.479911852656127],
+//       [118.52022750339006, 31.47992087078887]
+//     ],
+//     style: {
+//       color: "red",
+//       with: 10,
+//       opacity: 0.5,
 
-      // label: { text: "鼠标移入会高亮", pixelOffsetY: -30 },
-      // 高亮时的样式（默认为鼠标移入，也可以指定type:'click'单击高亮），构造后也可以openHighlight、closeHighlight方法来手动调用
-      highlight: {
-        opacity: 0.8
-      }
+//       // label: { text: "鼠标移入会高亮", pixelOffsetY: -30 },
+//       // 高亮时的样式（默认为鼠标移入，也可以指定type:'click'单击高亮），构造后也可以openHighlight、closeHighlight方法来手动调用
+//       highlight: {
+//         opacity: 0.8
+//       }
 
-      // }
-    },
-    attr: {
-      xuhao: 1,
-      zhuanghao: "k44+000~k44+500",
-      cjl: "15mm",
-      beizhu: "检查"
-    },
-    id: 1,
-    name: "K55+000~K55+500",
-    show: false
-  })
-  graphicLayer.addGraphic(graphic)
-}
+//       // }
+//     },
+//     attr: {
+//       xuhao: 1,
+//       zhuanghao: "k44+000~k44+500",
+//       cjl: "15mm",
+//       beizhu: "检查"
+//     },
+//     id: 1,
+//     name: "K55+000~K55+500",
+//     show: true
+//   })
+//   graphicLayer.addGraphic(graphic)
+// }
 
 let table = []
 function addTableItem(item) {

@@ -125,11 +125,33 @@ const store: StoreOptions<WidgetState> = {
       // 地表数据感知
       /// ////////////////
       /// //////
+      /// 3.3 软基
       {
         component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/dbsjgz/ruanji/gdb/index.vue"))),
         name: "dbsjgzgdb",
         group: "tools4"
       },
+      // 示例 3.3.1 沉降传感器1曲线
+      {
+        component: markRaw(defineAsyncComponent(() => import("@/marsgis/widgets/demo/dbsjgz/ruanji/chuangq/hmscjcgq/index.vue"))),
+        name: "hmscjcgq1"
+      },
+      // 示例 3.3.2 沉降传感器2曲线
+      {
+        component: markRaw(defineAsyncComponent(() => import("@/marsgis/widgets/demo/dbsjgz/ruanji/chuangq/hmscjcgq2/index.vue"))),
+        name: "hmscjcgq2"
+      },
+      // 示例 3.3.3 水平位移传感器1曲线
+      {
+        component: markRaw(defineAsyncComponent(() => import("@/marsgis/widgets/demo/dbsjgz/ruanji/chuangq/hmsspcgq/index.vue"))),
+        name: "hmsspcgq1"
+      },
+      // 示例 3.3.4 水平位移传感器2曲线
+      {
+        component: markRaw(defineAsyncComponent(() => import("@/marsgis/widgets/demo/dbsjgz/ruanji/chuangq/hmsspcgq2/index.vue"))),
+        name: "hmsspcgq2"
+      },
+      // 3.1 高边坡
       {
         component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/dbsjgz/gbp/gdb/index.vue"))),
         name: "dbsjgzgbpgdb",
@@ -158,15 +180,7 @@ const store: StoreOptions<WidgetState> = {
         component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/dbsjgz/ruanji/chuangq/index.vue"))),
         name: "rjcgq"
       },
-      // 示例 传感器曲线1
-      {
-        component: markRaw(defineAsyncComponent(() => import("@/marsgis/widgets/demo/dbsjgz/ruanji/chuangq/hmscjcgq/index.vue"))),
-        name: "hmscjcgq1"
-      },
-      {
-        component: markRaw(defineAsyncComponent(() => import("@/marsgis/widgets/demo/dbsjgz/ruanji/chuangq/hmscjcgq2/index.vue"))),
-        name: "hmscjcgq2"
-      },
+
       // 传感器曲线
       {
         component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/dbsjgz/tdql/chuangq/index.vue"))),
@@ -185,25 +199,42 @@ const store: StoreOptions<WidgetState> = {
       },
       /// /////////////////////
       /// ///////////////
-      // 数据应用
+      //  4.数据应用
       /// ////////////////
       /// //////
 
-      // 勘察设计
+      // 4.1勘察设计
       {
         component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/sjyy/kcsj/dzks/Area/index.vue"))),
         name: "dzks"
       },
-      // 施工阶段
-
+      // 4.2施工阶段
+      // 4.2.1 边坡开挖
       {
         component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/sjyy/sgjd/bpkw/liebiao/index.vue"))),
         name: "bpkw"
       },
+      // 4.2.1 地图
+      {
+        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/sjyy/sgjd/bpkw/liebiao/ditu/geyangshan/index.vue"))),
+        name: "bpkwgysdt"
+      },
+      {
+        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/sjyy/sgjd/bpkw/liebiao/ditu/huangmeishan/index.vue"))),
+        name: "bpkwhmsdt"
+      },
+
+      {
+        component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/sjyy/sgjd/bpkw/liebiao/ditu/zhongshan/index.vue"))),
+        name: "bpkwzsdt"
+      },
+      // --------------
+
       {
         component: markRaw(defineAsyncComponent(() => import("@mars/widgets/demo/sjyy/sgjd/rjyy/index.vue"))),
         name: "rjyy"
       },
+
       // 运营阶段
 
       // 软基
