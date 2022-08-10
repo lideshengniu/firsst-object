@@ -143,7 +143,7 @@ const store: StoreOptions<WidgetState> = {
       },
       // 示例 3.3.3 水平位移传感器1曲线
       {
-        component: markRaw(defineAsyncComponent(() => import("@/marsgis/widgets/demo/dbsjgz/ruanji/chuangq/hmsspcgq/index.vue"))),
+        component: markRaw(defineAsyncComponent(() => import("@/marsgis/widgets/demo/dbsjgz/ruanji/chuangq/hmsspcgq1/index.vue"))),
         name: "hmsspcgq1"
       },
       // 示例 3.3.4 水平位移传感器2曲线

@@ -17,9 +17,10 @@ let insarzong
  */
 export function onMounted(mapInstance: mars3d.Map) {
   map = mapInstance // 记录首次创建的map
-  insarzong = map.getLayerById(1002)
-  insarzong.show = true
-  map.addLayer(insarzong)
+  // insarzong = map.getLayerById(1002)
+  // map.addLayer(insarzong)
+  // insarzong.show = true
+
   map.flyToPoint([118.540203984638, 31.58308348261099], { pitch: -69, radius: 35000, heading: 50, roll: 90 })
   map.eachLayer((e) => {
     if (e.id === 204012) {
@@ -43,7 +44,7 @@ export function onMounted(mapInstance: mars3d.Map) {
  * @returns {void} 无
  */
 export function onUnmounted() {
-  insarzong.remove(true)
+  // insarzong.remove(true)
   map.eachLayer((e) => {
     if (e.id === 10001 || e.id === 10005 || e.id === 1002) {
       e.show = false

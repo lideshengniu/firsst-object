@@ -43,7 +43,7 @@ export function onMounted(mapInstance) {
   // })
   //
   // map.addControl(overviewMap)
-  map.flyToPoint([118.54389, 31.603902], { pitch: -70, radius: 5000, heading: 60, roll: 150 })
+  map.flyToPoint([118.54389, 31.603902], { pitch: -70, radius: 90000, heading: 60, roll: 150 })
   btroad = map.getLayerById(10002)
   zhuanghao = map.getLayerById(10005)
   zhuanghao.show = true

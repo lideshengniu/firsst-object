@@ -37,8 +37,8 @@ export function onMounted(mapInstance: mars3d.Map) {
  * @returns {void} 无
  */
 export function onUnmounted() {
-  const grapichlayer = map.getLayerById(1002)
-  grapichlayer.show = false
+  // const grapichlayer = map.getLayerById(1002)
+  // grapichlayer.show = false
   const threed = map.getLayerById(204012)
   threed.show = false
   // map.grapichlayer.show = false
